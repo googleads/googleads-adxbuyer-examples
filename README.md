@@ -6,5 +6,6 @@ These code samples are organized by platform or language.
 * *php* is a set of samples that shows how to make most calls against the API, written in PHP.
 * *python* is a command-line sample that shows how to make most calls against the API, written in Python.
 * *CSharp* is a command-line sample that shows how to make most calls against the API, written in .Net.
+* *ruby* is a command-line sample that shows how to make most calls against the API, written in Ruby.
 
 Please refer to the README.md file inside each directory for installation instructions.
