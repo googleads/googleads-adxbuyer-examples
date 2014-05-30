@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2014 Google Inc. All Rights Reserved.
+# Copyright 2012 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This example demonstrates how to retrieve a Creative.
+"""This example illustrates how to submit a new creative for its verification.
 
-Tags: Creatives.get
+Tags: Creatives.insert
 """
 
 __author__ = 'api.msaniscalchi@gmail.com (Mark Saniscalchi)'
@@ -28,11 +28,9 @@ from oauth2client.client import AccessTokenRefreshError
 import util
 
 
-def main(ad_exchange_buyer, account_id, buyer_creative_id):
+def main(ad_exchange_buyer, body):
   # Construct the request.
-  request = ad_exchange_buyer.creatives().get(
-      accountId=account_id,
-      buyerCreativeId=buyer_creative_id)
+  request = ad_exchange_buyer.creatives().insert(body=body)
 
   # Execute request and print response.
   pprint.pprint(request.execute())
@@ -41,11 +39,25 @@ if __name__ == '__main__':
   try:
     service = util.GetService()
 
-    ACCOUNT_ID = int('INSERT_ACCOUNT_ID')
-    BUYER_CREATIVE_ID = 'INSERT_BUYER_CREATIVE_ID'
+    # Create a body containing the Creative's details.
+    BODY = {
+        'accountId': int('INSERT_ACCOUNT_ID'),
+        'buyerCreativeId': 'BUYER_CREATIVE_ID',
+        'HTMLSnippet': 'INSERT_HTML_SNIPPET',
+        'clickThroughUrl': ['INSERT_URL'],
+        'width': int('INSERT_WIDTH'),
+        'height': int('INSERT_HEIGHT'),
+        'advertiserName': 'INSERT_ADVERTISER_NAME'
+    }
 
-    if BUYER_CREATIVE_ID == 'INSERT_BUYER_CREATIVE_ID':
-      raise Exception('buyer_creative_id not set.')
+    if BODY['buyerCreativeId'] == 'BUYER_CREATIVE_ID':
+      raise Exception('The buyerCreativeId was not set.')
+    if BODY['HTMLSnippet'] == 'INSERT_HTML_SNIPPET':
+      raise Exception('The HTMLSnippet was not set.')
+    if BODY['clickThroughUrl'][0] == 'INSERT_URL':
+      raise Exception('The clickThroughUrl was not set.')
+    if BODY['advertiserName'] == 'INSERT_ADVERTISER_NAME':
+      raise Exception('The advertiserName was not set.')
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in util.py?'
@@ -56,7 +68,7 @@ if __name__ == '__main__':
     sys.exit()
   except ValueError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you set account_id to an integer?'
+    print 'Did you set account_id, width and height to an integer?'
     sys.exit()
 
-  main(service, ACCOUNT_ID, BUYER_CREATIVE_ID)
+  main(service, BODY)

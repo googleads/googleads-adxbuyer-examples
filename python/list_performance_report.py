@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This example demonstrates how to retrieve a Creative.
+"""This example lists the given Account's Performance Report.
 
-Tags: Creatives.get
+Tags: PerformanceReport.list
 """
 
 __author__ = 'api.msaniscalchi@gmail.com (Mark Saniscalchi)'
@@ -28,11 +28,14 @@ from oauth2client.client import AccessTokenRefreshError
 import util
 
 
-def main(ad_exchange_buyer, account_id, buyer_creative_id):
+def main(ad_exchange_buyer, account_id, start_date_time, end_date_time,
+         max_results):
   # Construct the request.
-  request = ad_exchange_buyer.creatives().get(
+  request = ad_exchange_buyer.performanceReport().list(
       accountId=account_id,
-      buyerCreativeId=buyer_creative_id)
+      startDateTime=start_date_time,
+      endDateTime=end_date_time,
+      maxResults=max_results)
 
   # Execute request and print response.
   pprint.pprint(request.execute())
@@ -42,10 +45,16 @@ if __name__ == '__main__':
     service = util.GetService()
 
     ACCOUNT_ID = int('INSERT_ACCOUNT_ID')
-    BUYER_CREATIVE_ID = 'INSERT_BUYER_CREATIVE_ID'
+    START_DATE_TIME = 'YYYY-MM-DD'  # Insert startDateTime here.
+    END_DATE_TIME = 'YYYY-MM-DD'  # Insert endDateTime here.
+    MAX_RESULTS = util.MAX_PAGE_SIZE
 
-    if BUYER_CREATIVE_ID == 'INSERT_BUYER_CREATIVE_ID':
-      raise Exception('buyer_creative_id not set.')
+    if START_DATE_TIME == 'YYYY-MM-DD':
+      raise Exception('The report\'s startDateTime was not set.')
+
+    if END_DATE_TIME == 'YYYY-MM-DD':
+      raise Exception('The report\'s endDateTime was not set.')
+
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in util.py?'
@@ -59,4 +68,4 @@ if __name__ == '__main__':
     print 'Did you set account_id to an integer?'
     sys.exit()
 
-  main(service, ACCOUNT_ID, BUYER_CREATIVE_ID)
+  main(service, ACCOUNT_ID, START_DATE_TIME, END_DATE_TIME, MAX_RESULTS)

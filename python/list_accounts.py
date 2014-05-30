@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This example demonstrates how to retrieve a Creative.
+"""This example lists the user's Accounts.
 
-Tags: Creatives.get
+Tags: Accounts.list
 """
 
 __author__ = 'api.msaniscalchi@gmail.com (Mark Saniscalchi)'
@@ -28,11 +28,9 @@ from oauth2client.client import AccessTokenRefreshError
 import util
 
 
-def main(ad_exchange_buyer, account_id, buyer_creative_id):
+def main(ad_exchange_buyer):
   # Construct the request.
-  request = ad_exchange_buyer.creatives().get(
-      accountId=account_id,
-      buyerCreativeId=buyer_creative_id)
+  request = ad_exchange_buyer.accounts().list()
 
   # Execute request and print response.
   pprint.pprint(request.execute())
@@ -40,12 +38,6 @@ def main(ad_exchange_buyer, account_id, buyer_creative_id):
 if __name__ == '__main__':
   try:
     service = util.GetService()
-
-    ACCOUNT_ID = int('INSERT_ACCOUNT_ID')
-    BUYER_CREATIVE_ID = 'INSERT_BUYER_CREATIVE_ID'
-
-    if BUYER_CREATIVE_ID == 'INSERT_BUYER_CREATIVE_ID':
-      raise Exception('buyer_creative_id not set.')
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in util.py?'
@@ -54,9 +46,5 @@ if __name__ == '__main__':
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you set the correct Service Account Email in util.py?'
     sys.exit()
-  except ValueError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you set account_id to an integer?'
-    sys.exit()
 
-  main(service, ACCOUNT_ID, BUYER_CREATIVE_ID)
+  main(service)
