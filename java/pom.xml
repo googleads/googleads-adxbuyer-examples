@@ -114,7 +114,7 @@
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-adexchangebuyer</artifactId>
-      <version>v1.3-rev17-1.18.0-rc</version>
+      <version>v1.3-rev25-1.18.0-rc</version>
     </dependency>
     <dependency>
       <groupId>com.google.http-client</groupId>

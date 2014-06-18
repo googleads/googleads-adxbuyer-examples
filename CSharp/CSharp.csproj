@@ -32,14 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Google.Apis.AdExchangeBuyer.Examples.v1_x.GetCreative</StartupObject>
+    <StartupObject>Google.Apis.AdExchangeBuyer.Examples.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Apis">
       <HintPath>packages\Google.Apis.1.8.1\lib\net40\Google.Apis.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.AdExchangeBuyer.v1_3">
-      <HintPath>packages\Google.Apis.AdExchangeBuyer.v1_3.1.8.1.210\lib\portable-net4+sl4+wp71+win8\Google.Apis.AdExchangeBuyer.v1_3.dll</HintPath>
+    <Reference Include="Google.Apis.AdExchangeBuyer.v1_3, Version=1.8.1.21, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Google.Apis.Adexchangebuyer.v1_3.1.8.1.250\lib\portable-net4+sl4+wp71+win8\Google.Apis.AdExchangeBuyer.v1_3.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Auth">
       <HintPath>packages\Google.Apis.Auth.1.8.1\lib\net40\Google.Apis.Auth.dll</HintPath>
@@ -110,6 +111,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="v1_x\GetCreative.cs" />
+    <Compile Include="v1_x\InsertPretargetingConfig.cs" />
     <Compile Include="v1_x\InsertCreative.cs" />
     <Compile Include="v1_x\ListAccounts.cs" />
     <Compile Include="v1_x\ListCreatives.cs" />
