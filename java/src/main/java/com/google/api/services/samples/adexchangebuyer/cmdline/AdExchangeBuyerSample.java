@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * A sample application that runs multiple requests against the Ad Exchange 
+ * A sample application that runs multiple requests against the Ad Exchange
  * Buyer API. These include:
  * <ul>
  * <li>Get All Accounts</li>
@@ -38,6 +38,7 @@ import java.util.ArrayList;
  * <li>Submit Creative</li>
  * <li>Get All Direct Deals</li>
  * <li>Get All Performance Reports</li>
+ * <li>Insert PreTargetConfig</li>
  * </ul>
  */
 public class AdExchangeBuyerSample {
@@ -50,18 +51,18 @@ public class AdExchangeBuyerSample {
   private static final String APPLICATION_NAME = "";
 
   /**
-   * Email account for the Service Account. 
+   * Email account for the Service Account.
    * Get this and the P12 Key File at https://console.developers.google.com
    */
-  private static final String SERVICE_ACCOUNT_EMAIL = 
+  private static final String SERVICE_ACCOUNT_EMAIL =
       "INSERT_SERVICE_ACCOUNT_EMAIL";
-  
+
   /** Full path to P12 Key file - include file name */
   private static final java.io.File P12_FILE =
       new java.io.File("INSERT_PATH_TO_P12_FILE");
 
   /**
-   * Global instance of the {@link DataStoreFactory}. The best practice is to 
+   * Global instance of the {@link DataStoreFactory}. The best practice is to
    * make it a single globally shared instance across your application.
    */
   private static FileDataStoreFactory dataStoreFactory;
@@ -70,21 +71,21 @@ public class AdExchangeBuyerSample {
   private static HttpTransport httpTransport;
 
   /** Global instance of the JSON factory. */
-  private static final JsonFactory JSON_FACTORY = 
+  private static final JsonFactory JSON_FACTORY =
       JacksonFactory.getDefaultInstance();
 
   private static ArrayList<BaseSample> samples;
 
   /** Authorizes the installed application to access user's protected data. */
-  private static Credential authorize() throws Exception {    
+  private static Credential authorize() throws Exception {
     return new GoogleCredential.Builder().setTransport(httpTransport)
         .setJsonFactory(JSON_FACTORY)
         .setServiceAccountId(SERVICE_ACCOUNT_EMAIL)
         .setServiceAccountScopes(AdExchangeBuyerScopes.all())
         .setServiceAccountPrivateKeyFromP12File(P12_FILE)
-        .build();    
+        .build();
   }
-  
+
   /**
    * Performs all necessary setup steps for running requests against the API.
    *
@@ -113,6 +114,7 @@ public class AdExchangeBuyerSample {
     samples.add(new SubmitCreative());
     samples.add(new GetAllDirectDeals());
     samples.add(new GetAllPerformanceReports());
+    samples.add(new InsertPretargetingConfig());
   }
 
   /**
@@ -121,7 +123,7 @@ public class AdExchangeBuyerSample {
    * @param args command-line arguments.
    */
   public static void main(String[] args) throws Exception {
-    httpTransport = GoogleNetHttpTransport.newTrustedTransport();    
+    httpTransport = GoogleNetHttpTransport.newTrustedTransport();
     initSamples();
     AdExchangeBuyer client = initClient();
     BaseSample sample = null;
@@ -138,7 +140,7 @@ public class AdExchangeBuyerSample {
   }
 
   /**
-   * Prints the list of available code samples and prompts the user to 
+   * Prints the list of available code samples and prompts the user to
    * select one.
    *
    * @return The selected sample or null if the user selected to exit.
@@ -147,7 +149,7 @@ public class AdExchangeBuyerSample {
     System.out.printf("Samples:%n");
     int counter = 1;
     for (BaseSample sample : samples) {
-      System.out.printf("%d) %s - %s%n", counter++, sample.getName(), 
+      System.out.printf("%d) %s - %s%n", counter++, sample.getName(),
           sample.getDescription());
     }
     System.out.printf("%d) Exit the program%n", counter++);
