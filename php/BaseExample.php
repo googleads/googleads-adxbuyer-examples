@@ -20,7 +20,7 @@
  * functions.
  */
 
-require_once 'Google/Service/Adexchangebuyer.php';
+require_once 'Google/Service/AdExchangeBuyer.php';
 require_once "htmlHelper.php";
 
 /**

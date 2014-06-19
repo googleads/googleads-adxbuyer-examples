@@ -26,12 +26,12 @@
 /*
  * Provide path to src directory of google-api-php-client.
  *
- * For example:"google-api-php-client-1.0.4-beta/src/"
+ * For example:"google-api-php-client/src/"
  */
 set_include_path('<PATH_TO_PHP_CLIENT>' . PATH_SEPARATOR . get_include_path());
 
 require_once 'Google/Client.php';
-require_once 'Google/Service/Adexchangebuyer.php';
+require_once 'Google/Service/AdExchangeBuyer.php';
 require_once "htmlHelper.php";
 
 session_start();
@@ -41,12 +41,10 @@ session_start();
  *
  * See README.md for details.
  */
-$client_id = '<YOUR_CLIENT_ID>';
 $service_account_name = '<YOUR_SERVICE_ACCOUNT_EMAIL>';
 $key_file_location = '<PATH_TO_P12>';
 
-if ($client_id === '<YOUR_CLIENT_ID>'
-    || $service_account_name === '<YOUR_SERVICE_ACCOUNT_EMAIL>'
+if ($service_account_name === '<YOUR_SERVICE_ACCOUNT_EMAIL>'
     || $key_file_location === '<PATH_TO_P12>') {
   echo '<h1>WARNING: Authorization details not provided!</h1>';
   exit(1);
@@ -113,5 +111,6 @@ if ($client->getAccessToken()) {
  */
 function getSupportedActions() {
   return array('GetAllAccounts', 'GetCreative', 'GetDirectDeals',
-      'SubmitCreative', 'UpdateAccount', 'ListPerformanceReport');
+      'SubmitCreative', 'UpdateAccount', 'ListPerformanceReport',
+      'InsertPretargetingConfig');
 }

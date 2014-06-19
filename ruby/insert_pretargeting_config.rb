@@ -51,7 +51,8 @@ if __FILE__ == $0
             {
                 :width => 'INSERT_WIDTH_HERE'.to_i,
                 :height => 'INSERT_HEIGHT_HERE'.to_i
-        }]
+            }
+        ]
     }
 
     params = {
