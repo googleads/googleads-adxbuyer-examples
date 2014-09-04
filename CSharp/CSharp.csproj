@@ -110,6 +110,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="v1_x\FirstApiRequest.cs" />
     <Compile Include="v1_x\GetCreative.cs" />
     <Compile Include="v1_x\InsertPretargetingConfig.cs" />
     <Compile Include="v1_x\InsertCreative.cs" />
