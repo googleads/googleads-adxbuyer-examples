@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Google Inc.
+ * Copyright (c) 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -70,7 +70,8 @@ public class SubmitCreative extends BaseSample {
     System.out.println("Buyer Creative id: " + response.getBuyerCreativeId());
     System.out.println("Advertiser id: " + response.getAdvertiserId());
     System.out.println("Agency id: " + response.getAgencyId());
-    System.out.println("Status: " + response.getStatus());
+    System.out.println("Open Auction Status: " + response.getOpenAuctionStatus());
+    System.out.println("Deals Status: " + response.getDealsStatus());
     System.out.println("Product categories: " + response.getProductCategories());
     System.out.println("Sensitive categories: " + response.getSensitiveCategories());
     System.out.println("Width: " + response.getWidth());

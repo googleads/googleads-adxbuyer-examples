@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Google Inc.
+ * Copyright (c) 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -53,11 +53,11 @@ public class BuyerServiceHelper {
    * https://console.developers.google.com
    */
   private static final String SERVICE_ACCOUNT_EMAIL =
-  "INSERT_SERVICE_ACCOUNT_EMAIL";
+      "INSERT_SERVICE_ACCOUNT_EMAIL";
 
   /** Full path to P12 Key file - include file name */
   private static final java.io.File P12_FILE =
-  new java.io.File("INSERT_PATH_TO_P12_FILE");
+      new java.io.File("INSERT_PATH_TO_P12_FILE");
 
   /**
    * Fields in the Creatives object that must not be sent on insert/update/patch requests
@@ -68,7 +68,7 @@ public class BuyerServiceHelper {
       "filteringReasons",
       "productCategories",
       "sensitiveCategories",
-      "status"};
+  "status"};
 
   /**
    * Fields in the PretargetingConfig object that must not be sent on insert/update/patch requests
@@ -93,7 +93,7 @@ public class BuyerServiceHelper {
   }
 
   public BuyerServiceHelper(BuyerServiceInputUtils inputHelper) throws GeneralSecurityException,
-      IOException {
+  IOException {
     super();
     this.inputHelper = inputHelper;
     this.service = getNewService();
@@ -117,7 +117,8 @@ public class BuyerServiceHelper {
   public void creativesList() {
     try {
       String filter = inputHelper.getCreativeListFilter();
-      run(getService().creatives().list().setStatusFilter(filter));
+      run(getService().creatives().list().setOpenAuctionStatusFilter(filter)
+          .setDealsStatusFilter(filter));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -210,7 +211,7 @@ public class BuyerServiceHelper {
   }
 
   /**
- * Runs a request against the service
+   * Runs a request against the service
    * @param request is the service method to run
    * @return json results from request
    * @throws IOException

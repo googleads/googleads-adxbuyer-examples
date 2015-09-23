@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2014 Google Inc. All Rights Reserved.
+# Copyright 2015 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ KEY_FILE = 'path_to_key'  # Path to *.p12 file containing your private key.
 MAX_PAGE_SIZE = 50
 # Ad Exchange Buyer REST API authorization scope.
 SCOPE = 'https://www.googleapis.com/auth/adexchange.buyer'
-VERSION = 'v1.3'  # Version of Ad Exchange Buyer REST API to use.
+VERSION = 'v1.4'  # Version of Ad Exchange Buyer REST API to use.
 
 
 def GetService():

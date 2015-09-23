@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # Encoding: utf-8
 #
-# Copyright:: Copyright 2014, Google Inc. All Rights Reserved.
+# Copyright:: Copyright 2015, Google Inc. All Rights Reserved.
 #
 # License:: Licensed under the Apache License, Version 2.0 (the "License");
 #           you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
 require 'google/api_client/service'
 
 API_NAME = 'adexchangebuyer'
-API_VERSION = 'v1.3'
+API_VERSION = 'v1.4'
 
 # Update these with the values for your Service Account found in the Google
 # Developers Console.

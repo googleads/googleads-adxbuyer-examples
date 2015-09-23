@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,13 @@
  */
 set_include_path('<PATH_TO_PHP_CLIENT>' . PATH_SEPARATOR . get_include_path());
 
+require_once 'Google/Auth/AssertionCredentials.php';
+require_once 'Google/Config.php';
 require_once 'Google/Client.php';
+require_once 'Google/Model.php';
+require_once 'Google/Collection.php';
+require_once 'Google/Service.php';
+require_once 'Google/Service/Resource.php';
 require_once 'Google/Service/AdExchangeBuyer.php';
 
 session_start();

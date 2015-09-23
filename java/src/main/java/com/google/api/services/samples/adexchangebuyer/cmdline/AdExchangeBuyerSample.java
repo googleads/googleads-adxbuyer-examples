@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Google Inc.
+ * Copyright (c) 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -20,8 +20,6 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.store.DataStoreFactory;
-import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyerScopes;
 
@@ -61,12 +59,6 @@ public class AdExchangeBuyerSample {
   private static final java.io.File P12_FILE =
       new java.io.File("INSERT_PATH_TO_P12_FILE");
 
-  /**
-   * Global instance of the {@link DataStoreFactory}. The best practice is to
-   * make it a single globally shared instance across your application.
-   */
-  private static FileDataStoreFactory dataStoreFactory;
-
   /** Global instance of the HTTP transport. */
   private static HttpTransport httpTransport;
 
@@ -98,7 +90,7 @@ public class AdExchangeBuyerSample {
     // Set up API client.
     AdExchangeBuyer client = new AdExchangeBuyer.Builder(
         httpTransport, JSON_FACTORY, credential)
-          .setApplicationName(APPLICATION_NAME).build();
+        .setApplicationName(APPLICATION_NAME).build();
 
     return client;
   }
@@ -112,7 +104,6 @@ public class AdExchangeBuyerSample {
     samples.add(new UpdateAccount());
     samples.add(new GetCreative());
     samples.add(new SubmitCreative());
-    samples.add(new GetAllDirectDeals());
     samples.add(new GetAllPerformanceReports());
     samples.add(new InsertPretargetingConfig());
   }

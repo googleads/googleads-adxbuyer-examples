@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Google Inc.
+ * Copyright (c) 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -17,7 +17,8 @@ package com.google.api.services.samples.adexchangebuyer.cmdline;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.model.Creative;
-import com.google.api.services.adexchangebuyer.model.Creative.DisapprovalReasons;
+import com.google.api.services.adexchangebuyer.model.Creative.ServingRestrictions;
+import com.google.api.services.adexchangebuyer.model.Creative.ServingRestrictions.DisapprovalReasons;
 
 import java.io.IOException;
 
@@ -44,15 +45,22 @@ public class GetCreative extends BaseSample {
       System.out.println("Buyer Creative id: " + creative.getBuyerCreativeId());
       System.out.println("Advertiser id: " + creative.getAdvertiserId());
       System.out.println("Agency id: " + creative.getAgencyId());
-      System.out.println("Status: " + creative.getStatus());
-      if (creative.getDisapprovalReasons() != null) {
-        for (DisapprovalReasons disapprovalReason : creative.getDisapprovalReasons()) {
-          System.out.println("\tDisapproval Reason: " + disapprovalReason.getReason());
-          for (String disapprovalReasonDetail : disapprovalReason.getDetails()) {
-            System.out.println("\t\tDetail: " + disapprovalReasonDetail);
+      System.out.println("Open Auction Status: " + creative.getOpenAuctionStatus());
+      System.out.println("Deals Status: " + creative.getDealsStatus());
+      if(creative.getServingRestrictions() != null) {
+        for (ServingRestrictions servingRestriction : creative.getServingRestrictions()) {
+          if (servingRestriction.getDisapprovalReasons() != null) {
+            for (DisapprovalReasons disapprovalReason : servingRestriction.getDisapprovalReasons())
+            {
+              System.out.println("\tDisapproval Reason: " + disapprovalReason.getReason());
+              for (String disapprovalReasonDetail : disapprovalReason.getDetails()) {
+                System.out.println("\t\tDetail: " + disapprovalReasonDetail);
+              }
+            }
           }
         }
       }
+
       System.out.println("Product categories: " + creative.getProductCategories());
       System.out.println("Sensitive categories: " + creative.getSensitiveCategories());
       System.out.println("Width: " + creative.getWidth());

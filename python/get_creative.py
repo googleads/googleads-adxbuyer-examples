@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2014 Google Inc. All Rights Reserved.
+# Copyright 2015 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,11 +21,22 @@ Tags: Creatives.get
 
 __author__ = 'api.msaniscalchi@gmail.com (Mark Saniscalchi)'
 
+import argparse
 import pprint
 import sys
 
 from oauth2client.client import AccessTokenRefreshError
 import util
+
+# Optional arguments; overrides default values if set.
+parser = argparse.ArgumentParser(description='Gets the status for a single '
+                                 'creative.')
+parser.add_argument('-a', '--account_id', required=False, type=int,
+                    help=('The integer id of the account you\'re retrieving '
+                          'the creative from.'))
+parser.add_argument('-b', '--buyer_creative_id', required=False,
+                    help=('The buyerCreativeId of the creative you want to '
+                          'retrieve.'))
 
 
 def main(ad_exchange_buyer, account_id, buyer_creative_id):
@@ -40,9 +51,14 @@ def main(ad_exchange_buyer, account_id, buyer_creative_id):
 if __name__ == '__main__':
   try:
     service = util.GetService()
+    args = parser.parse_args()
 
-    ACCOUNT_ID = int('INSERT_ACCOUNT_ID')
-    BUYER_CREATIVE_ID = 'INSERT_BUYER_CREATIVE_ID'
+    if args.account_id and args.buyer_creative_id:
+      ACCOUNT_ID = args.account_id
+      BUYER_CREATIVE_ID = args.buyer_creative_id
+    else:
+      ACCOUNT_ID = int('INSERT_ACCOUNT_ID')
+      BUYER_CREATIVE_ID = 'INSERT_BUYER_CREATIVE_ID'
 
     if BUYER_CREATIVE_ID == 'INSERT_BUYER_CREATIVE_ID':
       raise Exception('buyer_creative_id not set.')

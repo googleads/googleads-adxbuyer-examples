@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-using Google.Apis.AdExchangeBuyer.v1_3;
-using Google.Apis.AdExchangeBuyer.v1_3.Data;
+using Google.Apis.AdExchangeBuyer.v1_4;
+using Google.Apis.AdExchangeBuyer.v1_4.Data;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 

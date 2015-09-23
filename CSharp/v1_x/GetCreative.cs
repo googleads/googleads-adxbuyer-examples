@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-using Google.Apis.AdExchangeBuyer.v1_3;
-using Google.Apis.AdExchangeBuyer.v1_3.Data;
+using Google.Apis.AdExchangeBuyer.v1_4;
+using Google.Apis.AdExchangeBuyer.v1_4.Data;
 
 using System;
 
@@ -60,7 +60,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
                 Creative creative = service.Creatives.Get(accountId, buyerCreativeId).Execute();
                 Console.WriteLine("Account id: {0}", creative.AccountId);
                 Console.WriteLine("Buyer Creative id: {0}", creative.BuyerCreativeId);
-                Console.WriteLine("Status: {0}", creative.Status);
+                Console.WriteLine("Deals Status: {0}", creative.DealsStatus);
+                Console.WriteLine("Open Auction Status: {0}", creative.OpenAuctionStatus);
             }
             catch (Google.GoogleApiException)
             {

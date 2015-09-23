@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Google Inc.
+ * Copyright (c) 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -43,9 +43,9 @@ public class GetAllPerformanceReports extends BaseSample {
   @Override
   public void execute(AdExchangeBuyer client) throws IOException {
     long accountId = getIntInput("AccountId", "Enter the creative account id");
-    String startDate = getStringInput("endDateTime", 
-        "The end date of the report (older date) - mm/dd/yyyy format");    
-    String endDate = getStringInput("startDateTime", 
+    String startDate = getStringInput("endDateTime",
+        "The end date of the report (older date) - mm/dd/yyyy format");
+    String endDate = getStringInput("startDateTime",
         "The start date of the report (end date) - mm/dd/yyyy format");
     List<PerformanceReport> allReports = client.
         performanceReport().
@@ -60,15 +60,15 @@ public class GetAllPerformanceReports extends BaseSample {
       for (PerformanceReport report : allReports) {
         System.out.printf("Region: %s%n", report.getRegion());
         System.out.printf("\tTime Stamp: %s%n", report.getTimestamp());
-        System.out.printf("\tPixel Match Requests: %s%n", 
+        System.out.printf("\tPixel Match Requests: %s%n",
             report.getPixelMatchRequests());
-        System.out.printf("\tPixel Match Responses: %s%n", 
-            report.getPixelMatchResponses());        
+        System.out.printf("\tPixel Match Responses: %s%n",
+            report.getPixelMatchResponses());
       }
     } else {
       System.out.printf("No performance reports associated with this user%n");
     }
-    
+
   }
 
 }
