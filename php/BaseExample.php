@@ -16,29 +16,24 @@
  */
 
 /**
- * Include the Ad Exchange Buyer service class and the HTML generation
- * functions.
+ * Include HTML generation functions and Client Type
  */
-
-require_once 'Google/Service/AdExchangeBuyer.php';
-require_once "htmlHelper.php";
+ require_once "htmlHelper.php";
+ require_once "ClientType.php";
 
 /**
  * Base class for all examples, contains helper methods to support examples
  * input and rendering results.
- *
- * @author David Torres <david.t@google.com>
- * @author Mark Saniscalchi <api.msaniscalchi@gmail.com>
  */
 abstract class BaseExample {
   protected $service;
 
   /**
    * Inject the dependency.
-   * @param Google_Service_AdExchangeBuyer $service an authenticated
-   *     instance of Google_Service_AdExchangeBuyer.
+   * @param Google_Service $service an authenticated
+   *     instance of Google_Service.
    */
-  public function __construct(Google_Service_AdExchangeBuyer $service) {
+  public function setService(Google_Service $service) {
     $this->service = $service;
   }
 
@@ -71,8 +66,17 @@ abstract class BaseExample {
   abstract public function getName();
 
   /**
+   * Return the ClientType, indicating which endpoint the example should use.
+   * @return ClientType 
+   */
+  public function getClientType() {
+    return ClientType::AdExchangeBuyer;
+  }
+
+  /**
    * Returns the list of input parameters of the example.
    * To be overriden by examples that require parameters.
+   * @return array
    */
   protected function getInputParameters() {
     return array();
@@ -106,6 +110,7 @@ abstract class BaseExample {
   /**
    * Checks if the form has been submitted and all required parameters are
    * set.
+   * @return bool
    */
   protected function isSubmitComplete() {
     if (!isset($_POST['submit'])) {
@@ -122,6 +127,7 @@ abstract class BaseExample {
 
   /**
    * Retrieves the submitted form values.
+   * @return array
    */
   protected function getFormValues() {
     $input = array();
@@ -135,7 +141,7 @@ abstract class BaseExample {
 
   /**
    * Prints out the given result object.
-   * @param Array $result
+   * @param array $result
    */
   protected function printResult($result) {
     printf('<pre>');
