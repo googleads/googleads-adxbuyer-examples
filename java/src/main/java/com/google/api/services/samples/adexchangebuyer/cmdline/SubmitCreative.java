@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,6 +14,7 @@
 
 package com.google.api.services.samples.adexchangebuyer.cmdline;
 
+import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.model.Creative;
 
@@ -25,20 +26,30 @@ import java.util.List;
 /**
  * This sample illustrates how to submit a new creative to the Google's verification pipeline.
  *
- * Tags: creatives.insert
- *
- * @author david.t@google.com (David Torres)
+ * See the <a href="Creatives Guide">https://developers.google.com/ad-exchange/buyer-rest/creative-guide</a>
+ * for more details on the usage of this resource.
  */
 public class SubmitCreative extends BaseSample {
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#execute()
-   */
   @Override
-  public void execute(AdExchangeBuyer client) throws IOException {
-    int accountId = getIntInput("AccountId", "Enter the creative account id");
-    String buyerCreativeId = getStringInput("BuyerCreativeId", "Enter the buyer creative id");
+  public ClientType getClientType() {
+    return BaseSample.ClientType.ADEXCHANGEBUYER;
+  }
+
+  @Override
+  public String getName() {
+    return "Submit Creative";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Submits a new creative that will be reviewed by Google before it can serve.";
+  }
+
+  @Override
+  public void execute(AbstractGoogleJsonClient client) throws IOException {
+    AdExchangeBuyer adXClient = (AdExchangeBuyer) client;
+    int accountId = getIntInput("AccountId", "Enter the creative account ID");
+    String buyerCreativeId = getStringInput("BuyerCreativeId", "Enter the buyer creative ID");
     String advertiserName = getStringInput("AdvertiserName", "Enter the advertiser name");
     String clickThroughUrlsStr = getStringInput(
         "ClickThroughUrls", "Enter a comma separated list of clickthrough urls",
@@ -61,14 +72,14 @@ public class SubmitCreative extends BaseSample {
     testCreative.setWidth((int) width);
     testCreative.setAgencyId(agencyId);
 
-    Creative response = client.creatives().insert(testCreative).execute();
+    Creative response = adXClient.creatives().insert(testCreative).execute();
 
     System.out.println("========================================");
     System.out.println("Submitted creative");
     System.out.println("========================================");
-    System.out.println("Account id: " + response.getAccountId());
-    System.out.println("Buyer Creative id: " + response.getBuyerCreativeId());
-    System.out.println("Advertiser id: " + response.getAdvertiserId());
+    System.out.println("Account ID: " + response.getAccountId());
+    System.out.println("Buyer Creative ID: " + response.getBuyerCreativeId());
+    System.out.println("Advertiser ID: " + response.getAdvertiserId());
     System.out.println("Agency id: " + response.getAgencyId());
     System.out.println("Open Auction Status: " + response.getOpenAuctionStatus());
     System.out.println("Deals Status: " + response.getDealsStatus());
@@ -77,25 +88,5 @@ public class SubmitCreative extends BaseSample {
     System.out.println("Width: " + response.getWidth());
     System.out.println("Height: " + response.getHeight());
     System.out.println("HTML Snippet: " + response.getHTMLSnippet());
-  }
-
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#getName()
-   */
-  @Override
-  public String getName() {
-    return "Submit Creative";
-  }
-
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#getDescription()
-   */
-  @Override
-  public String getDescription() {
-    return "Submits a new creative to Google's creative verification pipeline";
   }
 }

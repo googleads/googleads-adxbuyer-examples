@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,6 +14,7 @@
 
 package com.google.api.services.samples.adexchangebuyer.cmdline;
 
+import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.model.PerformanceReport;
 
@@ -23,12 +24,14 @@ import java.util.List;
 /**
  * This sample illustrates how to retrieve all performance reports associated with the user.
  *
- * Tags: performancereport.list
- *
- * @author lukiesd@google.com (Dean Lukies)
- *
+ *  * See the <a href="PerformanceReport Reference Documentation">https://developers.google.com/ad-exchange/buyer-rest/v1.4/performanceReport/list</a>
+ * for more details on the usage of this resource.
  */
 public class GetAllPerformanceReports extends BaseSample {
+  @Override
+  public ClientType getClientType() {
+    return BaseSample.ClientType.ADEXCHANGEBUYER;
+  }
 
   @Override
   public String getName() {
@@ -37,17 +40,18 @@ public class GetAllPerformanceReports extends BaseSample {
 
   @Override
   public String getDescription() {
-    return "List user's associated performance reports";
+    return "List performance reports associated with a given account ID";
   }
 
   @Override
-  public void execute(AdExchangeBuyer client) throws IOException {
-    long accountId = getIntInput("AccountId", "Enter the creative account id");
+  public void execute(AbstractGoogleJsonClient client) throws IOException {
+    AdExchangeBuyer adXClient = (AdExchangeBuyer) client;
+    long accountId = getIntInput("AccountId", "Enter the creative account ID");
     String startDate = getStringInput("endDateTime",
         "The end date of the report (older date) - mm/dd/yyyy format");
     String endDate = getStringInput("startDateTime",
         "The start date of the report (end date) - mm/dd/yyyy format");
-    List<PerformanceReport> allReports = client.
+    List<PerformanceReport> allReports = adXClient.
         performanceReport().
         list(accountId, endDate, startDate).
         execute().
@@ -55,7 +59,8 @@ public class GetAllPerformanceReports extends BaseSample {
 
     if (allReports != null && allReports.size() > 0) {
       System.out.printf("========================================%n");
-      System.out.printf("Listing of user associated performance reports%n");
+      System.out.printf("List of performance reports for account ID \"%s\"%n",
+          accountId);
       System.out.printf("========================================%n");
       for (PerformanceReport report : allReports) {
         System.out.printf("Region: %s%n", report.getRegion());
@@ -66,9 +71,8 @@ public class GetAllPerformanceReports extends BaseSample {
             report.getPixelMatchResponses());
       }
     } else {
-      System.out.printf("No performance reports associated with this user%n");
+      System.out.printf("No performance reports for account ID \"%s\"%n", accountId);
     }
 
   }
-
 }

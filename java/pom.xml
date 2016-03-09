@@ -9,13 +9,13 @@
   <groupId>com.google.apis-samples</groupId>
   <artifactId>adexchangebuyer-cmdline-sample</artifactId>
   <version>1</version>
-  <name>Example for the Ad Exchange Buyer API v1.4 using JSON.</name>
+  <name>Example for the Ad Exchange Buyer REST APIs using JSON.</name>
 
-  <url>http://code.google.com/p/google-api-java-client/</url>
+  <url>https://github.com/google/google-api-java-client/</url>
 
   <issueManagement>
-    <system>code.google.com</system>
-    <url>http://code.google.com/p/google-api-java-client/issues/list</url>
+    <system>github.com</system>
+    <url>https://github.com/google/google-api-java-client/issues</url>
   </issueManagement>
 
   <inceptionYear>2012</inceptionYear>
@@ -25,9 +25,9 @@
   </prerequisites>
 
   <scm>
-    <connection>scm:hg:https://samples.google-api-java-client.googlecode.com/hg/</connection>
-    <developerConnection>scm:hg:https://samples.google-api-java-client.googlecode.com/hg/</developerConnection>
-    <url>http://code.google.com/p/google-api-java-client/source/browse/?repo=samples</url>
+    <connection>scm:git:https://github.com/googleads/googleads-adxbuyer-examples.git</connection>
+    <developerConnection>scm:git:ssh:git@github.com:googleads/googleads-adxbuyer-examples.git</developerConnection>
+    <url>https://github.com/googleads/googleads-adxbuyer-examples/tree/master/java</url>
   </scm>
 
   <developers>
@@ -115,6 +115,11 @@
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-adexchangebuyer</artifactId>
       <version>v1.4-rev1-1.18.0-rc</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-adexchangebuyer2</artifactId>
+      <version>v2beta1-rev1-1.21.0</version>
     </dependency>
     <dependency>
       <groupId>com.google.http-client</groupId>

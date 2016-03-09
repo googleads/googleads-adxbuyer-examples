@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -22,6 +22,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyerScopes;
+import com.google.api.services.adexchangebuyer2.v2beta1.AdExchangeBuyerII;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,10 +38,16 @@ import java.util.ArrayList;
  * <li>Get All Direct Deals</li>
  * <li>Get All Performance Reports</li>
  * <li>Insert PreTargetConfig</li>
+ * <li>Get All Client Buyers</li>
+ * <li>Create Client Buyer</li>
+ * <li>Update Client Buyer</li>
+ * <li>Get All Invitations</li>
+ * <li>Create Invitation</li>
+ * <li>Get All Client Users</li>
+ * <li>Update Client User</li>
  * </ul>
  */
 public class AdExchangeBuyerSample {
-
   /**
    * Be sure to specify the name of your application. If the application name is
    * {@code null} or blank, the application will log a warning. Suggested format
@@ -68,30 +75,40 @@ public class AdExchangeBuyerSample {
 
   private static ArrayList<BaseSample> samples;
 
-  /** Authorizes the installed application to access user's protected data. */
+  /** Authorizes the installed application to access user's protected data.
+   * @throws IOException
+   * */
   private static Credential authorize() throws Exception {
     return new GoogleCredential.Builder().setTransport(httpTransport)
         .setJsonFactory(JSON_FACTORY)
         .setServiceAccountId(SERVICE_ACCOUNT_EMAIL)
-        .setServiceAccountScopes(AdExchangeBuyerScopes.all())
+        .setServiceAccountScopes(AdExchangeBuyerScopes.all()) // All versions use identical scope.
         .setServiceAccountPrivateKeyFromP12File(P12_FILE)
         .build();
   }
 
   /**
-   * Performs all necessary setup steps for running requests against the API.
+   * Performs all necessary setup steps for running requests against the
+   * AdExchangeBuyer API.
    *
    * @return An initialized AdExchangeBuyer service object.
    */
-  private static AdExchangeBuyer initClient() throws Exception {
-    // Authorization.
-    Credential credential = authorize();
-
-    // Set up API client.
+  private static AdExchangeBuyer initAdExchangeBuyerClient(Credential credential) {
     AdExchangeBuyer client = new AdExchangeBuyer.Builder(
         httpTransport, JSON_FACTORY, credential)
         .setApplicationName(APPLICATION_NAME).build();
+    return client;
+  }
 
+  /**
+   * Performs all necessary setup steps for running requests against the
+   * AdExchangeBuyerII API.
+   *
+   * @return An initialized AdExchangeBuyerII service object.
+   */
+  private static AdExchangeBuyerII initAdExchangeBuyerIIClient(Credential credential) {
+    AdExchangeBuyerII client = new AdExchangeBuyerII.Builder(
+        httpTransport, JSON_FACTORY, credential).setApplicationName(APPLICATION_NAME).build();
     return client;
   }
 
@@ -101,11 +118,18 @@ public class AdExchangeBuyerSample {
   private static void initSamples() {
     samples = new ArrayList<BaseSample>();
     samples.add(new GetAllAccounts());
-    samples.add(new UpdateAccount());
+    samples.add(new PatchAccount());
     samples.add(new GetCreative());
     samples.add(new SubmitCreative());
     samples.add(new GetAllPerformanceReports());
     samples.add(new InsertPretargetingConfig());
+    samples.add(new GetAllClientBuyers());
+    samples.add(new CreateClientBuyer());
+    samples.add(new UpdateClientBuyer());
+    samples.add(new GetAllInvitations());
+    samples.add(new CreateInvitation());
+    samples.add(new GetAllClientUsers());
+    samples.add(new UpdateClientUser());
   }
 
   /**
@@ -116,14 +140,21 @@ public class AdExchangeBuyerSample {
   public static void main(String[] args) throws Exception {
     httpTransport = GoogleNetHttpTransport.newTrustedTransport();
     initSamples();
-    AdExchangeBuyer client = initClient();
+    Credential credentials = authorize();
+    AdExchangeBuyer adXBuyerClient = initAdExchangeBuyerClient(credentials);
+    AdExchangeBuyerII adXBuyerIIClient = initAdExchangeBuyerIIClient(
+        credentials);
     BaseSample sample = null;
 
     while ((sample = selectSample()) != null) {
       try {
         System.out.printf("%nExecuting sample: %s%n%n", sample.getName());
-        sample.execute(client);
-        System.out.println();
+        BaseSample.ClientType clientType = sample.getClientType();
+        if (clientType == BaseSample.ClientType.ADEXCHANGEBUYER) {
+          sample.execute(adXBuyerClient);
+        } else if (clientType == BaseSample.ClientType.ADEXCHANGEBUYERII) {
+          sample.execute(adXBuyerIIClient);
+        }
       } catch (IOException e) {
         e.printStackTrace();
       }

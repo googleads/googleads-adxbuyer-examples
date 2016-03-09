@@ -1,0 +1,14 @@
+{
+ "kind": "adexchangebuyer#pretargetingConfig",
+ "configName": "CONFIG_NAME_HERE",
+ "isActive": true,
+ "creativeType": [
+  "PRETARGETING_CREATIVE_TYPE_HTML"
+ ],
+ "dimensions": [
+  {
+   "width": "300",
+   "height": "250"
+  }
+ ]
+}

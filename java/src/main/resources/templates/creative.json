@@ -1,0 +1,12 @@
+{
+ "kind": "adexchangebuyer#creative",
+ "accountId": ACCOUNT_ID_HERE,
+ "buyerCreativeId": "BUYER_CREATIVE_ID_HERE",
+ "HTMLSnippet": "<html><body><a href='http://www.google.com'>Snippet!</a></body></html>",
+ "clickThroughUrl": [
+  "http://www.google.com/"
+ ],
+ "width": 300,
+ "height": 250,
+ "advertiserName": "ADVERTISER_NAME_HERE"
+}

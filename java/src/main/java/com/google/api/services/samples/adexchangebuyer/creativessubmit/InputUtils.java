@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -25,9 +25,6 @@ import java.util.Map;
 /**
  * This class implements input utility methods used across the Ad Exchange Buyer
  * samples.
- *
- * @author api.Dean.Lukies@gmail.com (Dean Lukies)
- *
  */
 public class InputUtils {
   // Stores previously entered input values.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -34,6 +34,7 @@ public class BuyerServiceInputUtils extends InputUtils {
   protected String getCreativeId() throws IOException {
     return this.getStringInput("creativeId", "Enter the buyer creative id", null);
   }
+
   /**
    * When specified, only creatives having the given status are returned.
    */

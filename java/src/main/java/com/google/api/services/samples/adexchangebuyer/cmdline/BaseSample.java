@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,7 +14,7 @@
 
 package com.google.api.services.samples.adexchangebuyer.cmdline;
 
-import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
+import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,13 +23,24 @@ import java.util.Map;
 /**
  * This class implements the base the basic input method used by all samples, as well as defines the
  * interface that all samples should implement.
- *
- * @author david.t@google.com (David Torres)
- *
  */
 public abstract class BaseSample {
   // Stores previously entered input values.
   private static Map<String, String> cachedValues = new HashMap<String, String>();
+
+  /**
+   * The types of clients that can be created for DoubleClick Ad Exchange.
+   */
+  public enum ClientType {
+    ADEXCHANGEBUYER, ADEXCHANGEBUYERII
+  }
+
+  /**
+   * Returns the ClientType necessary to run the sample.
+   *
+   * @return The sample ClientType.
+   */
+  public abstract ClientType getClientType();
 
   /**
    * Returns the name of the sample, for display purposes.
@@ -51,7 +62,35 @@ public abstract class BaseSample {
    * @param client The Ad Exchange Buyer API client class
    * @throws IOException In case an error has occurred
    */
-  public abstract void execute(AdExchangeBuyer client) throws IOException;
+  public abstract void execute(AbstractGoogleJsonClient client) throws IOException;
+
+  /**
+   * Prompts the user to enter a boolean value.
+   *
+   * @param propertyKey Key of the value, used to store it for future use
+   * @param message Message to print out to the user in request of input
+   * @param defaultValue Default value to return in case the user does not provide one
+   * @return The parsed boolean value entered by the user
+   * @throws IOException
+   */
+  protected boolean getBooleanInput(String propertyKey, String message, Boolean defaultValue)
+      throws IOException {
+    Boolean input = null;
+    String sDefaultValue = defaultValue != null ? Boolean.toString(defaultValue) : null;
+    while (input == null) {
+      String s = getStringInput(propertyKey, message, sDefaultValue);
+
+      if (s.toLowerCase().equals("true")) {
+        input = true;
+      } else if (s.toLowerCase().equals("false")) {
+        input = false;
+      } else {
+        System.out.printf("Invalid boolean input provided. Accepted values are \"True\" or "
+            + "\"False\". Please try again\n");
+      }
+    }
+    return input;
+  }
 
   /**
    * Prompts the user to enter a numeric value.

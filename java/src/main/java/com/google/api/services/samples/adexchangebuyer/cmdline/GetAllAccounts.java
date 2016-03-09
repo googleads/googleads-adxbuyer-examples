@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,6 +14,7 @@
 
 package com.google.api.services.samples.adexchangebuyer.cmdline;
 
+import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.model.Account;
 import com.google.api.services.adexchangebuyer.model.Account.BidderLocation;
@@ -24,42 +25,29 @@ import java.util.List;
 /**
  * This sample illustrates how to retrieve all accounts associated to the user.
  *
- * Tags: accounts.list
- *
- * @author david.t@google.com (David Torres)
- *
+ * See the <a href="Accounts Guide">https://developers.google.com/ad-exchange/buyer-rest/account-guide</a>
+ * for more details on the usage of this resource.
  */
 public class GetAllAccounts extends BaseSample {
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#getName()
-   */
+  @Override
+  public ClientType getClientType() {
+    return BaseSample.ClientType.ADEXCHANGEBUYER;
+  }
+
   @Override
   public String getName() {
     return "Get All Accounts";
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#getDescription()
-   */
   @Override
   public String getDescription() {
     return "Lists user associated accounts";
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#execute(com.google.api.
-   * services.adexchangebuyer.AdExchangeBuyer)
-   */
   @Override
-  public void execute(AdExchangeBuyer client) throws IOException {
-    List<Account> allAccounts = client.accounts().list().execute().getItems();
+  public void execute(AbstractGoogleJsonClient client) throws IOException {
+    AdExchangeBuyer adXClient = (AdExchangeBuyer) client;
+    List<Account> allAccounts = adXClient.accounts().list().execute().getItems();
 
     if (allAccounts != null && allAccounts.size() > 0) {
       System.out.printf("========================================\n");

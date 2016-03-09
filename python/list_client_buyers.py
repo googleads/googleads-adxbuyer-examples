@@ -14,33 +14,42 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This example lists the user's Accounts."""
+"""This example lists the client buyers for a given account."""
 
+
+import argparse
 import pprint
 import sys
-from apiclient.errors import HttpError
 
+from apiclient.errors import HttpError
 from oauth2client.client import AccessTokenRefreshError
 import samples_util
 
 
-def main(ad_exchange_buyer):
+DEFAULT_ACCOUNT_ID = 'ENTER_ACCOUNT_ID_HERE'
+
+
+def main(ad_exchange_buyer, account_id):
   try:
     # Construct and execute the request.
-    accounts = ad_exchange_buyer.accounts().list().execute()
-    if 'items' in accounts:
-      print 'Found the following accounts for current user:'
-      for account in accounts['items']:
-        pprint.pprint(account)
-    else:
-      print 'No accounts found.'
+    clients = ad_exchange_buyer.accounts().clients().list(
+        accountId=account_id).execute()
+    print 'Client buyers for account ID: %d' % account_id
+    pprint.pprint(clients)
   except HttpError as e:
     print e
 
 
 if __name__ == '__main__':
+  parser = argparse.ArgumentParser(
+      description='Lists client buyers for a given Ad Exchange account id.')
+  parser.add_argument(
+      '-a', '--account_id', default=DEFAULT_ACCOUNT_ID, type=int,
+      help=('The integer id of the Ad Exchange account.'))
+  args = parser.parse_args()
+
   try:
-    service = samples_util.GetService()
+    service = samples_util.GetService(version='v2beta1')
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in samples_util.py?'
@@ -50,4 +59,5 @@ if __name__ == '__main__':
     print 'Did you set the correct Service Account Email in samples_util.py?'
     sys.exit()
 
-  main(service)
+  main(service, args.account_id)
+

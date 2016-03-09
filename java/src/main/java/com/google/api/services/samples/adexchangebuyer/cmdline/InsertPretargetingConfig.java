@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,6 +14,7 @@
 
 package com.google.api.services.samples.adexchangebuyer.cmdline;
 
+import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.model.PretargetingConfig;
 import com.google.api.services.adexchangebuyer.model.PretargetingConfig.Dimensions;
@@ -24,13 +25,28 @@ import java.util.Arrays;
 /**
  * This sample illustrates how to insert a pretargetingConfig.
  *
- * Tags: pretargetConfig.insert
- *
- * @author lukiesd@google.com (Dean Lukies)
+ * See the <a href="Pretargeting Guide">https://developers.google.com/ad-exchange/buyer-rest/pretargeting-guide</a>
+ * for more details on the usage of this resource.
  */
 public class InsertPretargetingConfig extends BaseSample {
   @Override
-  public void execute(AdExchangeBuyer client) throws IOException {
+  public ClientType getClientType() {
+    return BaseSample.ClientType.ADEXCHANGEBUYER;
+  }
+
+  @Override
+  public String getName() {
+    return "Insert PretargetingConfig";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Inserts a new pretargeting config";
+  }
+
+  @Override
+  public void execute(AbstractGoogleJsonClient client) throws IOException {
+    AdExchangeBuyer adXClient = (AdExchangeBuyer) client;
     long accountId = getLongInput("AccountId", "Enter the account id");
     String configName = getStringInput("configName",
         "Enter the name for the pretargetConfig");
@@ -47,7 +63,7 @@ public class InsertPretargetingConfig extends BaseSample {
     targetDimensions.setHeight(height);
     newConfig.setDimensions(Arrays.asList(targetDimensions));
 
-    PretargetingConfig config = client.pretargetingConfig().
+    PretargetingConfig config = adXClient.pretargetingConfig().
         insert(accountId, newConfig).execute();
 
     System.out.println("========================================");
@@ -61,15 +77,5 @@ public class InsertPretargetingConfig extends BaseSample {
     for (Dimensions d : config.getDimensions()) {
       System.out.printf("\r%s\t%s%n", d.getWidth(), d.getHeight());
     }
-  }
-
-  @Override
-  public String getName() {
-    return "Insert PretargetingConfig";
-  }
-
-  @Override
-  public String getDescription() {
-    return "Inserts a new pretargeting config";
   }
 }

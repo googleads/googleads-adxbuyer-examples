@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,6 +14,7 @@
 
 package com.google.api.services.samples.adexchangebuyer.cmdline;
 
+import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.model.Account;
 import com.google.api.services.adexchangebuyer.model.Account.BidderLocation;
@@ -24,50 +25,38 @@ import java.util.List;
 /**
  * This sample illustrates how to update an account.
  *
- * Tags: accounts.list
- *
- * @author david.t@google.com (David Torres)
- *
+ * See the <a href="Accounts Guide">https://developers.google.com/ad-exchange/buyer-rest/account-guide</a>
+ * for more details on the usage of this resource.
  */
-public class UpdateAccount extends BaseSample {
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#getName()
-   */
+public class PatchAccount extends BaseSample {
+  @Override
+  public ClientType getClientType() {
+    return BaseSample.ClientType.ADEXCHANGEBUYER;
+  }
+
   @Override
   public String getName() {
-    return "Update account";
+    return "Patch account";
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#getDescription()
-   */
   @Override
   public String getDescription() {
-    return "Updates an account";
+    return "Updates the given account's cookie matching URL with patch semantics";
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#execute(com.google.api.
-   * services.adexchangebuyer.AdExchangeBuyer)
-   */
   @Override
-  public void execute(AdExchangeBuyer client) throws IOException {
-    int accountId = getIntInput("AccountId", "Enter the account id");
+  public void execute(AbstractGoogleJsonClient client) throws IOException {
+    AdExchangeBuyer adXClient = (AdExchangeBuyer) client;
+    int accountId = getIntInput("AccountId", "Enter the account ID");
     String cookieMatchingUrl =
         getStringInput("CookieMatchingUrl", "Enter new cookie matching URL for the account");
     Account account = new Account();
     account.setId(accountId);
     account.setCookieMatchingUrl(cookieMatchingUrl);
-    account = client.accounts().patch(accountId, account).execute();
+    account = adXClient.accounts().patch(accountId, account).execute();
 
     System.out.printf("Account updated!");
-    System.out.printf("Account id: %d\n", account.getId());
+    System.out.printf("Account ID: %d\n", account.getId());
     System.out.printf("- Max. total Qps: %d\n", account.getMaximumTotalQps());
     System.out.printf("- Cookie matching Nid: %s\n", account.getCookieMatchingNid());
     System.out.printf("- Cookie Matching Url: %s\n", account.getCookieMatchingUrl());

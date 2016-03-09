@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Google Inc.
+ * Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -15,6 +15,7 @@
 package com.google.api.services.samples.adexchangebuyer.cmdline;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.model.Creative;
 import com.google.api.services.adexchangebuyer.model.Creative.ServingRestrictions;
@@ -25,18 +26,33 @@ import java.io.IOException;
 /**
  * This sample illustrates how to retrieve a creative out of the system, including its status.
  *
- * Tags: creatives.get
- *
- * @author david.t@google.com (David Torres)
+ * See the <a href="Creatives Guide">https://developers.google.com/ad-exchange/buyer-rest/creative-guide</a>
+ * for more details on the usage of this resource.
  */
 public class GetCreative extends BaseSample {
   @Override
-  public void execute(AdExchangeBuyer client) throws IOException {
+  public ClientType getClientType() {
+    return BaseSample.ClientType.ADEXCHANGEBUYER;
+  }
+
+  @Override
+  public String getDescription() {
+    return "Gets the data for a single creative, including its status";
+  }
+
+  @Override
+  public String getName() {
+    return "Get Creative Data";
+  }
+
+  @Override
+  public void execute(AbstractGoogleJsonClient client) throws IOException {
+    AdExchangeBuyer adXClient = (AdExchangeBuyer) client;
     int accountId = getIntInput("AccountId", "Enter the creative account id");
     String buyerCreativeId = getStringInput("BuyerCreativeId", "Enter the buyer creative id");
 
     try {
-      Creative creative = client.creatives().get(accountId, buyerCreativeId).execute();
+      Creative creative = adXClient.creatives().get(accountId, buyerCreativeId).execute();
 
       System.out.println("========================================");
       System.out.println("Found creative");
@@ -75,25 +91,5 @@ public class GetCreative extends BaseSample {
         throw e;
       }
     }
-  }
-
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#getDescription()
-   */
-  @Override
-  public String getDescription() {
-    return "Gets the data for a single creative, including its status";
-  }
-
-  /*
-   * (non-Javadoc)
-   *
-   * @see com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample#getName()
-   */
-  @Override
-  public String getName() {
-    return "Get Creative Data";
   }
 }
