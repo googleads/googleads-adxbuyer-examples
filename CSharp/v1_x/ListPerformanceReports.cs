@@ -15,6 +15,7 @@
 
 using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyer.v1_4.Data;
+using Google.Apis.Services;
 
 using System;
 
@@ -31,7 +32,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// <param name="args">The command line arguments</param>
         public static void Main(string[] args)
         {
-            AdExchangeBuyerService service = Utilities.GetService();
+            AdExchangeBuyerService service = Utilities.GetV1Service();
             ExampleBase example = new ListPerformanceReports();
             Console.WriteLine(example.Description);
             example.Run(service);
@@ -49,15 +50,18 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// Runs the code example.
         /// </summary>
         /// <param name="service">An authenticated AdExchangeBuyerService</param>
-        public override void Run(AdExchangeBuyerService service)
+        public override void Run(BaseClientService service)
         {
+            AdExchangeBuyerService adXService = (AdExchangeBuyerService)service;
             int accountId = int.Parse("INSERT ACCOUNT ID HERE");
             // Date report should start - mm/dd/yyyy format - oldest date
             string reportStartDate = "1/1/2014";
             // Date report should end - mm/dd/yyyy format - most recent date
             string reportEndDate = "4/1/2014";
-            PerformanceReportList allReports = service.PerformanceReport.List(accountId,
+
+            PerformanceReportList allReports = adXService.PerformanceReport.List(accountId,
                 reportEndDate, reportStartDate).Execute();
+
             if (allReports.PerformanceReport == null)
             {
                 Console.WriteLine("No performance reports associated with this user");
@@ -72,6 +76,11 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
                     Console.WriteLine("\tPixel Match Responses:", report.PixelMatchResponses);
                 }
             }
+        }
+
+        public override ClientType getClientType()
+        {
+            return ClientType.ADEXCHANGEBUYER;
         }
     }
 }

@@ -11,11 +11,10 @@ The complete documentation for the DoubleClick Ad Exchange Buyer API docs are av
 
 ##Announcements and updates
 
-For API and client library updates and news, please follow our Google+ Ads Developers page: <https://plus.google.com/+GoogleAdsDevelopers/posts> 
+For API and client library updates and news, please follow our Google+ Ads Developers page: <https://plus.google.com/+GoogleAdsDevelopers/posts>
 and our Google Ads Developers blog: <http://googleadsdeveloper.blogspot.com/>.
 
 For questions and support look at our forum page: <https://groups.google.com/forum/#!forum/google-doubleclick-ad-exchange-buyer-api>.
-
 
 ## Running the examples
 
@@ -37,23 +36,19 @@ The API uses OAuth2 for security, you can read about the options for connecting
 We will focus on using a Service Account; samples are included for prompting 
  the user and using a refresh token
 
-If you don't already have a Service Account and corresponding .p12 key file
+If you don't already have a Service Account and corresponding JSON key file
 
  * Launch the Google Developers Console <https://console.developers.google.com>
- * select a project
- * click **APIs & auth**
- * click the **Credentials** tab
- * click **Create a new client ID**
- * select **Service Account**
- * this will create a new account and download a new keyfile.p12 file;
-    keep this file safe!
- * copy the email address and password from the console for the next step
-
-Open the ExamplesConfig.cs file and fill in the following fields
-
-* ServiceAccountEmail
-* ServiceKeyFilePath
-* ServiceKeyFilePassword
+ * Click the **API Manager** item on the navigation menu.
+ * Click **Credentials** menu option.
+ * Click the link titled **Manage service accounts**.
+ * You should now see a table listing the Service Accounts associated with the
+  current project. Find the Service Account you had been using previously, and
+  open the menu.
+ * Select the **Create key** menu item.
+ * Click the **JSON** key type option and click **CREATE**.
+ * Set the path to the downloaded JSON file as the **ServiceKeyFilePath** value
+  in **ExamplesConfig.cs**.
 
 ###Dependancies
 The DoubleClick Ad Exchange Buyer API .Net Client Library is hosted on nuget.org

@@ -16,38 +16,40 @@
 using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyer.v1_4.Data;
 using Google.Apis.Auth.OAuth2;
+using Google.Apis.Json;
 using Google.Apis.Services;
 
 using System;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
 {
+
     /// <summary>
     /// Self contained sample to return a list of Accounts
-    /// Primarily used by the Getting Started guide 
+    /// Primarily used by the Getting Started guide
     /// https://developers.google.com/ad-exchange/buyer-rest/getting_started
     /// </summary>
     internal class FirstApiRequest
     {
+
         private static void Main(string[] args)
         {
-            // See the README.md for details of these fields. 
+            // See the README.md for details of these fields.
             // Retrieved from https://console.developers.google.com
-            String ServiceAccountEmail = "SERVICE ACCOUNT EMAIL HERE";
-            String ServiceKeyFilePath = "PATH TO P12 KEYFILE HERE-INCLUDE FILENAME";
-            String ServiceKeyFilePassword = "notasecret";
+            String ServiceKeyFilePath = "PATH TO JSON KEY FILE HERE";
 
-            // Create a certificate object using the key file.
-            X509Certificate2 certificate = new X509Certificate2(ServiceKeyFilePath,
-                ServiceKeyFilePassword, X509KeyStorageFlags.Exportable);
+            // Retrieve credential parameters from the key JSON file.
+            var credentialParameters = NewtonsoftJsonSerializer.Instance
+                .Deserialize<JsonCredentialParameters>(System.IO.File
+                .ReadAllText(ServiceKeyFilePath));
 
-            // Use the certificate to create credentials.
+            // Create the credentials.
             ServiceAccountCredential oAuth2Credentials = new ServiceAccountCredential(
-                new ServiceAccountCredential.Initializer(ServiceAccountEmail)
+                new ServiceAccountCredential.Initializer(
+                    credentialParameters.ClientEmail)
                 {
                     Scopes = new[] { AdExchangeBuyerService.Scope.AdexchangeBuyer }
-                }.FromCertificate(certificate));
+                }.FromPrivateKey(credentialParameters.PrivateKey));
 
             // Use the credentials to create a client for the API service.
             AdExchangeBuyerService buyerService = new AdExchangeBuyerService(
@@ -60,11 +62,14 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
             // Call the Accounts resource on the service to retrieve a list of
             // Accounts for the service account
             AccountsList allAccounts = buyerService.Accounts.List().Execute();
+
             foreach (Account account in allAccounts.Items)
             {
                 Console.WriteLine("Account id: {0}", account.Id);
             }
+
             Console.ReadLine();
         }
     }
 }
+

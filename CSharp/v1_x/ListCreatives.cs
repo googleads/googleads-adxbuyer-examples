@@ -15,6 +15,7 @@
 
 using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyer.v1_4.Data;
+using Google.Apis.Services;
 
 using System;
 
@@ -31,8 +32,9 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// </summary>
         /// <param name="args">The command line arguments</param>
         public static void Main(string[] args)
+
         {
-            AdExchangeBuyerService service = Utilities.GetService();
+            AdExchangeBuyerService service = Utilities.GetV1Service();
             ExampleBase example = new ListCreatives();
             Console.WriteLine(example.Description);
             example.Run(service);
@@ -50,12 +52,15 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// Runs the code example.
         /// </summary>
         /// <param name="service">An authenticated AdExchangeBuyerService</param>
-        public override void Run(AdExchangeBuyerService service)
+        public override void Run(BaseClientService service)
         {
-            CreativesResource.ListRequest request = service.Creatives.List();
+            AdExchangeBuyerService adXService = (AdExchangeBuyerService)service;
+            CreativesResource.ListRequest request = adXService.Creatives.List();
+
             // Maximum number of entries returned on one request to the API
             request.MaxResults = 100;
             CreativesList page = null;
+
             while (page == null || page.Items.Count == request.MaxResults)
             {
                 if (page != null) request.PageToken = page.NextPageToken;
@@ -71,6 +76,11 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
                     Console.WriteLine();
                 }
             }
+        }
+
+        public override ClientType getClientType()
+        {
+            return ClientType.ADEXCHANGEBUYER;
         }
     }
 }

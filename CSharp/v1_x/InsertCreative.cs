@@ -15,6 +15,7 @@
 
 using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyer.v1_4.Data;
+using Google.Apis.Services;
 
 using System;
 
@@ -31,7 +32,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// <param name="args">The command line arguments</param>
         public static void Main(string[] args)
         {
-            AdExchangeBuyerService service = Utilities.GetService();
+            AdExchangeBuyerService service = Utilities.GetV1Service();
             ExampleBase example = new InsertCreative();
             Console.WriteLine(example.Description);
             example.Run(service);
@@ -49,8 +50,9 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// Runs the code example.
         /// </summary>
         /// <param name="service">An authenticated AdExchangeBuyerService</param>
-        public override void Run(AdExchangeBuyerService service)
+        public override void Run(BaseClientService service)
         {
+            AdExchangeBuyerService adXService = (AdExchangeBuyerService)service;
             Creative creative = new Creative
             {
                 AccountId = int.Parse("INSERT ACCOUNT ID HERE"),
@@ -62,11 +64,16 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
                 Height = 250
             };
 
-            Creative responseCreative = service.Creatives.Insert(creative).Execute();
+            Creative responseCreative = adXService.Creatives.Insert(creative).Execute();
 
             Console.WriteLine("Inserted new creative:");
             Console.WriteLine("Account id: {0}", responseCreative.AccountId);
             Console.WriteLine("Buyer Creative id: {0}", responseCreative.BuyerCreativeId);
+        }
+
+        public override ClientType getClientType()
+        {
+            return ClientType.ADEXCHANGEBUYER;
         }
     }
 }

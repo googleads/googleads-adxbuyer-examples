@@ -15,6 +15,7 @@
 
 using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyer.v1_4.Data;
+using Google.Apis.Services;
 
 using System;
 
@@ -31,7 +32,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// <param name="args">The command line arguments</param>
         public static void Main(string[] args)
         {
-            AdExchangeBuyerService service = Utilities.GetService();
+            AdExchangeBuyerService service = Utilities.GetV1Service();
             ExampleBase example = new InsertPretargetingConfig();
             Console.WriteLine(example.Description);
             example.Run(service);
@@ -49,8 +50,9 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// Runs the code example.
         /// </summary>
         /// <param name="service">An authenticated AdExchangeBuyerService</param>
-        public override void Run(AdExchangeBuyerService service)
+        public override void Run(BaseClientService service)
         {
+            AdExchangeBuyerService adXService = (AdExchangeBuyerService)service;
             long accountId = long.Parse("INSERT ACCOUNT ID HERE");
             string configName = "INSERT CONFIG NAME HERE";
             PretargetingConfig.DimensionsData dimensions = new PretargetingConfig.DimensionsData
@@ -58,6 +60,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
                 Width = int.Parse("INSERT WIDTH HERE"),
                 Height = int.Parse("INSERT HEIGHT HERE")
             };
+
             bool active = bool.Parse("INSERT TRUE OR FALSE HERE");
 
             PretargetingConfig config = new PretargetingConfig
@@ -68,7 +71,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
                 IsActive = active
             };
 
-            PretargetingConfig responseConfig = service.PretargetingConfig.
+            PretargetingConfig responseConfig = adXService.PretargetingConfig.
                 Insert(config, accountId).Execute();
 
             Console.WriteLine("Inserted new pretargeting config:");
@@ -76,6 +79,11 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
             Console.WriteLine("Config Id: {0}", responseConfig.ConfigId);
             Console.WriteLine("Is active: {0}", responseConfig.IsActive);
             Console.WriteLine("Creative Type: {0}", responseConfig.CreativeType);
+        }
+
+        public override ClientType getClientType()
+        {
+            return ClientType.ADEXCHANGEBUYER;
         }
     }
 }

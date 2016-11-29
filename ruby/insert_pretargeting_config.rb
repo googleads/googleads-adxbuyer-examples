@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 # Encoding: utf-8
 #
-# Author:: api.msaniscalchi@gmail.com (Mark Saniscalchi)
-#
 # Copyright:: Copyright 2015, Google Inc. All Rights Reserved.
 #
 # License:: Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,80 +16,115 @@
 #           See the License for the specific language governing permissions and
 #           limitations under the License.
 #
-# Inserts a PretargetingConfig with the given values. To get Account IDs, run
-# list_accounts.rb.
+# Inserts a PretargetingConfig with the given values.
+#
+# To get Account IDs, run list_accounts.rb.
 #
 # Tags: PretargetingConfig.insert
 
-require_relative 'util'
+require 'optparse'
+
+require_relative 'samples_util'
 
 
-def main(ad_exchange_buyer, params, body)
-  request = ad_exchange_buyer.pretargeting_config.insert(params)
-  request.body = body
+def insert_pretargeting_config(ad_exchange_buyer, account_id,
+    new_pretargeting_config)
+  begin
+    pretargeting_config = ad_exchange_buyer.insert_pretargeting_config(
+        account_id, new_pretargeting_config
+    )
 
-  response = request.execute()
+    puts 'New pretargeting config added successfully to account ID %d: '\
+         % account_id
+    puts "\tBilling ID: %s" % pretargeting_config.billing_id
+    puts "\tConfig ID: %s" % pretargeting_config.config_id
+    puts "\tConfig name: %s" % pretargeting_config.config_name
+    puts "\tIs active: %s" % pretargeting_config.is_active
+    puts "\tCreative Type: %s" % pretargeting_config.creative_type
+    puts "\tDimensions:"
+    pretargeting_config.dimensions.each do |dimension|
+      puts "\t\tHeight: %d; Width: %d" % [dimension.height, dimension.width]
+    end
 
-  if response.success?
-    puts "Request successful! Response:\n%s" % [response.body]
-  else
-    puts "Request failed! Error message:\n%s" % [response.error_message]
+  rescue Google::Apis::ServerError => e
+    puts "The following server error occured:\n%s" % e.message
+  rescue Google::Apis::ClientError => e
+    puts "Invalid client request:\n%s" % e.message
+  rescue Google::Apis::AuthorizationError => e
+    puts "Authorization error occured:\n%s" % e.message
   end
 end
 
+
 if __FILE__ == $0
   begin
+    # Retrieve the service used to make API requests.
     service = get_service()
-
-    body = {
-        :configName => 'INSERT_CONFIG_NAME',
-        :isActive => 'INSERT_TRUE_OR_FALSE',
-        :creativeType => ['INSERT_CREATIVE_TYPE'],
-        :dimensions => [
-            {
-                :width => 'INSERT_WIDTH_HERE'.to_i,
-                :height => 'INSERT_HEIGHT_HERE'.to_i
-            }
-        ]
-    }
-
-    params = {
-        :accountId => 'INSERT_ACCOUNT_ID'.to_i
-    }
-
-    if params[:accountId] == 0
-      raise 'You need to set the accountId!'
-    end
-
-    if body[:configName] === 'INSERT_CONFIG_NAME'
-      raise 'You need to set configName!'
-    end
-
-    if body[:isActive] === 'INSERT_TRUE_OR_FALSE'
-      raise 'You need to set isActive!'
-    end
-
-    if body[:creativeType] === 'INSERT_CREATIVE_TYPE'
-      raise 'You need to set the creativeType!'
-    end
-
-    if body[:dimensions][0][:width] == 0
-      raise 'You need to set the width!!'
-    end
-
-    if body[:dimensions][0][:height] == 0
-      raise 'You need to set the height!'
-    end
-
   rescue ArgumentError => e
     puts 'Unable to create service: %s' % e.message
     puts 'Did you specify the key file in util.rb?'
     exit
   rescue Signet::AuthorizationError => e
     puts e.message
-    puts 'Did you set the correct Service Account Email in util.rb?'
+    puts 'Did you set the correct Service Account Email in samples_util.rb?'
     exit
   end
 
-  main(service, params, body)
+  # Set options and default values for fields used in this example.
+  options = [
+    Option.new(
+      'account_id', 'The integer ID of the Ad Exchange buyer account.',
+      :type => Integer, :short_alias => 'a', :required => true,
+      :default_value => nil  # Insert default value here.
+    ),
+    Option.new(
+      'config_name',
+      'Name of the pretargeting config, should be unique',
+      :short_alias => 'n', :required => true,
+      :default_value => nil  # Insert default value here.
+    ),
+    Option.new(
+      'is_active', 'Whether the pretargeting config is active.',
+      :type => FalseClass, :short_alias => 'i', :required => true,
+      :default_value => nil  # Insert default value here.
+    ),
+    Option.new(
+      'creative_type',
+      'The type of creatives allowed for the targeted ad slot.',
+      :valid_values => ['PRETARGETING_CREATIVE_TYPE_HTML',
+          'PRETARGETING_CREATIVE_TYPE_VIDEO'
+      ],
+      :short_alias => 't', :required => true,
+      :default_value => nil  # Insert default value here.
+    ),
+    Option.new(
+      'height', 'The height of ad slots being targeted.',
+      :type => Integer, :required => true,
+      :default_value => nil  # Insert default value here.
+    ),
+    Option.new(
+      'width', 'The width of ad slots being targeted.',
+      :type => Integer, :required => true,
+      :default_value => nil  # Insert default value here.
+    )
+  ]
+
+  # Parse options.
+  parser = Parser.new(options)
+  opts = parser.parse(ARGV)
+
+  new_pretargeting_config = (
+    Google::Apis::AdexchangebuyerV1_4::PretargetingConfig.new
+  )
+  new_pretargeting_config.config_name = opts['config_name']
+  new_pretargeting_config.is_active = opts['is_active']
+  new_pretargeting_config.creative_type = [opts['creative_type']]
+  new_pretargeting_config.dimensions = [{
+    :width => opts['width'],
+    :height => opts['height']
+  }]
+
+  insert_pretargeting_config(service, opts['account_id'],
+      new_pretargeting_config
+  )
 end

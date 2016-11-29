@@ -15,6 +15,7 @@
 
 using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyer.v1_4.Data;
+using Google.Apis.Services;
 
 using System;
 
@@ -32,7 +33,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// <param name="args">The command line arguments</param>
         public static void Main(string[] args)
         {
-            AdExchangeBuyerService service = Utilities.GetService();
+            AdExchangeBuyerService service = Utilities.GetV1Service();
             ExampleBase example = new UpdateAccount();
             Console.WriteLine(example.Description);
             example.Run(service);
@@ -54,8 +55,9 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// Runs the code example.
         /// </summary>
         /// <param name="service">An authenticated AdExchangeBuyerService</param>
-        public override void Run(AdExchangeBuyerService service)
+        public override void Run(BaseClientService service)
         {
+            AdExchangeBuyerService adXService = (AdExchangeBuyerService)service;
             int accountId = int.Parse("INSERT ACCOUNT ID HERE");
 
             Account account = new Account
@@ -64,11 +66,16 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
                 CookieMatchingUrl = "UPDATED COOKIE MATCHING URL HERE",
             };
 
-            Account responseAccount = service.Accounts.Patch(account, accountId).Execute();
+            Account responseAccount = adXService.Accounts.Patch(account, accountId).Execute();
 
             Console.WriteLine("Updated account");
             Console.WriteLine("Account id: {0}", responseAccount.Id);
             Console.WriteLine("Cookie Matching Url: {0}", responseAccount.CookieMatchingUrl);
+        }
+
+        public override ClientType getClientType()
+        {
+            return ClientType.ADEXCHANGEBUYER;
         }
     }
 }

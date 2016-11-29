@@ -14,13 +14,14 @@
  */
 
 using Google.Apis.AdExchangeBuyer.v1_4;
+using Google.Apis.AdExchangeBuyerII.v2beta1;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Http;
+using Google.Apis.Json;
 using Google.Apis.Util.Store;
 
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 namespace Google.Apis.AdExchangeBuyer.Examples
@@ -28,14 +29,33 @@ namespace Google.Apis.AdExchangeBuyer.Examples
     public class Utilities
     {
         /// <summary>
-        /// Create a new API Service. Note the call to ServiceAccount - this is
-        /// where security configuration takes place and will need to be
-        /// configured before the code will work!
+        /// Create a new Service for DoubleClick Ad Exchange v1 APIs.
+        /// Note the call to ServiceAccount - this is where security
+        /// configuration takes place and will need to be configured before the
+        /// code will work!
         /// </summary>
         /// <returns>A new API Service</returns>
-        public static AdExchangeBuyerService GetService()
+        public static AdExchangeBuyerService GetV1Service()
         {
             return new AdExchangeBuyerService(
+                new Google.Apis.Services.BaseClientService.Initializer
+                {
+                    HttpClientInitializer = ServiceAccount(),
+                    ApplicationName = "AdExchange Buyer DotNet Sample",
+                }
+            );
+        }
+
+        /// <summary>
+        /// Create a new Service for DoubleClick Ad Exchange v2 APIs.
+        /// Note the call to ServiceAccount - this is where security
+        /// configuration takes place and will need to be configured before the
+        /// code will work!
+        /// </summary>
+        /// <returns>A new API Service</returns>
+        public static AdExchangeBuyerIIService GetV2Service()
+        {
+            return new AdExchangeBuyerIIService(
                 new Google.Apis.Services.BaseClientService.Initializer
                 {
                     HttpClientInitializer = ServiceAccount(),
@@ -51,24 +71,25 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         /// <returns>Authentication object for API Requests</returns>
         public static IConfigurableHttpClientInitializer ServiceAccount()
         {
-            var certificate = new X509Certificate2(ExamplesConfig.ServiceKeyFilePath,
-                ExamplesConfig.ServiceKeyFilePassword, X509KeyStorageFlags.Exportable);
+            var credentialParameters = NewtonsoftJsonSerializer.Instance
+                .Deserialize<JsonCredentialParameters>(System.IO.File
+                .ReadAllText(ExamplesConfig.ServiceKeyFilePath));
 
             return new ServiceAccountCredential(
-               new ServiceAccountCredential.Initializer(ExamplesConfig.ServiceAccountEmail)
-               {
-                   Scopes = new[] { AdExchangeBuyerService.Scope.AdexchangeBuyer }
-               }.FromCertificate(certificate));
+                new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
+                {
+                    Scopes = new[] { AdExchangeBuyerService.Scope.AdexchangeBuyer }
+                }.FromPrivateKey(credentialParameters.PrivateKey));
         }
 
-        /// <summary>
-        /// Extracts info from a JSON file and prompts the user to login and
-        /// authorize the application. Returns credentials for accessing the API
-        /// Note: After the first authentication a RefreshToken is cached and
-        ///       used for subsequent calls via FileDataStore("adxbuyer")
-        /// </summary>
-        /// <returns>Authentication object for API Requests</returns>
-        public static IConfigurableHttpClientInitializer Prompt()
+    /// <summary>
+    /// Extracts info from a JSON file and prompts the user to login and
+    /// authorize the application. Returns credentials for accessing the API
+    /// Note: After the first authentication a RefreshToken is cached and
+    ///       used for subsequent calls via FileDataStore("adxbuyer")
+    /// </summary>
+    /// <returns>Authentication object for API Requests</returns>
+    public static IConfigurableHttpClientInitializer Prompt()
         {
             using (var stream = new FileStream(ExamplesConfig.ClientSecretLocation,
                 FileMode.Open, FileAccess.Read))

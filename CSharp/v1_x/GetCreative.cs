@@ -15,6 +15,7 @@
 
 using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyer.v1_4.Data;
+using Google.Apis.Services;
 
 using System;
 
@@ -32,7 +33,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// <param name="args">The command line arguments</param>
         public static void Main(string[] args)
         {
-            AdExchangeBuyerService service = Utilities.GetService();
+            AdExchangeBuyerService service = Utilities.GetV1Service();
             ExampleBase example = new GetCreative();
             Console.WriteLine(example.Description);
             example.Run(service);
@@ -50,14 +51,15 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// Runs the code example.
         /// </summary>
         /// <param name="service">An authenticated AdExchangeBuyerService</param>
-        public override void Run(AdExchangeBuyerService service)
+        public override void Run(BaseClientService service)
         {
+            AdExchangeBuyerService adXService = (AdExchangeBuyerService)service;
             int accountId = int.Parse("INSERT ACCOUNT ID HERE");
             String buyerCreativeId = "INSERT BUYER CREATIVE ID HERE";
 
             try
             {
-                Creative creative = service.Creatives.Get(accountId, buyerCreativeId).Execute();
+                Creative creative = adXService.Creatives.Get(accountId, buyerCreativeId).Execute();
                 Console.WriteLine("Account id: {0}", creative.AccountId);
                 Console.WriteLine("Buyer Creative id: {0}", creative.BuyerCreativeId);
                 Console.WriteLine("Deals Status: {0}", creative.DealsStatus);
@@ -71,6 +73,11 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
                 Console.WriteLine("Check your input parameters");
                 throw;
             }
+        }
+
+        public override ClientType getClientType()
+        {
+            return ClientType.ADEXCHANGEBUYER;
         }
     }
 }

@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 # Encoding: utf-8
 #
-# Author:: api.msaniscalchi@gmail.com (Mark Saniscalchi)
-#
 # Copyright:: Copyright 2015, Google Inc. All Rights Reserved.
 #
 # License:: Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,36 +20,53 @@
 #
 # Accounts.list
 
-require_relative 'util'
+require_relative './samples_util'
 
-def main(ad_exchange_buyer, params)
-  request = ad_exchange_buyer.accounts.list(params)
-  response = request.execute()
 
-  if response.success?
-    puts "Request successful! Response:\n%s" % [response.body]
-  else
-    puts "Request failed! Error message:\n%s" % [response.error_message]
+def list_accounts(ad_exchange_buyer)
+  begin
+    accounts_list = ad_exchange_buyer.list_accounts()
+
+    if accounts_list.items.any?
+      puts 'Found the following DoubleClick Ad Exchange Buyer Accounts:'
+      accounts_list.items.each do |account|
+        puts 'AccountID: %d' % account.id
+        puts "\tCookie matching nid: %s" % account.cookie_matching_nid
+        puts "\tCookie matching URL: %s" % account.cookie_matching_url
+        puts "\tMaximum active creatives: %d" % account.maximum_active_creatives
+        puts "\tMaximum total QPS: %d" % account.maximum_total_qps
+        puts "\tNumber active creatives: %d" % account.number_active_creatives
+        puts "\tBidder Locations:"
+        account.bidder_location.each do |bidder_location|
+          puts "\t\tURL: %s" % bidder_location.url
+          puts "\t\t\tRegion: %s" % bidder_location.region
+          puts "\t\t\tBid Protocol: %s" % bidder_location.bid_protocol
+          puts "\t\t\tMaximum QPS: %s" % bidder_location.maximum_qps
+        end
+      end
+    else
+      puts 'No DoubleClick Ad Exchange Buyer Accounts were found.'
+    end
+  rescue Google::Apis::ServerError => e
+    puts "The following server error occured:\n%s" % e.message
+  rescue Google::Apis::ClientError => e
+    puts "Invalid client request:\n%s" % e.message
+  rescue Google::Apis::AuthorizationError => e
+    puts "Authorization error occured:\n%s" % e.message
   end
 end
+
 
 if __FILE__ == $0
   begin
     service = get_service()
-
-    params = {
-        :maxResults => MAX_PAGE_SIZE
-    }
-
   rescue ArgumentError => e
     puts 'Unable to create service: %s' % e.message
-    puts 'Did you specify the key file in util.rb?'
     exit
   rescue Signet::AuthorizationError => e
     puts e.message
-    puts 'Did you set the correct Service Account Email in util.rb?'
+    puts 'Did you specify the key file in samples_util.rb?'
     exit
   end
-
-  main(service, params)
+  list_accounts(service)
 end

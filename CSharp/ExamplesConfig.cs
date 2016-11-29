@@ -20,14 +20,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples
     static public class ExamplesConfig
     {
         // Only required when using Service Account for authentication. This is
-        // the default auth method.
-
-        // See the README.md for details of these fields. 
-        // Retrieved from https://console.developers.google.com
-        public static String ServiceAccountEmail = "SERVICE ACCOUNT EMAIL HERE";
-
-        public static String ServiceKeyFilePath = "PATH TO P12 KEYFILE HERE-INCLUDE FILENAME";
-        public static String ServiceKeyFilePassword = "notasecret";
+        // the default auth method. See the README.md file for more details.
+        public static String ServiceKeyFilePath = "PATH TO JSON KEYFILE";
 
         // Only required when using Prompt for authentication. See
         // https://devsite.googleplex.com/ad-exchange/buyer-rest/auth-guide for
@@ -48,7 +42,6 @@ namespace Google.Apis.AdExchangeBuyer.Examples
 
         // Both retrieved from https://console.developers.google.com
         public static String ClientId = "CLIENT ID HERE";
-
         public static String ClientSecret = "CLIENT SECRET HERE";
     }
 }

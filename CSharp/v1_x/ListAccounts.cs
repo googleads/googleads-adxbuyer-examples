@@ -15,6 +15,7 @@
 
 using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyer.v1_4.Data;
+using Google.Apis.Services;
 
 using System;
 
@@ -31,7 +32,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// <param name="args">The command line arguments</param>
         public static void Main(string[] args)
         {
-            AdExchangeBuyerService service = Utilities.GetService();
+            AdExchangeBuyerService service = Utilities.GetV1Service();
             ExampleBase example = new ListAccounts();
             Console.WriteLine(example.Description);
             example.Run(service);
@@ -49,9 +50,10 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         /// Runs the code example.
         /// </summary>
         /// <param name="service">An authenticated AdExchangeBuyerService</param>
-        public override void Run(AdExchangeBuyerService service)
+        public override void Run(BaseClientService service)
         {
-            AccountsList allAccounts = service.Accounts.List().Execute();
+            AdExchangeBuyerService adXService = (AdExchangeBuyerService)service;
+            AccountsList allAccounts = adXService.Accounts.List().Execute();
             foreach (Account account in allAccounts.Items)
             {
                 Console.WriteLine("Account id: {0}", account.Id);
@@ -59,6 +61,11 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
                 Console.WriteLine("\tCookie matching Nid: {0}", account.CookieMatchingNid);
                 Console.WriteLine("\tCookie Matching Url: {0}", account.CookieMatchingUrl);
             }
+        }
+
+        public override ClientType getClientType()
+        {
+            return ClientType.ADEXCHANGEBUYER;
         }
     }
 }

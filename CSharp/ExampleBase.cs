@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-using Google.Apis.AdExchangeBuyer.v1_4;
+using Google.Apis.Services;
 
 namespace Google.Apis.AdExchangeBuyer.Examples
 {
@@ -22,6 +22,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
     /// </summary>
     public abstract class ExampleBase
     {
+        public enum ClientType {ADEXCHANGEBUYER, ADEXCHANGEBUYERII}
         /// <summary>
         /// Returns a description about the code example.
         /// </summary>
@@ -30,6 +31,12 @@ namespace Google.Apis.AdExchangeBuyer.Examples
             get;
         }
 
-        public abstract void Run(AdExchangeBuyerService service);
+        /// <summary>
+        /// Returns the ClientType necessary to run the sample.
+        /// </summary>
+
+        public abstract ClientType getClientType();
+
+        public abstract void Run(BaseClientService service);
     }
 }

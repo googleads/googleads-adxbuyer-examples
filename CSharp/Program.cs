@@ -14,6 +14,7 @@
  */
 
 using Google.Apis.AdExchangeBuyer.v1_4;
+using Google.Apis.AdExchangeBuyerII.v2beta1;
 
 using System;
 using System.Collections.Generic;
@@ -65,10 +66,11 @@ namespace Google.Apis.AdExchangeBuyer.Examples
             Console.WriteLine("AdExchange Buyer DotNet API Sample");
             Console.WriteLine("====================");
 
-            // Create a new AdExchangeBuyerService instance.
+            // Create a new service instance for v1 and v2 of AdExchangeBuyer.
             // Note: This is where security configuration takes place and will
             // need to be configured before the code will work!
-            AdExchangeBuyerService service = Utilities.GetService();
+            AdExchangeBuyerService v1Service = Utilities.GetV1Service();
+            AdExchangeBuyerIIService v2Service = Utilities.GetV2Service();
 
             // If --all is passed run all the examples
             string[] examplesToRun = (args[0].ToLower() == "--all")
@@ -80,7 +82,15 @@ namespace Google.Apis.AdExchangeBuyer.Examples
                 {
                     ExampleBase example = examples[exampleName];
                     Console.WriteLine(example.Description);
-                    example.Run(service);
+
+                    if(example.getClientType() == ExampleBase.ClientType.ADEXCHANGEBUYER)
+                    {
+                        example.Run(v1Service);
+                    }
+                    else if(example.getClientType() == ExampleBase.ClientType.ADEXCHANGEBUYERII)
+                    {
+                        example.Run(v2Service);
+                    }
                 }
                 else
                 {
@@ -107,10 +117,12 @@ namespace Google.Apis.AdExchangeBuyer.Examples
             Console.WriteLine("name1 [name2 ...]:" +
                 "Run specific code examples. Example name can be one of the following:\n", 
                 exeName);
+
             foreach (KeyValuePair<string, ExampleBase> pair in examples)
             {
                 Console.WriteLine("{0} : {1}", pair.Key, pair.Value.Description);
             }
+
             Console.WriteLine("Press [Enter] to continue");
             Console.ReadLine();
         }

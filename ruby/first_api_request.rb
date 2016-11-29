@@ -18,58 +18,70 @@
 #
 # Sample application that authenticates and makes an API request.
 
-require 'google/api_client/service'
+require 'rubygems'
+require 'google/apis/adexchangebuyer_v1_4'
+require 'googleauth/service_account'
 
-API_NAME = 'adexchangebuyer'
-API_VERSION = 'v1.4'
-
-# Update these with the values for your Service Account found in the Google
+# You can download the JSON keyfile used for authentication from the Google
 # Developers Console.
-SERVICE_ACCOUNT_EMAIL = 'yourapp@developer.gserviceaccount.com'
-KEY_FILE = 'path_to_key'  # Path to *.p12 file containing your private key.
-KEY_SECRET = 'notasecret'  # Password for the key file.
+KEY_FILE = 'path_to_key'  # Path to JSON file containing your private key.
 
-def main()
-  # Create credentials using the Service email and P12 file.
-  key = Google::APIClient::KeyUtils.load_from_pkcs12(KEY_FILE, KEY_SECRET)
 
+def first_api_request()
+  # Create credentials using the JSON key file.
   auth_options = {
-    :token_credential_uri => 'https://accounts.google.com/o/oauth2/token',
-    :audience => 'https://accounts.google.com/o/oauth2/token',
-    :scope => 'https://www.googleapis.com/auth/adexchange.buyer',
-    :issuer => SERVICE_ACCOUNT_EMAIL,
-    :signing_key => key
+    :json_key_io => File.open(KEY_FILE, "r"),
+    :scope => "https://www.googleapis.com/auth/adexchange.buyer"
   }
 
-  oauth_credentials = Signet::OAuth2::Client.new(auth_options)
+  oauth_credentials = Google::Auth::ServiceAccountCredentials.make_creds(
+    options=auth_options
+  )
 
-  # Use the credentials to create a client for the API service.
-  service_options = {
-    :application_name => "Ruby #{API_NAME} samples: #{$0}",
-    :application_version => '1.0.0',
-    :authorization => oauth_credentials
-  }
-
-  ad_exchange_buyer = Google::APIClient::Service.new(API_NAME, API_VERSION,
-                                                     service_options)
-
+  # Create the service and set credentials
+  ad_exchange_buyer = (
+    Google::Apis::AdexchangebuyerV1_4::AdExchangeBuyerService.new
+  )
+  ad_exchange_buyer.authorization = oauth_credentials
   ad_exchange_buyer.authorization.fetch_access_token!
 
-  # Call the Accounts resource on the service to retrieve a list of
-  # Accounts for the service account.
-  request = ad_exchange_buyer.accounts.list()
-  response = request.execute()
+  begin
+    # Call the Accounts resource on the service to retrieve a list of
+    # Accounts for the service account.
+    accounts_list = ad_exchange_buyer.list_accounts()
 
-  if response.success?
-    puts "Request successful! Response:\n%s" % [response.body]
-  else
-    puts "Request failed! Error message:\n%s" % [response.error_message]
+    if accounts_list.items.any?
+      puts 'Found the following DoubleClick Ad Exchange Buyer Accounts:'
+      accounts_list.items.each do |account|
+        puts 'AccountID: %d' % account.id
+        puts "\tCookie matching nid: %s" % account.cookie_matching_nid
+        puts "\tCookie matching URL: %s" % account.cookie_matching_url
+        puts "\tMaximum active creatives: %d" % account.maximum_active_creatives
+        puts "\tMaximum total QPS: %d" % account.maximum_total_qps
+        puts "\tNumber active creatives: %d" % account.number_active_creatives
+        puts "\tBidder Locations:"
+        account.bidder_location.each do |bidder_location|
+          puts "\t\tURL: %s" % bidder_location.url
+          puts "\t\t\tRegion: %s" % bidder_location.region
+          puts "\t\t\tBid Protocol: %s" % bidder_location.bid_protocol
+          puts "\t\t\tMaximum QPS: %s" % bidder_location.maximum_qps
+        end
+      end
+    else
+      puts 'No DoubleClick Ad Exchange Buyer Accounts were found.'
+    end
+  rescue Google::Apis::ServerError => e
+    puts "The following server error occured:\n%s" % e.message
+  rescue Google::Apis::ClientError => e
+    puts "Invalid client request:\n%s" % e.message
+  rescue Google::Apis::AuthorizationError => e
+    puts "Authorization error occured:\n%s" % e.message
   end
 end
 
 if __FILE__ == $0
   begin
-    main()
+    first_api_request()
   end
 end
 
