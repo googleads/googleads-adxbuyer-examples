@@ -19,7 +19,6 @@
 # Common utilities used by the DoubleClick Ad Exchange Buyer API Samples.
 
 require 'optparse'
-require 'rubygems'
 require 'google/apis/adexchangebuyer_v1_3'
 require 'google/apis/adexchangebuyer_v1_4'
 require 'google/apis/adexchangebuyer2_v2beta1'
@@ -157,15 +156,25 @@ class Parser
     @opt_parser = OptionParser.new do |opts|
       options.each do |option|
         opts.on(*option.get_option_parser_args()) do |x|
-          if !option.valid_values.nil?
-            if !option.valid_values.include? (x.upcase)
-              raise 'Invalid value "%s". Valid values are: %s' %
-                  [x, option.valid_values.inspect]
+          unless option.valid_values.nil?
+            if option.kind_of(Array)
+              x.each do |value|
+                check_valid_value(option.valid_values, value)
+              end
+            else
+              check_valid_value(option.valid_values, x)
             end
           end
           @parsed_args[option.long_alias] = x
         end
       end
+    end
+  end
+
+  def check_valid_value(valid_values, value)
+    unless valid_values.include?(value.upcase)
+      raise 'Invalid value "%s". Valid values are: %s' %
+          [value, valid_values.inspect]
     end
   end
 

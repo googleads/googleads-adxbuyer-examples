@@ -51,8 +51,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>
       <plugin>
@@ -114,12 +114,12 @@
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-adexchangebuyer</artifactId>
-      <version>v1.4-rev1-1.18.0-rc</version>
+      <version>v1.4-rev38-1.23.0</version>
     </dependency>
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-adexchangebuyer2</artifactId>
-      <version>v2beta1-rev1-1.21.0</version>
+      <version>v2beta1-rev560-1.23.0</version>
     </dependency>
     <dependency>
       <groupId>com.google.http-client</groupId>
@@ -131,10 +131,15 @@
       <artifactId>google-oauth-client-jetty</artifactId>
       <version>${project.oauth.version}</version>
     </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.9.9</version>
+    </dependency>
   </dependencies>
   <properties>
-    <project.http.version>1.18.0-rc</project.http.version>
-    <project.oauth.version>1.18.0-rc</project.oauth.version>
+    <project.http.version>1.23.0</project.http.version>
+    <project.oauth.version>1.23.0</project.oauth.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

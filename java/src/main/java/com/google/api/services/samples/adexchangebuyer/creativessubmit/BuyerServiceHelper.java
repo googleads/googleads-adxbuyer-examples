@@ -29,6 +29,7 @@ import com.google.api.services.adexchangebuyer.model.Creative;
 import com.google.api.services.adexchangebuyer.model.PretargetingConfig;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
@@ -47,16 +48,9 @@ public class BuyerServiceHelper {
    */
   protected static final String APPLICATION_NAME = "";
 
-  /**
-   * Email account for the Service Account. Get this and the P12 Key File at
-   * https://console.developers.google.com
-   */
-  private static final String SERVICE_ACCOUNT_EMAIL =
-      "INSERT_SERVICE_ACCOUNT_EMAIL";
-
-  /** Full path to P12 Key file - include file name */
-  private static final java.io.File P12_FILE =
-      new java.io.File("INSERT_PATH_TO_P12_FILE");
+  /** Full path to JSON Key file - include file name */
+  private static final java.io.File JSON_FILE =
+      new java.io.File("INSERT_PATH_TO_JSON_FILE");
 
   /**
    * Fields in the Creatives object that must not be sent on insert/update/patch requests
@@ -303,13 +297,8 @@ public class BuyerServiceHelper {
     /** Global instance of the JSON factory. */
     JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
 
-    Credential credential = new GoogleCredential.Builder()
-        .setTransport(httpTransport)
-        .setJsonFactory(jsonFactory)
-        .setServiceAccountId(SERVICE_ACCOUNT_EMAIL)
-        .setServiceAccountScopes(AdExchangeBuyerScopes.all())
-        .setServiceAccountPrivateKeyFromP12File(P12_FILE)
-        .build();
+    Credential credential = GoogleCredential.fromStream(new FileInputStream(JSON_FILE))
+        .createScoped(AdExchangeBuyerScopes.all());
 
     return new AdExchangeBuyer.Builder(httpTransport, jsonFactory, credential).setApplicationName(
         APPLICATION_NAME).build();

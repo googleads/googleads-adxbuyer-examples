@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +18,8 @@
 /**
  * Include HTML generation functions and Client Type
  */
- require_once "htmlHelper.php";
- require_once "ClientType.php";
+ require_once 'htmlHelper.php';
+ require_once 'ClientType.php';
 
 /**
  * Base class for all examples, contains helper methods to support examples
@@ -132,8 +132,10 @@ abstract class BaseExample {
   protected function getFormValues() {
     $input = array();
     foreach ($this->getInputParameters() as $parameter) {
-      if (isset($_POST[$parameter['name']])) {
+      if (!empty($_POST[$parameter['name']])) {
         $input[$parameter['name']] = $_POST[$parameter['name']];
+      } else {
+        $input[$parameter['name']] = null;
       }
     }
     return $input;

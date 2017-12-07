@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +17,6 @@
 
 /**
  * Helper functions for HTML generation.
- *
- * @author David Torres <david.t@google.com>
  */
 
 /**
@@ -57,11 +55,14 @@ function printSampleHtmlFooter() {
 function printExamplesIndex($actions) {
   print '<h2>Select a sample from the list</h2>';
   print '<ul class="nav">';
-  foreach ($actions as $action) {
-    require_once 'examples/' . $action . '.php';
-    $class = ucfirst($action);
-    printf('<li><a class="highlight" href="?action=%s">%s</a></li>', $action,
-        $class::getName());
+  foreach ($actions as $version => $versionActions) {
+    printf('<h1>%s</h1>', $version);
+    foreach ($versionActions as $action) {
+      require_once sprintf('examples/%s_x/%s.php', $version, $action);
+      $class = ucfirst($action);
+      printf('<li><a class="highlight" href="?action=%s">%s</a></li>', $action,
+          $class::getName());
+    }
   }
   print '</ul>';
 }

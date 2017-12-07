@@ -29,10 +29,9 @@ namespace Google.Apis.AdExchangeBuyer.Examples
     public class Utilities
     {
         /// <summary>
-        /// Create a new Service for DoubleClick Ad Exchange v1 APIs.
-        /// Note the call to ServiceAccount - this is where security
-        /// configuration takes place and will need to be configured before the
-        /// code will work!
+        /// Create a new Service for DoubleClick Ad Exchange v1 APIs. Note the call to
+        /// ServiceAccount - this is where security configuration takes place and will need to be
+        /// configured before the code will work!
         /// </summary>
         /// <returns>A new API Service</returns>
         public static AdExchangeBuyerService GetV1Service()
@@ -47,10 +46,9 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         }
 
         /// <summary>
-        /// Create a new Service for DoubleClick Ad Exchange v2 APIs.
-        /// Note the call to ServiceAccount - this is where security
-        /// configuration takes place and will need to be configured before the
-        /// code will work!
+        /// Create a new Service for DoubleClick Ad Exchange v2 APIs. Note the call to
+        /// ServiceAccount - this is where security configuration takes place and will need to be
+        /// configured before the code will work!
         /// </summary>
         /// <returns>A new API Service</returns>
         public static AdExchangeBuyerIIService GetV2Service()
@@ -65,15 +63,15 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         }
 
         /// <summary>
-        /// Uses a .p12 KeyFile to authenticate a service account and return
-        /// credentials for accessing the API
+        /// Uses a .p12 KeyFile to authenticate a service account and return credentials for
+        /// accessing the API.
         /// </summary>
         /// <returns>Authentication object for API Requests</returns>
         public static IConfigurableHttpClientInitializer ServiceAccount()
         {
             var credentialParameters = NewtonsoftJsonSerializer.Instance
-                .Deserialize<JsonCredentialParameters>(System.IO.File
-                .ReadAllText(ExamplesConfig.ServiceKeyFilePath));
+                .Deserialize<JsonCredentialParameters>(System.IO.File.ReadAllText(
+                    ExamplesConfig.ServiceKeyFilePath));
 
             return new ServiceAccountCredential(
                 new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
@@ -83,16 +81,16 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         }
 
     /// <summary>
-    /// Extracts info from a JSON file and prompts the user to login and
-    /// authorize the application. Returns credentials for accessing the API
-    /// Note: After the first authentication a RefreshToken is cached and
-    ///       used for subsequent calls via FileDataStore("adxbuyer")
+    /// Extracts info from a JSON file and prompts the user to login and authorize the application.
+    /// Returns credentials for accessing the API.
+    /// Note: After the first authentication a RefreshToken is cached and used for subsequent calls
+    ///       via FileDataStore("adxbuyer")
     /// </summary>
     /// <returns>Authentication object for API Requests</returns>
     public static IConfigurableHttpClientInitializer Prompt()
         {
-            using (var stream = new FileStream(ExamplesConfig.ClientSecretLocation,
-                FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(ExamplesConfig.ClientSecretLocation, FileMode.Open,
+                FileAccess.Read))
             {
                 return GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
@@ -104,10 +102,9 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         }
 
         /// <summary>
-        /// Uses hard coded info to authenticate and return credentials
-        /// Note: All of the parameters required for this method can be
-        ///       retrieved from the JSON File and the cache file from the
-        ///       Prompt() method above
+        /// Uses hard coded info to authenticate and return credentials.
+        /// Note: All of the parameters required for this method can be retrieved from the JSON
+        ///       File and the cache file from the Prompt() method above.
         /// </summary>
         /// <returns>Authentication object for API Requests</returns>
         public static IConfigurableHttpClientInitializer RefreshToken()

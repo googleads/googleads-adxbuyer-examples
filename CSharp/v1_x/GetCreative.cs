@@ -22,8 +22,8 @@ using System;
 namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
 {
     /// <summary>
-    /// Gets the status for a single creative. A creative will be available
-    /// 30-40 minutes after submission.
+    /// Gets the status for a single creative. A creative will be available 30-40 minutes after
+    /// submission.
     /// </summary>
     public class GetCreative : ExampleBase
     {

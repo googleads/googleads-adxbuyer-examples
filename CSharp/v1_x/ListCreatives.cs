@@ -22,8 +22,8 @@ using System;
 namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
 {
     /// <summary>
-    /// Retrieves a list of the authenticated user's active creatives. A
-    /// creative will be available 30-40 minutes after submission.
+    /// Retrieves a list of the authenticated user's active creatives. A creative will be available
+    ///  30-40 minutes after submission.
     /// </summary>
     public class ListCreatives : ExampleBase
     {

@@ -24,6 +24,26 @@ import com.google.api.services.adexchangebuyer.AdExchangeBuyer;
 import com.google.api.services.adexchangebuyer.AdExchangeBuyerScopes;
 import com.google.api.services.adexchangebuyer2.v2beta1.AdExchangeBuyerII;
 
+import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.GetAllAccounts;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.GetAllPerformanceReports;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.GetCreative;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.InsertPretargetingConfig;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.PatchAccount;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.SubmitCreative;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.CreateAccountLevelFilterSet;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.CreateBidderLevelFilterSet;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.CreateClientBuyer;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.CreateInvitation;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAccountLevelBidMetrics;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllAccountLevelFilterSets;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllBidderLevelFilterSets;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllClientBuyers;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllClientUsers;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllInvitations;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetBidderLevelBidMetrics;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.UpdateClientBuyer;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.UpdateClientUser;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -45,6 +65,12 @@ import java.util.ArrayList;
  * <li>Create Invitation</li>
  * <li>Get All Client Users</li>
  * <li>Update Client User</li>
+ * <li>Create Bidder-level Filter Set</li>
+ * <li>Get all Bidder-level Filter Sets</li>
+ * <li>Get Bidder-level Bid Metrics</li>
+ * <li>Create Account-level Filter Set</li>
+ * <li>Get all Account-level Filter Sets</li>
+ * <li>Get Account-level Bid Metrics</li>
  * </ul>
  */
 public class AdExchangeBuyerSample {
@@ -55,16 +81,9 @@ public class AdExchangeBuyerSample {
    */
   private static final String APPLICATION_NAME = "";
 
-  /**
-   * Email account for the Service Account.
-   * Get this and the P12 Key File at https://console.developers.google.com
-   */
-  private static final String SERVICE_ACCOUNT_EMAIL =
-      "INSERT_SERVICE_ACCOUNT_EMAIL";
-
-  /** Full path to P12 Key file - include file name */
-  private static final java.io.File P12_FILE =
-      new java.io.File("INSERT_PATH_TO_P12_FILE");
+  /** Full path to JSON Key file - include file name */
+  private static final java.io.File JSON_FILE =
+      new java.io.File("INSERT_PATH_TO_JSON_FILE");
 
   /** Global instance of the HTTP transport. */
   private static HttpTransport httpTransport;
@@ -79,12 +98,8 @@ public class AdExchangeBuyerSample {
    * @throws IOException
    * */
   private static Credential authorize() throws Exception {
-    return new GoogleCredential.Builder().setTransport(httpTransport)
-        .setJsonFactory(JSON_FACTORY)
-        .setServiceAccountId(SERVICE_ACCOUNT_EMAIL)
-        .setServiceAccountScopes(AdExchangeBuyerScopes.all()) // All versions use identical scope.
-        .setServiceAccountPrivateKeyFromP12File(P12_FILE)
-        .build();
+    return GoogleCredential.fromStream(new FileInputStream(JSON_FILE))
+        .createScoped(AdExchangeBuyerScopes.all());
   }
 
   /**
@@ -130,6 +145,12 @@ public class AdExchangeBuyerSample {
     samples.add(new CreateInvitation());
     samples.add(new GetAllClientUsers());
     samples.add(new UpdateClientUser());
+    samples.add(new CreateBidderLevelFilterSet());
+    samples.add(new GetAllBidderLevelFilterSets());
+    samples.add((new GetBidderLevelBidMetrics()));
+    samples.add(new CreateAccountLevelFilterSet());
+    samples.add(new GetAllAccountLevelFilterSets());
+    samples.add(new GetAccountLevelBidMetrics());
   }
 
   /**

@@ -22,8 +22,8 @@ using System;
 namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
 {
     /// <summary>
-    /// Updates an existing account using patch semantics. You can find out more
-    /// here https://developers.google.com/ad-exchange/buyer-rest/v1.3/accounts/patch
+    /// Updates an existing account using patch semantics. You can find out more here:
+    /// https://developers.google.com/ad-exchange/buyer-rest/v1.4/accounts/patch
     /// </summary>
     public class UpdateAccount : ExampleBase
     {
@@ -46,8 +46,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
         {
             get
             {
-                return "This code example updates the CookieMatchingUrl on a"
-                    + " specified account.";
+                return "This code example updates the CookieMatchingUrl on a specified account.";
             }
         }
 

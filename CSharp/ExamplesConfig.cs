@@ -19,13 +19,12 @@ namespace Google.Apis.AdExchangeBuyer.Examples
 {
     static public class ExamplesConfig
     {
-        // Only required when using Service Account for authentication. This is
-        // the default auth method. See the README.md file for more details.
+        // Only required when using Service Account for authentication. This is the default auth
+        // method. See the README.md file for more details.
         public static String ServiceKeyFilePath = "PATH TO JSON KEYFILE";
 
         // Only required when using Prompt for authentication. See
-        // https://devsite.googleplex.com/ad-exchange/buyer-rest/auth-guide for
-        // Auth details.
+        // https://devsite.googleplex.com/ad-exchange/buyer-rest/auth-guide for Auth details.
 
         // Full path to client secrets file.
         public static String ClientSecretLocation = "PATH TO CLIENT SECRETS HERE-INCLUDE FILENAME";
@@ -34,8 +33,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         public static String FileDataStore = "adxbuyer";
 
         // Only required when using RefreshToken for authentication. See
-        // https://devsite.googleplex.com/ad-exchange/buyer-rest/auth-guide for
-        // Auth details.
+        // https://devsite.googleplex.com/ad-exchange/buyer-rest/auth-guide for Auth details.
 
         // Generated Refresh Token.
         public static String RefreshToken = "REFRESH TOKEN HERE";

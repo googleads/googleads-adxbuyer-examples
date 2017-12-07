@@ -17,7 +17,10 @@ package com.google.api.services.samples.adexchangebuyer.cmdline;
 import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -186,6 +189,57 @@ public abstract class BaseSample {
   }
 
   /**
+   * Prompts the user to enter a numeric value.
+   *
+   * @param propertyKey Key of the value, used to store it for future use
+   * @param message Message to print out to the user in request of input
+   * @param defaultValue Default value to return in case the user does not provide one
+   * @return The parsed numeric value entered by the user
+   * @throws IOException
+   */
+  protected List<Integer> getIntListInput(String propertyKey, String message) throws IOException {
+    List<String> stringList = getStringListInput(propertyKey, message);
+
+    if(stringList != null) {
+      List<Integer> list = new ArrayList<Integer>();
+
+      for(String s : stringList) {
+        list.add(Integer.valueOf(s));
+      }
+
+      return list;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * Prompts the user to enter a numeric value.
+   *
+   * @param propertyKey Key of the value, used to store it for future use
+   * @param message Message to print out to the user in request of input
+   * @param defaultValue Default value to return in case the user does not provide one
+   * @return The parsed numeric value entered by the user
+   * @throws IOException
+   */
+  protected List<Integer> getOptionalIntListInput(String propertyKey, String message)
+      throws IOException {
+    List<String> stringList = getOptionalStringListInput(propertyKey, message);
+
+    if(stringList != null) {
+      List<Integer> list = new ArrayList<Integer>();
+
+      for(String s : stringList) {
+        list.add(Integer.valueOf(s));
+      }
+
+      return list;
+    } else {
+      return null;
+    }
+  }
+
+  /**
    * Prompts the user to enter a value.
    *
    * @param propertyKey Key of the value, used to store it for future use
@@ -231,6 +285,26 @@ public abstract class BaseSample {
   }
 
   /**
+   * Prompts the user to enter a list of strings.
+   *
+   * @param propertyKey Key of the value, used to store it for future use
+   * @param message Message to print out to the user in request of input
+   * @return The list of strings entered by the user
+   * @throws IOException
+   */
+  protected List<String> getStringListInput(String propertyKey, String message) throws IOException {
+    String listString = getStringInput(propertyKey, message);
+
+    if(listString != null) {
+      List<String> list = new ArrayList<String>();
+      Collections.addAll(list, listString.split("\\s*,\\s*"));
+      return list;
+    } else {
+      return null;
+    }
+  }
+
+  /**
    * Prompts the user to enter an optional value.
    *
    * @param propertyKey Key of the value, used to store it for future use
@@ -242,9 +316,9 @@ public abstract class BaseSample {
       throws IOException {
     String lastValue = cachedValues.get(propertyKey);
     if (lastValue != null) {
-      System.out.printf("%s (last value was %s):\n", message, lastValue);
+      System.out.printf("[Optional] %s (last value was %s):\n", message, lastValue);
     } else {
-      System.out.printf("%s:\n", message);
+      System.out.printf("[Optional] %s:\n", message);
     }
     String input = Utils.readInputLine();
     if (input != null && !input.isEmpty()) {
@@ -252,5 +326,26 @@ public abstract class BaseSample {
       return input;
     }
     return null;
+  }
+
+  /**
+   * Prompts the user to enter an optional list of strings.
+   *
+   * @param propertyKey Key of the value, used to store it for future use
+   * @param message Message to print out to the user in request of input
+   * @return The list of strings entered by the user
+   * @throws IOException
+   */
+  protected List<String> getOptionalStringListInput(String propertyKey, String message)
+      throws IOException {
+    String listString = getOptionalStringInput(propertyKey, message);
+
+    if(listString != null) {
+      List<String> list = new ArrayList<String>();
+      Collections.addAll(list, listString.split("\\s*,\\s*"));
+      return list;
+    } else {
+      return null;
+    }
   }
 }

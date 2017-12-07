@@ -60,12 +60,12 @@
       <HintPath>packages\Google.Apis.1.10.0\lib\net40\Google.Apis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.AdExchangeBuyer.v1_4, Version=1.18.0.658, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>packages\Google.Apis.AdExchangeBuyer.v1_4.1.18.0.658\lib\portable-net40+sl50+netcore45+wpa81+wp8\Google.Apis.AdExchangeBuyer.v1_4.dll</HintPath>
+    <Reference Include="Google.Apis.AdExchangeBuyer.v1_4, Version=1.30.0.952, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.AdExchangeBuyer.v1_4.1.30.0.952\lib\net40\Google.Apis.AdExchangeBuyer.v1_4.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.AdExchangeBuyerII.v2beta1, Version=1.19.0.672, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>packages\Google.Apis.AdExchangeBuyerII.v2beta1.1.19.0.672\lib\portable-net40+sl50+netcore45+wpa81+wp8\Google.Apis.AdExchangeBuyerII.v2beta1.dll</HintPath>
+    <Reference Include="Google.Apis.AdExchangeBuyerII.v2beta1, Version=1.30.0.1047, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.AdExchangeBuyerII.v2beta1.1.30.0.1047\lib\net40\Google.Apis.AdExchangeBuyerII.v2beta1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Google.Apis.Auth, Version=1.10.0.25333, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
@@ -151,6 +151,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="v2_x\CreateAccountLevelFilterSet.cs" />
+    <Compile Include="v2_x\CreateBidderLevelFilterSet.cs" />
+    <Compile Include="v2_x\ListAccountLevelFilterSets.cs" />
+    <Compile Include="v2_x\ListAccountLevelBidMetrics.cs" />
+    <Compile Include="v2_x\ListBidderLevelBidMetrics.cs" />
+    <Compile Include="v2_x\ListBidderLevelFilterSets.cs" />
     <Compile Include="v2_x\UpdateClientUser.cs" />
     <Compile Include="v2_x\UpdateClientBuyer.cs" />
     <Compile Include="v2_x\CreateInvitation.cs" />

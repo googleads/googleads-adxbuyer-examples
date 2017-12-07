@@ -29,8 +29,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         /// <summary>
         /// A map to hold the code examples available to be executed.
         /// </summary>
-        private static Dictionary<string, ExampleBase> examples
-            = new Dictionary<string, ExampleBase>();
+        private static Dictionary<string, ExampleBase> examples =
+            new Dictionary<string, ExampleBase>();
 
         /// <summary>
         /// Static constructor to initialize the examples map.
@@ -67,8 +67,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples
             Console.WriteLine("====================");
 
             // Create a new service instance for v1 and v2 of AdExchangeBuyer.
-            // Note: This is where security configuration takes place and will
-            // need to be configured before the code will work!
+            // Note: This is where security configuration takes place and will need to be
+            // configured before the code will work!
             AdExchangeBuyerService v1Service = Utilities.GetV1Service();
             AdExchangeBuyerIIService v2Service = Utilities.GetV2Service();
 
@@ -114,9 +114,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples
             Console.WriteLine("Usage : {0} [flags]\n", exeName);
             Console.WriteLine("Available flags\n");
             Console.WriteLine("--all\t\t : Run all code examples.", exeName);
-            Console.WriteLine("name1 [name2 ...]:" +
-                "Run specific code examples. Example name can be one of the following:\n", 
-                exeName);
+            Console.WriteLine("name1 [name2 ...] : Run specific code examples. Example name can " +
+                "be one of the following:\n", exeName);
 
             foreach (KeyValuePair<string, ExampleBase> pair in examples)
             {
