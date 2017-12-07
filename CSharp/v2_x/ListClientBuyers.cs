@@ -22,8 +22,7 @@ using System;
 namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
 {
     /// <summary>
-    /// Retrieves the authenticated user's list of client buyers for the given
-    /// account ID.
+    /// Retrieves the authenticated user's list of client buyers for the given account ID.
     /// </summary>
     public class ListClientBuyers : ExampleBase
     {
@@ -45,8 +44,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// </summary>
         public override string Description
         {
-            get { return "This code example lists all client buyers for a "
-                    + "given account ID."; }
+            get { return "This code example lists all client buyers for a given account ID."; }
         }
 
         /// <summary>
@@ -55,16 +53,14 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// <param name="service">An authenticated AdExchangeBuyerIIService</param>
         public override void Run(BaseClientService service)
         {
-            AdExchangeBuyerIIService adXService =
-                (AdExchangeBuyerIIService)service;
+            AdExchangeBuyerIIService adXService = (AdExchangeBuyerIIService)service;
             long accountId = long.Parse("INSERT ACCOUNT ID HERE");
 
-            ListClientsResponse response = adXService.Accounts.Clients
-                .List(accountId).Execute();
+            ListClientsResponse response = adXService.Accounts.Clients.List(accountId).Execute();
 
             Console.WriteLine("========================================\n");
-            Console.WriteLine("Listing of client buyers associated with AdX "
-                + "Account \"{0}\"", accountId);
+            Console.WriteLine("Listing of client buyers associated with AdX Account \"{0}\"",
+                accountId);
             Console.WriteLine("========================================\n");
 
             if (response.Clients.Count == 0)

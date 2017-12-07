@@ -1,0 +1,16 @@
+{
+  "description": "DoubleClick Ad Exchange Buyer REST API PHP Samples",
+  "require": {
+    "php": ">=5.5",
+    "google/apiclient": "^2.0"
+  },
+  "type": "project",
+  "homepage": "https://github.com/googleads/googleads-adxbuyer-examples/tree/master/php",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Google",
+      "homepage": "https://github.com/googleads/googleads-adxbuyer-examples/graphs/contributors"
+    }
+  ]
+}

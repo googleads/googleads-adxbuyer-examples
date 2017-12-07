@@ -44,8 +44,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// </summary>
         public override string Description
         {
-            get { return "This code example updates an existing client buyer "
-                    + "for a given account ID."; }
+            get { return "This code example updates an existing client buyer for a given " +
+                    "account ID."; }
         }
 
         /// <summary>
@@ -54,8 +54,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// <param name="service">An authenticated AdExchangeBuyerIIService</param>
         public override void Run(BaseClientService service)
         {
-            AdExchangeBuyerIIService adXService =
-                (AdExchangeBuyerIIService)service;
+            AdExchangeBuyerIIService adXService = (AdExchangeBuyerIIService)service;
 
             long accountId = long.Parse("INSERT ACCOUNT ID HERE");
             long clientAccountId = long.Parse("INSERT CLIENT ACCOUNT ID HERE");
@@ -74,8 +73,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                 VisibleToSeller = bool.Parse("INSERT VISIBLE_TO_SELLER HERE")
             };
 
-            Client responseClientBuyer = adXService.Accounts.Clients.Update(clientBuyer, accountId, clientAccountId)
-                .Execute();
+            Client responseClientBuyer = adXService.Accounts.Clients.Update(
+                clientBuyer, accountId, clientAccountId).Execute();
 
             Console.WriteLine("Updated client buyer for account ID \"{0}\":", accountId);
             Console.WriteLine("Client account ID: {0}", responseClientBuyer.ClientAccountId);

@@ -44,8 +44,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// </summary>
         public override string Description
         {
-            get { return "This code example creates a new client buyer for a "
-                    + "given account ID."; }
+            get { return "This code example creates a new client buyer for a given account ID."; }
         }
 
         /// <summary>
@@ -54,8 +53,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// <param name="service">An authenticated AdExchangeBuyerIIService</param>
         public override void Run(BaseClientService service)
         {
-            AdExchangeBuyerIIService adXService =
-                (AdExchangeBuyerIIService)service;
+            AdExchangeBuyerIIService adXService = (AdExchangeBuyerIIService)service;
 
             long accountId = long.Parse("INSERT ACCOUNT ID HERE");
             Client clientBuyer = new Client
@@ -73,28 +71,19 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                 VisibleToSeller = bool.Parse("INSERT VISIBLE_TO_SELLER HERE")
             };
 
-            Client responseClientBuyer = adXService.Accounts.Clients
-                .Create(clientBuyer, accountId).Execute();
+            Client responseClientBuyer = adXService.Accounts.Clients.Create(clientBuyer, accountId)
+                .Execute();
 
-            Console.WriteLine("Created new client buyer for account ID "
-                + "\"{0}\":", accountId);
+            Console.WriteLine("Created new client buyer for account ID \"{0}\":", accountId);
             Console.WriteLine("Account ID: {0}", accountId);
-            Console.WriteLine("Client account ID: {0}",
-                responseClientBuyer.ClientAccountId);
-            Console.WriteLine("Client name: {0}",
-                responseClientBuyer.ClientName);
-            Console.WriteLine("Entity ID: {0}",
-                responseClientBuyer.EntityId);
-            Console.WriteLine("Entity name: {0}",
-                responseClientBuyer.EntityName);
-            Console.WriteLine("Entity type: {0}",
-                responseClientBuyer.EntityType);
-            Console.WriteLine("Role: {0}",
-                responseClientBuyer.Role);
-            Console.WriteLine("Status: {0}",
-                responseClientBuyer.Status);
-            Console.WriteLine("Visible to seller: {0}",
-                responseClientBuyer.VisibleToSeller);
+            Console.WriteLine("Client account ID: {0}", responseClientBuyer.ClientAccountId);
+            Console.WriteLine("Client name: {0}", responseClientBuyer.ClientName);
+            Console.WriteLine("Entity ID: {0}", responseClientBuyer.EntityId);
+            Console.WriteLine("Entity name: {0}", responseClientBuyer.EntityName);
+            Console.WriteLine("Entity type: {0}", responseClientBuyer.EntityType);
+            Console.WriteLine("Role: {0}", responseClientBuyer.Role);
+            Console.WriteLine("Status: {0}", responseClientBuyer.Status);
+            Console.WriteLine("Visible to seller: {0}", responseClientBuyer.VisibleToSeller);
         }
 
         public override ClientType getClientType()

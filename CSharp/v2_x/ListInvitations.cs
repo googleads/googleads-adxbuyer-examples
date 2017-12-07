@@ -22,8 +22,8 @@ using System;
 namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
 {
     /// <summary>
-    /// Retrieves the authenticated user's list of invitations for the given
-    /// account ID and client buyer ID.
+    /// Retrieves the authenticated user's list of invitations for the given account ID and
+    /// client buyer ID.
     /// </summary>
     public class ListInvitations : ExampleBase
     {
@@ -45,8 +45,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// </summary>
         public override string Description
         {
-            get { return "This code example lists all invitations for a "
-                    + "given account ID and client buyer ID."; }
+            get { return "This code example lists all invitations for a given account ID and " +
+                    "client buyer ID."; }
         }
 
         /// <summary>
@@ -55,8 +55,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// <param name="service">An authenticated AdExchangeBuyerIIService</param>
         public override void Run(BaseClientService service)
         {
-            AdExchangeBuyerIIService adXService =
-                (AdExchangeBuyerIIService)service;
+            AdExchangeBuyerIIService adXService = (AdExchangeBuyerIIService)service;
             long accountId = long.Parse("INSERT ACCOUNT ID HERE");
             string clientBuyerId = "INSERT CLIENT BUYER ID HERE";
 
@@ -64,9 +63,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                 .Clients.Invitations.List(accountId, clientBuyerId).Execute();
 
             Console.WriteLine("========================================\n");
-            Console.WriteLine("Listing of invitations associated with AdX "
-                + "account \"{0}\" and client buyer ID \"{1}\"",
-                accountId, clientBuyerId);
+            Console.WriteLine("Listing of invitations associated with AdX account \"{0}\" and " +
+                "client buyer ID \"{1}\"", accountId, clientBuyerId);
             Console.WriteLine("========================================\n");
 
             if (response.Invitations.Count == 0)

@@ -22,8 +22,7 @@ using System;
 namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
 {
     /// <summary>
-    /// Creates a new invitation for the given account ID and client account
-    /// ID.
+    /// Creates a new invitation for the given account ID and client account ID.
     /// </summary>
     public class CreateInvitation : ExampleBase
     {
@@ -45,8 +44,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// </summary>
         public override string Description
         {
-            get { return "This code example creates a new invitation for a "
-                    + "given account ID and client account ID."; }
+            get { return "This code example creates a new invitation for a given account ID and " +
+                    "client account ID."; }
         }
 
         /// <summary>
@@ -55,8 +54,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// <param name="service">An authenticated AdExchangeBuyerIIService</param>
         public override void Run(BaseClientService service)
         {
-            AdExchangeBuyerIIService adXService =
-                (AdExchangeBuyerIIService)service;
+            AdExchangeBuyerIIService adXService = (AdExchangeBuyerIIService)service;
 
             long accountId = long.Parse("INSERT ACCOUNT ID HERE");
             long clientAccountId = long.Parse("INSERT CLIENT ACCOUNT ID HERE");
@@ -66,13 +64,12 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                 Email = "INSERT EMAIL ADDRESS HERE"
             };
 
-            ClientUserInvitation responseInvite = adXService.Accounts.Clients
-                .Invitations.Create(invite, accountId, clientAccountId)
-                .Execute();
+            ClientUserInvitation responseInvite = adXService.Accounts.Clients.Invitations.Create(
+                invite, accountId, clientAccountId).Execute();
 
-            Console.WriteLine("Created and sent new invitation for account ID "
-                + "\"{0}\" and client account ID \"{1}\" to \"{2}\".",
-                accountId, responseInvite.ClientAccountId, invite.Email);
+            Console.WriteLine("Created and sent new invitation for account ID \"{0}\" and client " +
+                "account ID \"{1}\" to \"{2}\".", accountId, responseInvite.ClientAccountId,
+                invite.Email);
         }
 
         public override ClientType getClientType()

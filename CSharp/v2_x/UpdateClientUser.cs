@@ -22,8 +22,7 @@ using System;
 namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
 {
     /// <summary>
-    /// Updates an existing client user for the given account ID and client
-    /// buyer account ID.
+    /// Updates an existing client user for the given account ID and client buyer account ID.
     /// </summary>
     public class UpdateClientUser : ExampleBase
     {
@@ -45,8 +44,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// </summary>
         public override string Description
         {
-            get { return "This code example updates an existing client user "
-                    + "for a given account ID and client buyer account ID."; }
+            get { return "This code example updates an existing client user for a given account " +
+                    "ID and client buyer account ID."; }
         }
 
         /// <summary>
@@ -55,8 +54,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
         /// <param name="service">An authenticated AdExchangeBuyerIIService</param>
         public override void Run(BaseClientService service)
         {
-            AdExchangeBuyerIIService adXService =
-                (AdExchangeBuyerIIService)service;
+            AdExchangeBuyerIIService adXService = (AdExchangeBuyerIIService)service;
 
             long accountId = long.Parse("INSERT ACCOUNT ID HERE");
             long clientAccountId = long.Parse("INSERT CLIENT ACCOUNT ID HERE");
@@ -67,17 +65,14 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                 Status = "INSERT STATUS HERE"
             };
 
-            ClientUser responseClientUser = adXService.Accounts.Clients.Users
-                .Update(clientUser, accountId, clientAccountId, userId).Execute();
+            ClientUser responseClientUser = adXService.Accounts.Clients.Users.Update(
+                clientUser, accountId, clientAccountId, userId).Execute();
 
-            Console.WriteLine("Updated client user for account ID \"{0}\" and "
-                + "client buyer ID \"{1}\":", accountId, clientAccountId);
-            Console.WriteLine("User ID: {0}",
-                responseClientUser.UserId);
-            Console.WriteLine("Status: {0}",
-                responseClientUser.Status);
-            Console.WriteLine("Email: {0}",
-                responseClientUser.Email);
+            Console.WriteLine("Updated client user for account ID \"{0}\" and client buyer ID " +
+                "\"{1}\":", accountId, clientAccountId);
+            Console.WriteLine("User ID: {0}", responseClientUser.UserId);
+            Console.WriteLine("Status: {0}", responseClientUser.Status);
+            Console.WriteLine("Email: {0}", responseClientUser.Email);
         }
 
         public override ClientType getClientType()
