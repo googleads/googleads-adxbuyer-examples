@@ -1,28 +1,27 @@
-#DoubleClick Ad Exchange Buyer REST API Java Samples
-These samples demonstrate basic usage of the DoubleClick Ad Exchange Buyer
-REST API.
+# Authorized Buyers Ad Exchange Buyer API Java Samples
+These samples demonstrate basic usage of the Authorized Buyers Ad Exchange
+Buyer API.
 
-The DoubleClick Ad Exchange Buyer API Java Client Library makes it easier to
-write Java clients to programmatically access Ad Exchange Buyer accounts.
-The complete documentation for the DoubleClick Ad Exchange Buyer API is
-available from <https://developers.google.com/ad-exchange/buyer-rest/>.
+The Authorized Buyers Ad Exchange Buyer API Java Client Library makes it
+easier to write Java clients to programmatically access Authorized Buyer
+accounts. The complete documentation for the Authorized Buyers Ad Exchange
+Buyer API is available from <https://developers.google.com/authorized-buyers/apis/>.
 
-##Prerequisites
+## Prerequisites
 - [`Java 6+`](http://java.com)
 - [`Maven`](http://maven.apache.org)
 
-##Announcements and updates
+## Announcements and updates
 
-For API and client library updates and news, please follow our Google+ Ads
-Developers page: <https://plus.google.com/+GoogleAdsDevelopers/posts>
-and our Google Ads Developers blog: <http://googleadsdeveloper.blogspot.com/>.
+For API and client library updates and news, please follow the Google Ads
+Developers blog: <http://googleadsdeveloper.blogspot.com/>.
 
-For questions and support look at our forum page: <https://groups.google.com/forum/#!forum/google-doubleclick-ad-exchange-buyer-api>.
+For questions and support look at our forum page: <https://groups.google.com/forum/#!forum/authorized-buyers-api>.
 
 
 ## Running the examples
 
-###Download the repository contents
+### Download the repository contents
 
 To download the contents of the repository, you can use the command
 
@@ -33,7 +32,7 @@ git clone https://github.com/googleads/googleads-adxbuyer-examples
 or browse to <https://github.com/googleads/googleads-adxbuyer-examples> and
  download a zip.
 
-###Authorization Setup
+### Authorization Setup
 The API uses OAuth2 for security, you can read about the options for connecting
  at <https://developers.google.com/accounts/docs/OAuth2>
 
@@ -54,8 +53,8 @@ If you don't already have a Service Account and corresponding JSON key file
  * Set the path to the downloaded JSON file as the **JSON_FILE** value in
   **AdExchangeBuyerSample.java**.
 
-##Setup the environment##
-### Via the command line ###
+## Setup the environment
+### Via the command line
 
 1. Execute the following command:
 
@@ -63,7 +62,7 @@ If you don't already have a Service Account and corresponding JSON key file
     $ mvn compile
     ```
 
-### Via Eclipse ###
+### Via Eclipse
 
 1. Setup Eclipse preferences:
     1. Window > Preferences .. (or on Mac, Eclipse > Preferences)
@@ -89,3 +88,4 @@ Once you've checked out the code:
         ```
     2. Via eclipse, right-click on the project and select Run As > Java
     Application
+

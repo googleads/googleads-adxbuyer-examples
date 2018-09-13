@@ -17,8 +17,7 @@
 """This example creates an account-level filter set.
 
 An account-level filter set can be used to retrieve data for a specific
-DoubleClick Ad Exchange Buyer account, whether that be a bidder or child seat
-account.
+Authorized Buyers account, whether that be a bidder or child seat account.
 """
 
 
@@ -105,8 +104,8 @@ if __name__ == '__main__':
             'filter set is being created. This will be used to construct the '
             'ownerName used as a path parameter for filter set requests. For '
             'additional information on how to configure the ownerName path '
-            'parameter, see: https://developers.google.com/ad-exchange/'
-            'buyer-rest/reference/rest/v2beta1/bidders.accounts.filterSets/'
+            'parameter, see: https://developers.google.com/authorized-buyers/'
+            'apis/reference/rest/v2beta1/bidders.accounts.filterSets/'
             'create#body.PATH_PARAMETERS.owner_name'))
   parser.add_argument(
       '-b', '--bidder_resource_id', default=DEFAULT_BIDDER_RESOURCE_ID,
@@ -114,7 +113,7 @@ if __name__ == '__main__':
             'is being created. This will be used to construct the ownerName '
             'used as a path parameter for filter set requests. For additional '
             'information on how to configure the ownerName path parameter, '
-            'see: https://developers.google.com/ad-exchange/buyer-rest/'
+            'see: https://developers.google.com/authorized-buyers/apis/'
             'reference/rest/v2beta1/bidders.accounts.filterSets/create'
             '#body.PATH_PARAMETERS.owner_name'))
   parser.add_argument(
@@ -122,7 +121,7 @@ if __name__ == '__main__':
       help=('The resource ID of the filter set. Note that this must be '
             'unique. This will be used to construct the filter set\'s name. '
             'For additional information on how to configure a filter set\'s '
-            'name, see: https://developers.google.com/ad-exchange/buyer-rest/'
+            'name, see: https://developers.google.com/authorized-buyers/apis/'
             'reference/rest/v2beta1/bidders.accounts.filterSets'
             '#FilterSet.FIELDS.name'))
   parser.add_argument(
@@ -215,7 +214,7 @@ if __name__ == '__main__':
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in samples_util.py?'
-    sys.exit()
+    sys.exit(1)
 
   main(service, _OWNER_NAME_TEMPLATE % (args.bidder_resource_id,
                                         args.account_resource_id),

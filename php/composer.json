@@ -1,5 +1,5 @@
 {
-  "description": "DoubleClick Ad Exchange Buyer REST API PHP Samples",
+  "description": "Authorized Buyers Ad Exchange Buyer API PHP Samples",
   "require": {
     "php": ">=5.5",
     "google/apiclient": "^2.0"

@@ -42,7 +42,7 @@ if ($keyFileLocation === '<PATH_TO_JSON>') {
 
 $client = new Google_Client();
 $client->setApplicationName(
-    'DoubleClick Ad Exchange Buyer REST API PHP Samples');
+    'Authorized Buyers Ad Exchange Buyer API PHP Samples');
 
 $service = new Google_Service_AdExchangeBuyer($client);
 

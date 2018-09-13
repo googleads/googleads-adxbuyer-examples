@@ -56,8 +56,8 @@ if __name__ == '__main__':
             'filter sets were created. This will be used to construct the '
             'ownerName used as a path parameter for filter set requests. For '
             'additional information on how to configure the ownerName path '
-            'parameter, see: https://developers.google.com/ad-exchange/'
-            'buyer-rest/reference/rest/v2beta1/bidders.accounts.filterSets/'
+            'parameter, see: https://developers.google.com/authorized-buyers/'
+            'apis/reference/rest/v2beta1/bidders.accounts.filterSets/'
             'list#body.PATH_PARAMETERS.owner_name'))
   parser.add_argument(
       '-b', '--bidder_resource_id', default=DEFAULT_BIDDER_RESOURCE_ID,
@@ -65,7 +65,7 @@ if __name__ == '__main__':
             'sets were created. This will be used to construct the ownerName '
             'used as a path parameter for filter set requests. For additional '
             'information on how to configure the ownerName path parameter, '
-            'see: https://developers.google.com/ad-exchange/buyer-rest/'
+            'see: https://developers.google.com/authorized-buyers/apis/'
             'reference/rest/v2beta1/bidders.accounts.filterSets/list'
             '#body.PATH_PARAMETERS.owner_name'))
 
@@ -76,7 +76,7 @@ if __name__ == '__main__':
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in samples_util.py?'
-    sys.exit()
+    sys.exit(1)
 
   main(service, _OWNER_NAME_TEMPLATE % (args.bidder_resource_id,
                                         args.account_resource_id))

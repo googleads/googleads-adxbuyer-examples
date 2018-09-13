@@ -24,7 +24,7 @@ import java.io.IOException;
 /**
  * This sample illustrates how to update an existing client user.
  *
- * See the <a href="Client Users and Invitations Guide">https://developers.google.com/ad-exchange/buyer-rest/guides/client-access/users</a>
+ * See the <a href="Client Access Guide">https://developers.google.com/authorized-buyers/apis/guides/v2/client-access#users</a>
  * for more details on the usage of this resource.
  */
 public class UpdateClientUser extends BaseSample {
@@ -56,10 +56,10 @@ public class UpdateClientUser extends BaseSample {
     clientUser = adXClient.accounts().clients().users().update(accountId, clientAccountId, userId,
         clientUser).execute();
 
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Updated Client User with Client Account ID \"%s\" and User ID \"%s\"%n",
         clientAccountId, clientUser.getUserId());
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("User ID: %s%n", clientUser.getUserId());
     System.out.printf("\tEmail: %s%n", clientUser.getEmail());
     System.out.printf("\tStatus: %s%n", clientUser.getStatus());

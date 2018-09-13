@@ -108,10 +108,14 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                     {
                         Console.WriteLine("\tTimeSeriesGranularity: {0}", timeSeriesGranularity);
                     }
-                    String format = filterSet.Format;
-                    if (format != null)
+                    IList<String> formats = filterSet.Formats;
+                    if (formats != null)
                     {
-                        Console.WriteLine("\tFormat: {0}", format);
+                        Console.WriteLine("\tFormats:");
+                        foreach (string format in formats)
+                        {
+                            Console.WriteLine("\t\t{0}", format);
+                        }
                     }
                     String environment = filterSet.Environment;
                     if (environment != null)

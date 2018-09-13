@@ -24,7 +24,7 @@ import java.io.IOException;
 /**
  * This sample illustrates how to create and send out an invitation for a given client buyer.
  *
- * See the <a href="Client Users and Invitations Guide">https://developers.google.com/ad-exchange/buyer-rest/guides/client-access/users</a>
+ * See the <a href="Client Access Guide">https://developers.google.com/authorized-buyers/apis/guides/v2/client-access#invitations</a>
  * for more details on the usage of this resource.
  */
 public class CreateInvitation extends BaseSample {
@@ -56,10 +56,10 @@ public class CreateInvitation extends BaseSample {
     invite = adXClient.accounts().clients().invitations().create(accountId, clientAccountId,
         invite).execute();
 
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Created new Invitation for Client Account ID \"%s\"%n",
         clientAccountId);
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Invitations ID: %s%n", invite.getInvitationId());
     System.out.printf("\tEmail: %s%n", invite.getEmail());
   }

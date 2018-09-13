@@ -15,11 +15,11 @@
 package com.google.api.services.samples.adexchangebuyer.creativessubmit;
 
 /**
- * Menu driven AdX Buyer API Commands
+ * Menu driven Authorized Buyers Ad Exchange Buyer API Commands
  * With these commands you can handle a simple new setup for real-time bidding;
  * configuring pre-targeting and submitting/resubmitting creatives.
- * For details look for the guide on the the AdX Buyer API site
- * https://developers.google.com/ad-exchange/buyer-rest
+ * For details look for the guide on the the Ad Exchange Buyer API site
+ * https://developers.google.com/authorized-buyers/apis
  */
 public class Selection {
 

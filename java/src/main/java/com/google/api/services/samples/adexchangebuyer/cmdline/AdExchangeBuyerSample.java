@@ -30,25 +30,30 @@ import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.GetCreative;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.InsertPretargetingConfig;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.PatchAccount;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v1_x.SubmitCreative;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.AcceptProposal;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.CreateAccountLevelFilterSet;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.CreateBidderLevelFilterSet;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.CreateClientBuyer;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.CreateInvitation;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.CreateProposal;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAccountLevelBidMetrics;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllAccountLevelFilterSets;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllBidderLevelFilterSets;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllClientBuyers;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllClientUsers;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllInvitations;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetAllPublisherProfiles;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.GetBidderLevelBidMetrics;
+import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.ListProposals;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.UpdateClientBuyer;
 import com.google.api.services.samples.adexchangebuyer.cmdline.v2_x.UpdateClientUser;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * A sample application that runs multiple requests against the Ad Exchange
+ * A sample application that runs multiple requests against the Authorized Buyers Ad Exchange
  * Buyer API. These include:
  * <ul>
  * <li>Get All Accounts</li>
@@ -104,7 +109,7 @@ public class AdExchangeBuyerSample {
 
   /**
    * Performs all necessary setup steps for running requests against the
-   * AdExchangeBuyer API.
+   * Ad Exchange Buyer API.
    *
    * @return An initialized AdExchangeBuyer service object.
    */
@@ -117,7 +122,7 @@ public class AdExchangeBuyerSample {
 
   /**
    * Performs all necessary setup steps for running requests against the
-   * AdExchangeBuyerII API.
+   * Ad Exchange Buyer II API.
    *
    * @return An initialized AdExchangeBuyerII service object.
    */
@@ -151,6 +156,10 @@ public class AdExchangeBuyerSample {
     samples.add(new CreateAccountLevelFilterSet());
     samples.add(new GetAllAccountLevelFilterSets());
     samples.add(new GetAccountLevelBidMetrics());
+    samples.add(new GetAllPublisherProfiles());
+    samples.add(new ListProposals());
+    samples.add(new CreateProposal());
+    samples.add(new AcceptProposal());
   }
 
   /**

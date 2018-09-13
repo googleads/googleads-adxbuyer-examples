@@ -19,8 +19,7 @@
 # Creates a new account-level filter set.
 #
 # An account-level filter set can be used to retrieve data for a specific
-# DoubleClick Ad Exchange Buyer account, whether that be a bidder or child seat
-# account.
+# Authorized Buyers account, whether that be a bidder or child seat account.
 #
 # To get account-level filter sets, run list_account_level_filter_sets.rb.
 #
@@ -88,7 +87,7 @@ if __FILE__ == $0
        'is being created. This will be used to construct the ownerName ' +
        'used as a path parameter for filter set requests. For additional ' +
        'information on how to configure the ownerName path parameter, see: ' +
-       'https://developers.google.com/ad-exchange/buyer-rest/reference/rest/' +
+       'https://developers.google.com/authorized-buyers/apis/reference/rest/' +
        'v2beta1/bidders.filterSets/create#body.PATH_PARAMETERS.owner_name'),
       :short_alias => 'b', :required => true,
       :default_value => nil  # Insert default value here.
@@ -99,8 +98,8 @@ if __FILE__ == $0
        'filter set is being created. This will be used to construct the ' +
        'ownerName used as a path parameter for filter set requests. For ' +
        'additional information on how to configure the ownerName path ' +
-       'parameter, see: https://developers.google.com/ad-exchange/' +
-       'buyer-rest/reference/rest/v2beta1/bidders.accounts.filterSets/create' +
+       'parameter, see: https://developers.google.com/authorized-buyers/' +
+       'apis/reference/rest/v2beta1/bidders.accounts.filterSets/create' +
        '#body.PATH_PARAMETERS.owner_name'),
       :short_alias => 'a', :required => true,
       :default_value => nil  # Insert default value here.
@@ -110,7 +109,7 @@ if __FILE__ == $0
       ('The resource ID of the filter set. Note that this must be unique. ' +
        'This will be used to construct the filter set\'s name. for ' +
        'additional information on how to configure a filter set\'s name, ' +
-       'see: https://developers.google.com/ad-exchange/buyer-rest/reference/' +
+       'see: https://developers.google.com/authorized-buyers/apis/reference/' +
        'rest/v2beta1/bidders.filterSets#FilterSet.FIELDS.name'),
       :short_alias => 'r', :required => true,
       :default_value => nil  # Insert default value here.

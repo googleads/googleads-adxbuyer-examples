@@ -17,7 +17,7 @@ package com.google.api.services.samples.adexchangebuyer.creativessubmit;
 import java.io.IOException;
 
 /**
- * User input fields specific to the BuyerAPI
+ * User input fields specific to the Authorized Buyers Ad Exchange Buyer API.
  */
 public class BuyerServiceInputUtils extends InputUtils {
   /**

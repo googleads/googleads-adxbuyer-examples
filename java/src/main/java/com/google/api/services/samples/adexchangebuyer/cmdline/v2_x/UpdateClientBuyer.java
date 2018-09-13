@@ -24,7 +24,7 @@ import java.io.IOException;
 /**
  * This sample illustrates how to update an existing client buyer account.
  *
- * See the <a href="Client Buyers Guide">https://developers.google.com/ad-exchange/buyer-rest/guides/client-access/clients</a>
+ * See the <a href="Client Access Guide">https://developers.google.com/authorized-buyers/apis/guides/v2/client-access#clients</a>
  * for more details on the usage of this resource.
  */
 public class UpdateClientBuyer extends BaseSample {
@@ -69,10 +69,10 @@ public class UpdateClientBuyer extends BaseSample {
     clientBuyer = adXClient.accounts().clients().update(accountId, clientAccountId,
         clientBuyer).execute();
 
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Updated Client Buyer with Client Account ID \"%s\"%n",
         clientAccountId);
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Client Account ID: %s%n", clientBuyer.getClientAccountId());
     System.out.printf("\tClient Name: %s%n", clientBuyer.getClientName());
     System.out.printf("\tEntity ID: %s%n", clientBuyer.getEntityId());

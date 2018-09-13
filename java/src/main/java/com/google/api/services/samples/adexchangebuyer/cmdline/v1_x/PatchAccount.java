@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * This sample illustrates how to update an account.
  *
- * See the <a href="Accounts Guide">https://developers.google.com/ad-exchange/buyer-rest/account-guide</a>
+ * See the <a href="Accounts Guide">https://developers.google.com/authorized-buyers/apis/guides/v1/accounts</a>
  * for more details on the usage of this resource.
  */
 public class PatchAccount extends BaseSample {

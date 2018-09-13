@@ -75,20 +75,20 @@ if __name__ == '__main__':
       description='Lists client buyers for a given Ad Exchange account id.')
   parser.add_argument(
       '-a', '--account_id', default=DEFAULT_ACCOUNT_ID, type=int,
-      help=('The integer id of the Ad Exchange account.'))
+      help='The integer id of the Authorized Buyers account.')
   parser.add_argument(
       '-c', '--client_buyer_id', default=DEFAULT_CLIENT_BUYER_ID, type=int,
-      help=('The integer id of the client buyer.'))
+      help='The integer id of the client buyer.')
   parser.add_argument(
       '-cn', '--client_name', default=DEFAULT_CLIENT_NAME,
-      help=('The name used to represent this client to publishers.'))
+      help='The name used to represent this client to publishers.')
   parser.add_argument(
       '-ei', '--entity_id', default=DEFAULT_ENTITY_ID,
       help=('The integer id representing the client entity. This is a '
             'unique id that can be found in the advertisers.txt, '
             'brands.txt, or agencies.txt dictionary files depending on the '
             'entity type. These files can be found on the following page: '
-            'https://developers.google.com/ad-exchange/rtb/downloads'))
+            'https://developers.google.com/authorized-buyers/rtb/data'))
   parser.add_argument(
       '-et', '--entity_type', default=DEFAULT_ENTITY_TYPE, type=entity_type,
       help=('The type of the client entity. This can be set to any of the '
@@ -121,7 +121,7 @@ if __name__ == '__main__':
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in samples_util.py?'
-    sys.exit()
+    sys.exit(1)
 
   main(service, args.account_id, args.client_buyer_id, BODY)
 

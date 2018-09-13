@@ -39,12 +39,12 @@ import java.nio.file.StandardOpenOption;
 import java.security.GeneralSecurityException;
 
 /**
- * Wraps calls to the AdExchange Buyer API
+ * Wraps calls to the Authorized Buyers Ad Exchange Buyer API.
  */
 public class BuyerServiceHelper {
   /**
-   * Be sure to specify the name of your application. If the application name is {@code null} or
-   * blank, the application will log a warning. Suggested format is "MyCompany-ProductName/1.0".
+   * Be sure to specify the name of your application. Suggested format is
+   * "MyCompany-ProductName/1.0".
    */
   protected static final String APPLICATION_NAME = "";
 
@@ -74,9 +74,14 @@ public class BuyerServiceHelper {
   private AdExchangeBuyer service;
 
   /**
-   * handler user input and output
+   * Handler user input and output
    */
   private BuyerServiceInputUtils inputHelper;
+
+  /**
+   * Template used to produce the application name specified in requests made by this tool.
+   */
+  private static final String APPLICATION_NAME_TEMPLATE= "%s (creativessubmit)";
 
   /**
    * @return the API service
@@ -300,7 +305,9 @@ public class BuyerServiceHelper {
     Credential credential = GoogleCredential.fromStream(new FileInputStream(JSON_FILE))
         .createScoped(AdExchangeBuyerScopes.all());
 
+    String applicationName = String.format(APPLICATION_NAME_TEMPLATE, APPLICATION_NAME);
+
     return new AdExchangeBuyer.Builder(httpTransport, jsonFactory, credential).setApplicationName(
-        APPLICATION_NAME).build();
+        applicationName).build();
   }
 }

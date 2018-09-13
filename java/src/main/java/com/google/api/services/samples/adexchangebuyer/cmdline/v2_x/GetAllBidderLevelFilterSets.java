@@ -54,9 +54,9 @@ public class GetAllBidderLevelFilterSets extends BaseSample {
         .getFilterSets();
 
     if (allFilterSets != null && allFilterSets.size() > 0) {
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       System.out.printf("Listing of Filter Sets associated with Bidder \"%s\"%n", ownerName);
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       for (FilterSet filterSet : allFilterSets) {
         System.out.printf("* Filter Set name: %s%n", filterSet.getName());
         AbsoluteDateRange absDateRange = filterSet.getAbsoluteDateRange();
@@ -83,9 +83,12 @@ public class GetAllBidderLevelFilterSets extends BaseSample {
         if(timeSeriesGranularity != null) {
           System.out.printf("Time series granularity: %s%n", timeSeriesGranularity);
         }
-        String format = filterSet.getFormat();
-        if(format != null) {
-          System.out.printf("Format: %s%n", format);
+        List<String> formats = filterSet.getFormats();
+        if(formats != null) {
+          System.out.println("Formats:");
+          for(String format : formats) {
+            System.out.printf("\tFormat: %s%n", format);
+          }
         }
         String environment = filterSet.getEnvironment();
         if(environment != null) {

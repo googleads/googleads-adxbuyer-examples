@@ -82,7 +82,7 @@ if __name__ == '__main__':
             'unique id that can be found in the advertisers.txt, '
             'brands.txt, or agencies.txt dictionary files depending on the '
             'entity type. These files can be found on the following page: '
-            'https://developers.google.com/ad-exchange/rtb/downloads'))
+            'https://developers.google.com/authorized-buyers/rtb/data'))
   parser.add_argument(
       '-et', '--entity_type', default=DEFAULT_ENTITY_TYPE, type=entity_type,
       help=('The type of the client entity. This can be set to any of the '
@@ -97,7 +97,7 @@ if __name__ == '__main__':
             'set to any of the following: %s' % str(VALID_STATUS)))
   parser.add_argument(
       '-v', '--visible_to_seller', default=DEFAULT_VISIBLE_TO_SELLER, type=bool,
-      help=('Whether the client buyer will be visible to sellers.'))
+      help='Whether the client buyer will be visible to sellers.')
   args = parser.parse_args()
 
   # Create a body containing the required fields.
@@ -115,7 +115,7 @@ if __name__ == '__main__':
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in samples_util.py?'
-    sys.exit()
+    sys.exit(1)
 
   main(service, args.account_id, BODY)
 

@@ -24,7 +24,7 @@ import java.io.IOException;
 /**
  * This sample illustrates how to create a new client buyer for a given account.
  *
- * See the <a href="Client Buyers Guide">https://developers.google.com/ad-exchange/buyer-rest/guides/client-access/clients</a>
+ * See the <a href="Client Buyers Guide">https://developers.google.com/authorized-buyers/apis/guides/v2/client-access</a>
  * for more details on the usage of this resource.
  */
 public class CreateClientBuyer extends BaseSample {
@@ -66,10 +66,10 @@ public class CreateClientBuyer extends BaseSample {
 
     clientBuyer = adXClient.accounts().clients().create(accountId, clientBuyer).execute();
 
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Created Client Buyer for Account ID \"%s\"%n",
         accountId);
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Client Account ID: %s%n", clientBuyer.getClientAccountId());
     System.out.printf("\tClient Name: %s%n", clientBuyer.getClientName());
     System.out.printf("\tEntity ID: %s%n", clientBuyer.getEntityId());

@@ -24,13 +24,13 @@ from google.oauth2 import service_account
 # Console.
 KEY_FILE = 'path_to_key'  # Path to Service Account JSON key file.
 
-# Ad Exchange Buyer REST API authorization scope.
+# Ad Exchange Buyer API authorization scope.
 SCOPE = 'https://www.googleapis.com/auth/adexchange.buyer'
 VERSION = 'v1.4'  # Version of Ad Exchange Buyer REST API to use.
 
 
 def main():
-  # Create credentials using the Service email and P12 file.
+  # Create credentials using the Service Account JSON key file.
   credentials = service_account.Credentials.from_service_account_file(
       KEY_FILE, scopes=[SCOPE])
 

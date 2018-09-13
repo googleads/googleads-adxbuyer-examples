@@ -25,9 +25,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * This sample illustrates how to submit a new creative to the Google's verification pipeline.
+ * This sample illustrates how to submit a new creative to Google's verification pipeline.
  *
- * See the <a href="Creatives Guide">https://developers.google.com/ad-exchange/buyer-rest/creative-guide</a>
+ * See the <a href="Creatives Guide">https://developers.google.com/authorized-buyers/apis/guides/v1/creatives</a>
  * for more details on the usage of this resource.
  */
 public class SubmitCreative extends BaseSample {

@@ -51,7 +51,7 @@ if __name__ == '__main__':
                                                  'a given client buyer.')
     parser.add_argument(
         '-a', '--account_id', default=DEFAULT_ACCOUNT_ID, type=int,
-        help=('The integer id of the Ad Exchange account.'))
+        help=('The integer id of the Authorized Buyers account.'))
     parser.add_argument(
         '-c', '--client_buyer_id', default=DEFAULT_CLIENT_BUYER_ID, type=int,
         help=('The integer id of the client buyer.'))
@@ -69,5 +69,5 @@ if __name__ == '__main__':
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in samples_util.py?'
-    sys.exit()
+    sys.exit(1)
 

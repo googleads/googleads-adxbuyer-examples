@@ -63,7 +63,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
                 return;
             }
 
-            Console.WriteLine("AdExchange Buyer DotNet API Sample");
+            Console.WriteLine("Authorized Buyers AdExchange Buyer API DotNet Sample");
             Console.WriteLine("====================");
 
             // Create a new service instance for v1 and v2 of AdExchangeBuyer.
@@ -110,7 +110,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         private static void ShowUsage()
         {
             string exeName = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
-            Console.WriteLine("Runs AdxBuyer API code examples");
+            Console.WriteLine("Runs Ad Exchange Buyer API code examples");
             Console.WriteLine("Usage : {0} [flags]\n", exeName);
             Console.WriteLine("Available flags\n");
             Console.WriteLine("--all\t\t : Run all code examples.", exeName);

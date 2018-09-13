@@ -26,8 +26,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
     /// <summary>
     /// This example creates an account-level filter set.
     ///
-    /// An account-level filter set can be used to retrieve data for a specific DoubleClick Ad
-    /// Exchange Buyer account, whether that be a bidder or child seat account.
+    /// An account-level filter set can be used to retrieve data for a specific Authorized Buyers
+    /// account, whether that be a bidder or child seat account.
     /// </summary>
     public class CreateAccountLevelFilterSet : ExampleBase
     {
@@ -139,7 +139,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                 // Valid values: DAILY, HOURLY
                 TimeSeriesGranularity = "INSERT_TIME_SERIES_GRANULARITY_HERE",
                 // Valid values: DISPLAY, VIDEO
-                Format = "INSERT_FORMAT_HERE",
+                Formats = new List<string>() {"INSERT_FORMAT_HERE"},
                 // Valid values: APP, WEB
                 Environment = "INSERT_ENVIRONMENT_HERE",
                 // Valid values: DESKTOP, MOBILE, TABLET
@@ -182,10 +182,14 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
             {
                 Console.WriteLine("\tTimeSeriesGranularity: {0}", timeSeriesGranularity);
             }
-            String format = response.Format;
-            if (format != null)
+            IList<String> formats = response.Formats;
+            if (formats != null)
             {
-                Console.WriteLine("\tFormat: {0}", format);
+                Console.WriteLine("\tFormats:");
+                foreach (string format in formats)
+                {
+                    Console.WriteLine("\t\t{0}", format);
+                }
             }
             String environment = response.Environment;
             if (environment != null)

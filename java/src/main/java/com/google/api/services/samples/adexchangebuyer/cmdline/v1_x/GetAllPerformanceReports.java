@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * This sample illustrates how to retrieve all performance reports associated with the user.
  *
- *  * See the <a href="PerformanceReport Reference Documentation">https://developers.google.com/ad-exchange/buyer-rest/v1.4/performanceReport/list</a>
+ *  * See the <a href="PerformanceReport Reference Documentation">https://developers.google.com/authorized-buyers/apis/v1/performanceReport/list</a>
  * for more details on the usage of this resource.
  */
 public class GetAllPerformanceReports extends BaseSample {

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * This sample illustrates how to retrieve a creative out of the system, including its status.
  *
- * See the <a href="Creatives Guide">https://developers.google.com/ad-exchange/buyer-rest/creative-guide</a>
+ * See the <a href="Creatives Guide">https://developers.google.com/authorized-buyers/apis/guides/v1/creatives</a>
  * for more details on the usage of this resource.
  */
 public class GetCreative extends BaseSample {

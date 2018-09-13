@@ -23,8 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class implements input utility methods used across the Ad Exchange Buyer
- * samples.
+ * This class implements input utility methods used across the Authorized Buyers Ad Exchange Buyer
+ * API samples.
  */
 public class InputUtils {
   // Stores previously entered input values.

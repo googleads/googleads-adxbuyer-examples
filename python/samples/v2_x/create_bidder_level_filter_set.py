@@ -17,8 +17,8 @@
 """This example creates a bidder-level filter set.
 
 A bidder-level filter set can be used to retrieve aggregated data for all
-DoubleClick Ad Exchange Buyer accounts under the given bidder account,
-including the bidder account itself.
+Authorized Buyers accounts under the given bidder account, including the bidder
+account itself.
 """
 
 
@@ -57,7 +57,7 @@ def main(ad_exchange_buyer, owner_name, body, is_transient):
     # Construct and execute the request.
     filter_set = ad_exchange_buyer.bidders().filterSets().create(
         ownerName=owner_name, isTransient=is_transient, body=body).execute()
-    print 'FilterSet created for bidder: "%s".' % (owner_name)
+    print 'FilterSet created for bidder: "%s".' % owner_name
     print filter_set
   except HttpError as e:
     print e
@@ -104,7 +104,7 @@ if __name__ == '__main__':
             'is being created. This will be used to construct the ownerName '
             'used as a path parameter for filter set requests. For additional '
             'information on how to configure the ownerName path parameter, '
-            'see: https://developers.google.com/ad-exchange/buyer-rest/'
+            'see: https://developers.google.com/authorized-buyers/apis/'
             'reference/rest/v2beta1/bidders.filterSets/create'
             '#body.PATH_PARAMETERS.owner_name'))
   parser.add_argument(
@@ -112,7 +112,7 @@ if __name__ == '__main__':
       help=('The resource ID of the filter set. Note that this must be '
             'unique. This will be used to construct the filter set\'s name. '
             'For additional information on how to configure a filter set\'s '
-            'name, see: https://developers.google.com/ad-exchange/buyer-rest/'
+            'name, see: https://developers.google.com/authorized-buyers/apis/'
             'reference/rest/v2beta1/bidders.filterSets#FilterSet.FIELDS.name'))
   parser.add_argument(
       '--end_date', default=DEFAULT_END_DATE, type=valid_date,
@@ -194,7 +194,7 @@ if __name__ == '__main__':
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in samples_util.py?'
-    sys.exit()
+    sys.exit(1)
 
   main(service, _OWNER_NAME_TEMPLATE % args.bidder_resource_id, BODY,
        args.is_transient)

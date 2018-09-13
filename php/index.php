@@ -17,8 +17,7 @@
 
 /*
  * Authorizes with the ServiceAccount Authorization Flow and presents a menu of
- * DoubleClick Ad Exchange Buyer REST API samples to run.
- *
+ * Authorized Buyers Ad Exchange Buyer API samples to run.
  */
 
 /**
@@ -45,7 +44,7 @@ if ($keyFileLocation === '<PATH_TO_JSON>') {
 
 $client = new Google_Client();
 $client->setApplicationName(
-    'DoubleClick Ad Exchange Buyer REST API PHP Samples');
+    'Authorized Buyers Ad Exchange Buyer API PHP Samples');
 
 $service = new Google_Service_AdExchangeBuyer($client);
 $serviceII = new Google_Service_AdExchangeBuyerII($client);
@@ -132,7 +131,11 @@ function getSupportedActions() {
           'ListBidderLevelBidMetrics',
           'CreateAccountLevelFilterSet',
           'ListAccountLevelFilterSets',
-          'ListAccountLevelBidMetrics'
+          'ListAccountLevelBidMetrics',
+          'ListPublisherProfiles',
+          'CreateProposal',
+          'ListProposals',
+          'AcceptProposal'
     ]
   ];
 }

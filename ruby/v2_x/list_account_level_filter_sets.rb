@@ -113,7 +113,7 @@ if __FILE__ == $0
        'sets were created. This will be used to construct the ownerName ' +
        'used as a path parameter for filter set requests. For additional ' +
        'information on how to configure the ownerName path parameter, ' +
-       'see: https://developers.google.com/ad-exchange/buyer-rest/' +
+       'see: https://developers.google.com/authorized-buyers/apis/' +
        'reference/rest/v2beta1/bidders.filterSets/list' +
        '#body.PATH_PARAMETERS.owner_name'),
       :short_alias => 'b', :required => true,
@@ -125,8 +125,8 @@ if __FILE__ == $0
        'filter sets were created. This will be used to construct the ' +
        'ownerName used as a path parameter for filter set requests. For ' +
        'additional information on how to configure the ownerName path ' +
-       'parameter, see: https://developers.google.com/ad-exchange/' +
-       'buyer-rest/reference/rest/v2beta1/bidders.accounts.filterSets/' +
+       'parameter, see: https://developers.google.com/authorized-buyers/' +
+       'apis/reference/rest/v2beta1/bidders.accounts.filterSets/' +
        'list#body.PATH_PARAMETERS.owner_name'),
       :short_alias => 'a', :required => true,
       :default_value => nil  # Insert default value here.

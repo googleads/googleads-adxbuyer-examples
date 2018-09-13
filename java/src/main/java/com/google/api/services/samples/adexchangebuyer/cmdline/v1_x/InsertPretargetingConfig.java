@@ -26,7 +26,7 @@ import java.util.Arrays;
 /**
  * This sample illustrates how to insert a pretargetingConfig.
  *
- * See the <a href="Pretargeting Guide">https://developers.google.com/ad-exchange/buyer-rest/pretargeting-guide</a>
+ * See the <a href="Pretargeting Guide">https://developers.google.com/authorized-buyers/apis/guides/v1/pretargeting</a>
  * for more details on the usage of this resource.
  */
 public class InsertPretargetingConfig extends BaseSample {

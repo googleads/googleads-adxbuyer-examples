@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * This class implements utility methods used across the Ad Exchange Buyer
+ * This class implements utility methods used across the Authorized Buyer Ad Exchange Buyer API
  * samples.
  */
 public class Utils {

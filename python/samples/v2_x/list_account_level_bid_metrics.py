@@ -72,17 +72,18 @@ if __name__ == '__main__':
             'filter set was created. This will be used to construct the '
             'filterSetName used as a path parameter for bid metrics requests. '
             'For additional information on how to configure the filterSetName '
-            'path parameter, see: https://developers.google.com/ad-exchange/'
-            'buyer-rest/reference/rest/v2beta1/bidders.accounts.filterSets'
-            '.bidMetrics/list#body.PATH_PARAMETERS.filter_set_name'))
+            'path parameter, see: https://developers.google.com/'
+            'authorized-buyers/apis/reference/rest/v2beta1/'
+            'bidders.accounts.filterSets.bidMetrics/list'
+            '#body.PATH_PARAMETERS.filter_set_name'))
   parser.add_argument(
       '-b', '--bidder_resource_id', default=DEFAULT_BIDDER_RESOURCE_ID,
       help=('The resource ID of the bidders resource for which the filter set '
             'was created. This will be used to construct the filterSetName '
             'used as a path parameter for bid metrics requests. For '
             'additional information on how to configure the filterSetName path'
-            ' parameter, see: https://developers.google.com/ad-exchange/'
-            'buyer-rest/reference/rest/v2beta1/bidders.accounts.filterSets'
+            ' parameter, see: https://developers.google.com/authorized-buyers/'
+            'apis/reference/rest/v2beta1/bidders.accounts.filterSets'
             '.bidMetrics/list#body.PATH_PARAMETERS.filter_set_name'))
   parser.add_argument(
       '-f', '--filter_set_resource_id', default=DEFAULT_FILTER_SET_RESOURCE_ID,
@@ -90,9 +91,10 @@ if __name__ == '__main__':
             'metrics are being listed. This will be used to construct the '
             'filterSetName used as a path parameter for bid metrics requests. '
             'For additional information on how to configure the filterSetName '
-            'path parameter, see: https://developers.google.com/ad-exchange/'
-            'buyer-rest/reference/rest/v2beta1/bidders.filterSets.bidMetrics/'
-            'list#body.PATH_PARAMETERS.filter_set_name'))
+            'path parameter, see: https://developers.google.com/'
+            'authorized-buyers/apis/reference/rest/v2beta1/'
+            'bidders.filterSets.bidMetrics/list'
+            '#body.PATH_PARAMETERS.filter_set_name'))
   parser.add_argument(
       '-p', '--page_size', default=samples_util.MAX_PAGE_SIZE,
       help=('The number of rows to return per page. The server may return '
@@ -105,7 +107,7 @@ if __name__ == '__main__':
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in samples_util.py?'
-    sys.exit()
+    sys.exit(1)
 
   main(service, _FILTER_SET_NAME_TEMPLATE % (
       args.bidder_resource_id, args.account_resource_id,

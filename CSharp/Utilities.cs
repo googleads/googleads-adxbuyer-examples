@@ -29,7 +29,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
     public class Utilities
     {
         /// <summary>
-        /// Create a new Service for DoubleClick Ad Exchange v1 APIs. Note the call to
+        /// Create a new Service for Authorized Buyers Ad Exchange v1 APIs. Note the call to
         /// ServiceAccount - this is where security configuration takes place and will need to be
         /// configured before the code will work!
         /// </summary>
@@ -46,7 +46,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         }
 
         /// <summary>
-        /// Create a new Service for DoubleClick Ad Exchange v2 APIs. Note the call to
+        /// Create a new Service for Authorized Buyers Ad Exchange v2 APIs. Note the call to
         /// ServiceAccount - this is where security configuration takes place and will need to be
         /// configured before the code will work!
         /// </summary>
@@ -63,7 +63,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         }
 
         /// <summary>
-        /// Uses a .p12 KeyFile to authenticate a service account and return credentials for
+        /// Uses a JSON KeyFile to authenticate a service account and return credentials for
         /// accessing the API.
         /// </summary>
         /// <returns>Authentication object for API Requests</returns>

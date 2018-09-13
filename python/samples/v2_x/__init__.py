@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Samples for v2_x of the DoubleClick Ad Exchange Buyer REST API."""
+"""Samples for v2_x of the Authorized Buyers Ad Exchange Buyer API."""

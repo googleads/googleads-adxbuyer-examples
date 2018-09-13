@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * This sample illustrates how to retrieve all client users associated with the given client buyer.
  *
- * See the <a href="Client Users and Invitations Guide">https://developers.google.com/ad-exchange/buyer-rest/guides/client-access/users</a>
+ * See the <a href="Client Access Guide">https://developers.google.com/authorized-buyers/apis/guides/v2/client-access#users</a>
  * for more details on the usage of this resource.
  */
 public class GetAllClientUsers extends BaseSample {
@@ -53,10 +53,10 @@ public class GetAllClientUsers extends BaseSample {
         clientAccountId).execute().getUsers();
 
     if (allClients != null && allClients.size() > 0) {
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       System.out.printf("Listing of Client Users associated with Client Account ID \"%s\"%n",
           clientAccountId);
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       for (ClientUser clientUser : allClients) {
         System.out.printf("User ID: %s%n", clientUser.getUserId());
         System.out.printf("\tEmail: %s%n", clientUser.getEmail());

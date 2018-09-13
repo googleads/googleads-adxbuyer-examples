@@ -1,4 +1,4 @@
-Samples for the DoubleClick Ad Exchange Buyer REST API
+Samples for the Authorized Buyers Ad Exchange Buyer API
 =======================================================
 These code samples are organized by platform or language.
 

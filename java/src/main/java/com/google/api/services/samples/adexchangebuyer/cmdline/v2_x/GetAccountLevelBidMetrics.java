@@ -56,9 +56,9 @@ public class GetAccountLevelBidMetrics extends BaseSample {
         accountResourceId, filterSetResourceId);
     String pageToken = null;
 
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Listing Bid Metrics using filterSet \"%s\"%n", filterSetName);
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
 
     do {
       ListBidMetricsResponse response = adXClient.bidders().accounts().filterSets().bidMetrics()

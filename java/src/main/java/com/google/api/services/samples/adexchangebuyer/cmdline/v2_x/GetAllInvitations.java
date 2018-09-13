@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * This sample illustrates how to retrieve all invitations sent out for a given client buyer.
  *
- * See the <a href="Client Users and Invitations Guide">https://developers.google.com/ad-exchange/buyer-rest/guides/client-access/users</a>
+ * See the <a href="Client Access Guide">https://developers.google.com/authorized-buyers/apis/guides/v2/client-access#invitations</a>
  * for more details on the usage of this resource.
  */
 public class GetAllInvitations extends BaseSample {
@@ -53,10 +53,10 @@ public class GetAllInvitations extends BaseSample {
         accountId, clientAccountId).execute().getInvitations();
 
     if (allInvites != null && allInvites.size() > 0) {
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       System.out.printf("Listing of Invitations associated with Client Account ID \"%s\"%n",
           clientAccountId);
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       for (ClientUserInvitation invite : allInvites) {
         System.out.printf("Invitations ID: %s%n", invite.getInvitationId());
         System.out.printf("\tEmail: %s%n", invite.getEmail());

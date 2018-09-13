@@ -63,8 +63,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                 .Clients.Invitations.List(accountId, clientBuyerId).Execute();
 
             Console.WriteLine("========================================\n");
-            Console.WriteLine("Listing of invitations associated with AdX account \"{0}\" and " +
-                "client buyer ID \"{1}\"", accountId, clientBuyerId);
+            Console.WriteLine("Listing of invitations associated with Authorized Buyers account " +
+                "\"{0}\" and client buyer ID \"{1}\"", accountId, clientBuyerId);
             Console.WriteLine("========================================\n");
 
             if (response.Invitations.Count == 0)

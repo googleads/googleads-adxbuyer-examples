@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * This sample illustrates how to retrieve all client buyers associated with a given account.
  *
- * See the <a href="Client Buyers Guide">https://developers.google.com/ad-exchange/buyer-rest/guides/client-access/clients</a>
+ * See the <a href="Client Access Guide">https://developers.google.com/authorized-buyers/apis/guides/v2/client-access#clients</a>
  * for more details on the usage of this resource.
  */
 public class GetAllClientBuyers extends BaseSample {
@@ -51,10 +51,10 @@ public class GetAllClientBuyers extends BaseSample {
     List<Client> allClients = adXClient.accounts().clients().list(accountId).execute().getClients();
 
     if (allClients != null && allClients.size() > 0) {
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       System.out.printf("Listing of Client Buyers associated with AdX Account \"%s\"%n",
           accountId);
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       for (Client clientBuyer : allClients) {
         System.out.printf("Client Account ID: %s%n", clientBuyer.getClientAccountId());
         System.out.printf("\tClient Name: %s%n", clientBuyer.getClientName());

@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * This sample illustrates how to retrieve all accounts associated to the user.
  *
- * See the <a href="Accounts Guide">https://developers.google.com/ad-exchange/buyer-rest/account-guide</a>
+ * See the <a href="Accounts Guide">https://developers.google.com/authorized-buyers/apis/guides/v1/accounts</a>
  * for more details on the usage of this resource.
  */
 public class GetAllAccounts extends BaseSample {
@@ -51,9 +51,9 @@ public class GetAllAccounts extends BaseSample {
     List<Account> allAccounts = adXClient.accounts().list().execute().getItems();
 
     if (allAccounts != null && allAccounts.size() > 0) {
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       System.out.printf("Listing of user associated accounts\n");
-      System.out.printf("========================================\n");
+      System.out.println("========================================");
       for (Account account : allAccounts) {
         System.out.printf("Account id: %d\n", account.getId());
         System.out.printf("- Max. total Qps: %d\n", account.getMaximumTotalQps());

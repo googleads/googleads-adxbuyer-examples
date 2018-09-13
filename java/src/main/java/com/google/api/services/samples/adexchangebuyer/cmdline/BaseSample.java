@@ -32,7 +32,7 @@ public abstract class BaseSample {
   private static Map<String, String> cachedValues = new HashMap<String, String>();
 
   /**
-   * The types of clients that can be created for DoubleClick Ad Exchange.
+   * The types of clients that can be created for Authorized Buyers Ad Exchange Buyer API.
    */
   public enum ClientType {
     ADEXCHANGEBUYER, ADEXCHANGEBUYERII

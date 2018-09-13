@@ -21,6 +21,8 @@ import com.google.api.services.adexchangebuyer2.v2beta1.model.FilterSet;
 import com.google.api.services.adexchangebuyer2.v2beta1.model.Date;
 import com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -29,8 +31,8 @@ import org.joda.time.format.DateTimeFormatter;
 /**
  * This sample illustrates how to create a bidder-level filter set.
  *
- * A bidder-level filter set can be used to retrieve aggregated data for all DoubleClick Ad Exchange
- * Buyer accounts under the given bidder account, including the bidder account itself.
+ * A bidder-level filter set can be used to retrieve aggregated data for all Authorized Buyers
+ * accounts under the given bidder account, including the bidder account itself.
  */
 public class CreateBidderLevelFilterSet extends BaseSample {
   private DateTimeFormatter df = DateTimeFormat.forPattern("yyyyMMdd");
@@ -89,7 +91,7 @@ public class CreateBidderLevelFilterSet extends BaseSample {
       filterSet.setEnvironment(environment);
     }
     if(format != null) {
-      filterSet.setFormat(format);
+      filterSet.setFormats(Arrays.asList(format)));
     }
     if(platforms != null) {
       filterSet.setPlatforms(platforms);
@@ -104,9 +106,9 @@ public class CreateBidderLevelFilterSet extends BaseSample {
     filterSet = adXClient.bidders().filterSets().create(ownerName, filterSet)
         .setIsTransient(isTransient).execute();
 
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Filter Set created for Bidder with name \"%s\"%n", ownerName);
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Filter Set name: %s%n", filterSet.getName());
     AbsoluteDateRange absDateRange = filterSet.getAbsoluteDateRange();
     System.out.println("AbsoluteDateRange");
@@ -118,9 +120,12 @@ public class CreateBidderLevelFilterSet extends BaseSample {
     if(timeSeriesGranularity != null) {
       System.out.printf("Time series granularity: %s%n", timeSeriesGranularity);
     }
-    format = filterSet.getFormat();
-    if(format != null) {
-      System.out.printf("Format: %s%n", format);
+    List<String> formats = filterSet.getFormats();
+    if(formats != null) {
+      System.out.println("Formats:");
+      for(String fmt : formats) {
+        System.out.printf("\tFormat: %s%n", fmt);
+      }
     }
     environment = filterSet.getEnvironment();
     if(environment != null) {

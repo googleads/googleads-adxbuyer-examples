@@ -65,7 +65,7 @@ if __FILE__ == $0
   # Set options and default values for fields used in this example.
   options = [
     Option.new(
-      'account_id', 'The integer ID of the Ad Exchange buyer account.',
+      'account_id', 'The integer ID of the Authorized Buyers account.',
       :type => Integer, :short_alias => 'a', :required => true,
       :default_value => nil  # Insert default value here.
     ),

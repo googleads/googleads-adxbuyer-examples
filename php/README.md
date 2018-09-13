@@ -1,12 +1,9 @@
-# DoubleClick Ad Exchange Buyer REST API PHP Samples
+# Authorized Buyers Ad Exchange Buyer API PHP Samples
 
-These samples demonstrate basic usage of the DoubleClick Ad Exchange Buyer REST
+These samples demonstrate basic usage of the Authorized Buyers Ad Exchange Buyer
 API.
 
 # Setup
-
-**Note: These instructions changed significantly in February 2016**, if you used
-the examples prior to this date you will need to run through them again!
 
 To run these samples, you'll need to do the following:
 
@@ -50,14 +47,14 @@ To run these samples, you'll need to do the following:
 
 1.  Allow your service account to access your data:
 
-    *   go to the [DoubleClick Ad Exchange UI](https://www.adx.google.com)
+    *   go to the [Authorized Buyers UI](https://www.google.com/authorizedbuyers)
     *   click the gear icon in the upper-right corner of the page
     *   click **Account Settings** from the drop-down menu.
     *   on the next page, click the **Account users** tab under **User
         management**
     *   click the **+Service Account** button
     *   enter the service account email in the dialog to associate it with your
-        DoubleClick Ad Exchange Account
+        Authorized Buyers Account
 
 1.  Open **index.php** and update the template include path per the instructions
     at [google-api-php-client](https://github.com/google/google-api-php-client).
@@ -79,3 +76,4 @@ $ php -S localhost:8080
 ```
 
 To run the sample, visit localhost:8080 in your browser.
+

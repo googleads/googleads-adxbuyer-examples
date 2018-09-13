@@ -1,10 +1,10 @@
-DoubleClick Ad Exchange Buyer REST API Ruby Samples
-=======================================================
-These samples demonstrate basic usage of the DoubleClick Ad Exchange Buyer REST
-API.
+# Authorized Buyers Ad Exchange Buyer API Ruby Samples
 
-Migrating
-=======================================================
+These samples demonstrate basic usage of the Authorized Buyers Ad Exchange
+Buyer API.
+
+# Migrating
+
 These samples have been updated to work with Ruby 2.0 and 0.9.x of the
 [google-api-ruby-client](https://github.com/google/google-api-ruby-client)
 library. If you have used these samples previously and want to use the same
@@ -23,8 +23,8 @@ credentials as a JSON keyfile:
 8. Set the path to the downloaded JSON file as the **KEY_FILE** value in
   **samples_util.rb**.
 
-Setup
-=======================================================
+# Setup
+
 To run these samples, you'll need to do the following:
 
 1. If you haven't done so already, download and install the
@@ -42,8 +42,8 @@ bundle
   as the key type. You will download a JSON key file, which you will need in a
   later step.
 3. If you haven't done so already, you will need to associate your Service
-  Account with AdX. Go to the
-  [DoubleClick Ad Exchange UI](https://adx.google.com) and click the gear icon
+  Account with Authorized Buyers. Go to the
+  [Authorized Buyers UI](https://www.google.com/authorizedbuyers) and click the gear icon
   next to your email and Customer ID. Click **Account Settings** in the pop-up
   menu. Under **User management**, click the **Account users** tab. Click the
   **+Service Account** button to associate a new Service Account by providing
@@ -62,3 +62,4 @@ command line, for example:
 ```
 $ ruby list_accounts.rb
 ```
+

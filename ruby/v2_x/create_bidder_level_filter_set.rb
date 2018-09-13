@@ -19,8 +19,8 @@
 # Creates a new bidder-level filter set.
 #
 # A bidder-level filter set can be used to retrieve aggregated data for all
-# DoubleClick Ad Exchange Buyer accounts under the given bidder account,
-# including the bidder account itself.
+# Authorized Buyers accounts under the given bidder account, including the
+# bidder account itself.
 #
 # To get bidder-level filter sets, run list_bidder_level_filter_sets.rb.
 #
@@ -85,7 +85,7 @@ if __FILE__ == $0
        'is being created. This will be used to construct the ownerName ' +
        'used as a path parameter for filter set requests. For additional ' +
        'information on how to configure the ownerName path parameter, see: ' +
-       'https://developers.google.com/ad-exchange/buyer-rest/reference/rest/' +
+       'https://developers.google.com/authorized-buyers/apis/reference/rest/' +
        'v2beta1/bidders.filterSets/create#body.PATH_PARAMETERS.owner_name'),
       :short_alias => 'b', :required => true,
       :default_value => nil  # Insert default value here.
@@ -95,7 +95,7 @@ if __FILE__ == $0
       ('The resource ID of the filter set. Note that this must be unique. ' +
        'This will be used to construct the filter set\'s name. for ' +
        'additional information on how to configure a filter set\'s name, ' +
-       'see: https://developers.google.com/ad-exchange/buyer-rest/reference/' +
+       'see: https://developers.google.com/authorized-buyers/apis/reference/' +
        'rest/v2beta1/bidders.filterSets#FilterSet.FIELDS.name'),
       :short_alias => 'r', :required => true,
       :default_value => nil  # Insert default value here.

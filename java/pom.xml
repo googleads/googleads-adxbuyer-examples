@@ -9,7 +9,7 @@
   <groupId>com.google.apis-samples</groupId>
   <artifactId>adexchangebuyer-cmdline-sample</artifactId>
   <version>1</version>
-  <name>Example for the Ad Exchange Buyer REST APIs using JSON.</name>
+  <name>Example for the Authorized Buyers Ad Exchange Buyer APIs.</name>
 
   <url>https://github.com/google/google-api-java-client/</url>
 
@@ -29,21 +29,6 @@
     <developerConnection>scm:git:ssh:git@github.com:googleads/googleads-adxbuyer-examples.git</developerConnection>
     <url>https://github.com/googleads/googleads-adxbuyer-examples/tree/master/java</url>
   </scm>
-
-  <developers>
-    <developer>
-      <id>davidtorres</id>
-      <name>David Torres</name>
-      <email>david.t@google.com</email>
-      <organization>Google</organization>
-      <organizationUrl>http://www.google.com</organizationUrl>
-      <roles>
-        <role>owner</role>
-        <role>developer</role>
-      </roles>
-      <timezone>0</timezone>
-    </developer>
-  </developers>
 
   <build>
     <plugins>

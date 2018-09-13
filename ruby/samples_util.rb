@@ -16,7 +16,7 @@
 #           See the License for the specific language governing permissions and
 #           limitations under the License.
 #
-# Common utilities used by the DoubleClick Ad Exchange Buyer API Samples.
+# Common utilities used by the Authorized Buyers Ad Exchange Buyer API Samples.
 
 require 'optparse'
 require 'google/apis/adexchangebuyer_v1_3'

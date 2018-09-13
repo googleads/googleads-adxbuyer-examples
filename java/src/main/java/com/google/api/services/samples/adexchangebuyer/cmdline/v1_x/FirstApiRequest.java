@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * A sample application that authenticates and runs a request against the
- * Ad Exchange Buyer REST API.
+ * Authorized Buyers Ad Exchange Buyer API.
  */
 public class FirstApiRequest {
 

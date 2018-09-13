@@ -21,6 +21,8 @@ import com.google.api.services.adexchangebuyer2.v2beta1.model.Date;
 import com.google.api.services.adexchangebuyer2.v2beta1.model.FilterSet;
 import com.google.api.services.samples.adexchangebuyer.cmdline.BaseSample;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -29,8 +31,8 @@ import org.joda.time.format.DateTimeFormatter;
 /**
  * This sample illustrates how to create an account-level filter set.
  *
- * An account-level filter set can be used to retrieve data for a specific DoubleClick Ad Exchange
- * Buyer account, whether that be a bidder or child seat account.
+ * An account-level filter set can be used to retrieve data for a specific Authorized Buyers
+ * account, whether that be a bidder or child seat account.
  */
 public class CreateAccountLevelFilterSet extends BaseSample {
   private DateTimeFormatter df = DateTimeFormat.forPattern("yyyyMMdd");
@@ -100,7 +102,7 @@ public class CreateAccountLevelFilterSet extends BaseSample {
       filterSet.setEnvironment(environment);
     }
     if(format != null) {
-      filterSet.setFormat(format);
+      filterSet.setFormats(Arrays.asList(format)));
     }
     if(platforms != null) {
       filterSet.setPlatforms(platforms);
@@ -115,9 +117,9 @@ public class CreateAccountLevelFilterSet extends BaseSample {
     filterSet = adXClient.bidders().accounts().filterSets().create(ownerName, filterSet)
         .setIsTransient(isTransient).execute();
 
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Filter Set created for Account with name \"%s\"%n", ownerName);
-    System.out.printf("========================================\n");
+    System.out.println("========================================");
     System.out.printf("Filter Set name: %s%n", filterSet.getName());
     AbsoluteDateRange absDateRange = filterSet.getAbsoluteDateRange();
     System.out.println("AbsoluteDateRange");
@@ -137,9 +139,12 @@ public class CreateAccountLevelFilterSet extends BaseSample {
     if(dealId != null) {
       System.out.printf("Deal ID: %s%n", dealId);
     }
-    format = filterSet.getFormat();
-    if(format != null) {
-      System.out.printf("Format: %s%n", format);
+    List<String> formats = filterSet.getFormats();
+    if(formats != null) {
+      System.out.println("Formats:");
+      for(String fmt : formats) {
+        System.out.printf("\tFormat: %s%n", fmt);
+      }
     }
     environment = filterSet.getEnvironment();
     if(environment != null) {

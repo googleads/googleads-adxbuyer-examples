@@ -22,7 +22,7 @@ using System;
 namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
 {
     /// <summary>
-    /// Retrieves the authenticated user's list of client users for the given account ID and 
+    /// Retrieves the authenticated user's list of client users for the given account ID and
     /// client buyer ID.
     /// </summary>
     public class ListClientUsers : ExampleBase
@@ -63,8 +63,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                 accountId, clientBuyerId).Execute();
 
             Console.WriteLine("========================================\n");
-            Console.WriteLine("Listing of client users associated with AdX account \"{0}\" and " +
-                "client buyer ID \"{1}\"", accountId, clientBuyerId);
+            Console.WriteLine("Listing of client users associated with Authorized Buyers \"{0}\"" +
+                "and client buyer ID \"{1}\"", accountId, clientBuyerId);
             Console.WriteLine("========================================\n");
 
             if (response.Users.Count == 0)

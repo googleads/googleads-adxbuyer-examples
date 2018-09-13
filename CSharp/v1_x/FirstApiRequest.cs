@@ -27,7 +27,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
     /// <summary>
     /// Self contained sample to return a list of Accounts.
     /// Primarily used by the Getting Started guide:
-    /// https://developers.google.com/ad-exchange/buyer-rest/getting_started
+    /// https://developers.google.com/authorized-buyers/apis/getting_started
     /// </summary>
     internal class FirstApiRequest
     {

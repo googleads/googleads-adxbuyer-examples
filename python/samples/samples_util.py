@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Common utilities used by the DoubleClick Ad Exchange Buyer API Samples."""
+"""Utilities used by the Authorized Buyers Ad Exchange Buyer API Samples."""
 
 
 import os
@@ -30,11 +30,11 @@ from google.oauth2 import service_account
 KEY_FILE = 'INSERT_PATH_TO_KEY_FILE'  # Path to Service Account JSON key file.
 # The maximum number of results to be returned in a page for any list response.
 MAX_PAGE_SIZE = 50
-# Ad Exchange Buyer REST API authorization scope.
+# Ad Exchange Buyer API authorization scope.
 SCOPE = 'https://www.googleapis.com/auth/adexchange.buyer'
 ADEXCHANGEBUYER_VERSIONS = ('v1.2', 'v1.3', 'v1.4')
 ADEXCHANGEBUYERII_VERSIONS = ('v2beta1',)
-# Set the default version of Ad Exchange Buyer REST API to use.
+# Set the default version of Ad Exchange Buyer API to use.
 DEFAULT_VERSION = ADEXCHANGEBUYER_VERSIONS[-1]
 
 _API_NAME = 'adexchangebuyer2'
@@ -133,14 +133,14 @@ def GetService(version=DEFAULT_VERSION):
   """Builds the adexchangebuyer service used for the REST API.
 
   Args:
-    version: a str indicating the DoubleClick Ad Exchange version to be
+    version: a str indicating the Authorized Buyers Ad Exchange version to be
         retrieved. Depending on the version specified, either the v1 or
         the v2 API will be used.
 
   Returns:
     A googleapiclient.discovery.Resource instance used to interact with the
-    DoubleClick Ad Exchange service. This will be for either v1 or the v2 API
-    depending on the specified version.
+    Ad Exchange Buyer API. This will be for either v1 or the v2 API depending on
+    the specified version.
 
   Raises:
     ValueError: raised if the specified version is not a valid version of either

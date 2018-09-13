@@ -23,7 +23,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v1_x
 {
     /// <summary>
     /// Updates an existing account using patch semantics. You can find out more here:
-    /// https://developers.google.com/ad-exchange/buyer-rest/v1.4/accounts/patch
+    /// https://developers.google.com/authorized-buyers/apis/v1.4/accounts/patch
     /// </summary>
     public class UpdateAccount : ExampleBase
     {

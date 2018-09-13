@@ -59,8 +59,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
             ListClientsResponse response = adXService.Accounts.Clients.List(accountId).Execute();
 
             Console.WriteLine("========================================\n");
-            Console.WriteLine("Listing of client buyers associated with AdX Account \"{0}\"",
-                accountId);
+            Console.WriteLine("Listing of client buyers associated with Authorized Buyers " +
+                "Account \"{0}\"", accountId);
             Console.WriteLine("========================================\n");
 
             if (response.Clients.Count == 0)

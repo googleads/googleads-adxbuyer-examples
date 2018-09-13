@@ -23,8 +23,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         // method. See the README.md file for more details.
         public static String ServiceKeyFilePath = "PATH TO JSON KEYFILE";
 
-        // Only required when using Prompt for authentication. See
-        // https://devsite.googleplex.com/ad-exchange/buyer-rest/auth-guide for Auth details.
+        // Only required when using Prompt for authentication. For Auth details, see:
+        // https://developers.google.com/authorized-buyers/apis/guides/authorization
 
         // Full path to client secrets file.
         public static String ClientSecretLocation = "PATH TO CLIENT SECRETS HERE-INCLUDE FILENAME";
@@ -32,8 +32,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         // Name of folder to cache credentials when using Tokens for Auth.
         public static String FileDataStore = "adxbuyer";
 
-        // Only required when using RefreshToken for authentication. See
-        // https://devsite.googleplex.com/ad-exchange/buyer-rest/auth-guide for Auth details.
+        // Only required when using RefreshToken for authentication. For Auth details, see:
+        // https://developers.google.com/authorized-buyers/apis/guides/authorization
 
         // Generated Refresh Token.
         public static String RefreshToken = "REFRESH TOKEN HERE";

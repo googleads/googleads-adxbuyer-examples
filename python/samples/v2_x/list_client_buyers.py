@@ -44,10 +44,10 @@ def main(ad_exchange_buyer, account_id):
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(
-      description='Lists client buyers for a given Ad Exchange account id.')
+      description='Lists client buyers for a given Authorized Buyers account.')
   parser.add_argument(
       '-a', '--account_id', default=DEFAULT_ACCOUNT_ID, type=int,
-      help=('The integer id of the Ad Exchange account.'))
+      help='The integer id of the Authorized Buyers account.')
   args = parser.parse_args()
 
   try:
@@ -55,7 +55,7 @@ if __name__ == '__main__':
   except IOError, ex:
     print 'Unable to create adexchangebuyer service - %s' % ex
     print 'Did you specify the key file in samples_util.py?'
-    sys.exit()
+    sys.exit(1)
 
   main(service, args.account_id)
 

@@ -26,9 +26,8 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
     /// <summary>
     /// This example creates a bidder-level filter set.
     ///
-    /// A bidder-level filter set can be used to retrieve aggregated data for all DoubleClick Ad
-    /// Exchange Buyer accounts under the given bidder account, including the bidder account
-    /// itself.
+    /// A bidder-level filter set can be used to retrieve aggregated data for all Authorized Buyers
+    /// accounts under the given bidder account, including the bidder account itself.
     /// </summary>
     public class CreateBidderLevelFilterSet : ExampleBase
     {
@@ -137,7 +136,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
                 // Valid values: DAILY, HOURLY
                 TimeSeriesGranularity = "INSERT_TIME_SERIES_GRANULARITY_HERE",
                 // Valid values: DISPLAY, VIDEO
-                Format = "INSERT_FORMAT_HERE",
+                Formats = new List<string> { "INSERT_FORMAT_HERE" },
                 // Valid values: APP, WEB
                 Environment = "INSERT_ENVIRONMENT_HERE",
                 // Valid values: DESKTOP, MOBILE, TABLET
@@ -169,10 +168,14 @@ namespace Google.Apis.AdExchangeBuyer.Examples.v2_x
             {
                 Console.WriteLine("\tTimeSeriesGranularity: {0}", timeSeriesGranularity);
             }
-            String format = response.Format;
-            if (format != null)
+            IList<String> formats = response.Formats;
+            if (formats != null)
             {
-                Console.WriteLine("\tFormat: {0}", format);
+                Console.WriteLine("\tFormats:");
+                foreach (string format in formats)
+                {
+                    Console.WriteLine("\t\t{0}", format);
+                }
             }
             String environment = response.Environment;
             if (environment != null)

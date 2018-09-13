@@ -50,7 +50,7 @@ def first_api_request()
     accounts_list = ad_exchange_buyer.list_accounts()
 
     if accounts_list.items.any?
-      puts 'Found the following DoubleClick Ad Exchange Buyer Accounts:'
+      puts 'Found the following Authorized Buyers Accounts:'
       accounts_list.items.each do |account|
         puts 'AccountID: %d' % account.id
         puts "\tCookie matching nid: %s" % account.cookie_matching_nid
@@ -69,7 +69,7 @@ def first_api_request()
         end
       end
     else
-      puts 'No DoubleClick Ad Exchange Buyer Accounts were found.'
+      puts 'No Authorized Buyers Accounts were found.'
     end
   rescue Google::Apis::ServerError => e
     raise "The following server error occured:\n%s" % e.message
