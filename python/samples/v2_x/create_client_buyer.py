@@ -19,6 +19,7 @@
 
 import argparse
 import os
+import pprint
 import sys
 
 sys.path.insert(0, os.path.abspath('..'))
@@ -45,27 +46,27 @@ def main(ad_exchange_buyer, account_id, body):
     # Construct and execute the request.
     client = ad_exchange_buyer.accounts().clients().create(
         accountId=account_id, body=body).execute()
-    print 'Client buyer created for account ID: "%d".' % (account_id)
-    print client
+    print(f'Client buyer created for account ID: "{account_id}".')
+    pprint.pprint(client)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
 
   def entity_type(s):
     if s not in VALID_ENTITY_TYPES:
-      raise argparse.ArgumentTypeError('Invalid value "%s".' % s)
+      raise argparse.ArgumentTypeError(f'Invalid value "{s}".')
     return s
 
   def status(s):
     if s not in VALID_STATUS:
-      raise argparse.ArgumentTypeError('Invalid value "%s".' % s)
+      raise argparse.ArgumentTypeError(f'Invalid value "{s}".')
     return s
 
   def role(s):
     if s not in VALID_ROLES:
-      raise argparse.ArgumentTypeError('Invalid value "%s".' % s)
+      raise argparse.ArgumentTypeError(f'Invalid value "{s}".')
     return s
 
   parser = argparse.ArgumentParser(
@@ -86,15 +87,15 @@ if __name__ == '__main__':
   parser.add_argument(
       '-et', '--entity_type', default=DEFAULT_ENTITY_TYPE, type=entity_type,
       help=('The type of the client entity. This can be set to any of the '
-            'following: %s' % str(VALID_ENTITY_TYPES)))
+            f'following: {str(VALID_ENTITY_TYPES)}'))
   parser.add_argument(
       '-r', '--role', default=DEFAULT_ROLE, type=role,
       help=('The desired role to be assigned to the client buyer. This can '
-            'be set to any of the following: %s' % str(VALID_ROLES)))
+            f'be set to any of the following: {str(VALID_ROLES)}'))
   parser.add_argument(
       '-s', '--status', default=DEFAULT_STATUS, type=status,
       help=('The desired update to the client buyer\'s status. This can be '
-            'set to any of the following: %s' % str(VALID_STATUS)))
+            f'set to any of the following: {str(VALID_STATUS)}'))
   parser.add_argument(
       '-v', '--visible_to_seller', default=DEFAULT_VISIBLE_TO_SELLER, type=bool,
       help='Whether the client buyer will be visible to sellers.')
@@ -111,10 +112,10 @@ if __name__ == '__main__':
   }
 
   try:
-    service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+    service = samples_util.GetService('v2beta1')
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, args.account_id, BODY)

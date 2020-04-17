@@ -36,14 +36,14 @@ def main(ad_exchange_buyer, account_id):
     pub_profiles = ad_exchange_buyer.accounts().publisherProfiles().list(
         accountId=account_id).execute().get('publisherProfiles')
     if pub_profiles:
-      print 'Publisher profiles found:'
+      print('Publisher profiles found:')
       for pub_profile in pub_profiles:
         pprint.pprint(pub_profile)
-        print ''
+        print()
     else:
-      print 'No publisher profiles found.'
+      print('No publisher profiles found.')
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -56,9 +56,9 @@ if __name__ == '__main__':
 
   try:
     service = samples_util.GetService('v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, args.account_id)

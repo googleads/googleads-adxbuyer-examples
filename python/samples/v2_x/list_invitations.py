@@ -38,15 +38,15 @@ def main(ad_exchange_buyer, account_id, client_account_id):
         accountId=account_id, clientAccountId=client_account_id).execute()
     invitations = response['invitations']
     if invitations:
-      print 'Invitations for Account ID "%d" and Client Account Id: "%d"' % (
-          account_id, client_account_id)
+      print(f'Invitations for Account ID "{account_id}" and Client Account Id: '
+            f'"{client_account_id}"')
       for invitation in invitations:
         pprint.pprint(invitation)
     else:
-      print ('No invitations for Account ID "%d" and Client Account Id: "%d"'
-             % (account_id, client_account_id))
+      print(f'No invitations for Account ID "{account_id}" and Client Account '
+            f'Id: "{client_account_id}"')
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -61,10 +61,10 @@ if __name__ == '__main__':
   args = parser.parse_args()
 
   try:
-    service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+    service = samples_util.GetService('v2beta1')
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, args.account_id, args.client_buyer_id)

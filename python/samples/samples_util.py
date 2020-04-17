@@ -105,13 +105,13 @@ def DownloadDiscoveryDocument(api_name, version, path=_DEFAULT_DISCOVERY_PATH,
   if discovery_rest_url:
     is_legacy = _IsLegacy(discovery_rest_url)
   else:
-    raise ValueError('API with name "%s" and version "%s" was not found.'
-                     % (api_name, version))
+    raise ValueError(f'API with name {api_name} and version {version} was not '
+                     'found.')
 
   if all((is_legacy, label)):
-    raise ValueError('The discovery URL associated with the api_name "%s" and '
-                     'version "%s" is for a legacy API. These are not '
-                     'compatible with labels.' % (api_name, version))
+    raise ValueError('The discovery URL associated with the api_name '
+                     f'{api_name} and version {version} is for a legacy API. '
+                     'These are not compatible with labels.')
 
   if label:
     # Apply the label query parameter if it exists.
@@ -124,9 +124,9 @@ def DownloadDiscoveryDocument(api_name, version, path=_DEFAULT_DISCOVERY_PATH,
     with open(path, 'wb') as handler:
       handler.write(discovery_response.text)
   else:
-    raise ValueError('Unable to retrieve discovery document for api name "%s" '
-                     'and version "%s" via discovery URL: %s'
-                     % (api_name, version, discovery_rest_url))
+    raise ValueError('Unable to retrieve discovery document for api name '
+                     f'{api_name} and version {version} via discovery URL: '
+                     f'{discovery_rest_url}')
 
 
 def GetService(version=DEFAULT_VERSION):
@@ -155,9 +155,10 @@ def GetService(version=DEFAULT_VERSION):
     # Initialize client for Ad Exchange Buyer API v2
     service = build(_API_NAME, version, credentials=credentials)
   else:
-    raise ValueError('Invalid version provided. Supported versions are: %s'
-                     % ', '.join(ADEXCHANGEBUYER_VERSIONS +
-                                 ADEXCHANGEBUYERII_VERSIONS))
+    supported_versions = ', '.join(ADEXCHANGEBUYER_VERSIONS +
+                                   ADEXCHANGEBUYERII_VERSIONS)
+    raise ValueError('Invalid version provided. Supported versions are: '
+                     f'{supported_versions}')
 
   return service
 

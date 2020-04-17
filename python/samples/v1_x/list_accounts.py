@@ -31,21 +31,21 @@ def main(ad_exchange_buyer):
     # Construct and execute the request.
     accounts = ad_exchange_buyer.accounts().list().execute()
     if 'items' in accounts:
-      print 'Found the following accounts for current user:'
+      print('Found the following accounts for current user:')
       for account in accounts['items']:
         pprint.pprint(account)
     else:
-      print 'No accounts found.'
+      print('No accounts found.')
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
   try:
     service = samples_util.GetService()
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service)

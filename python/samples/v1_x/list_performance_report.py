@@ -42,10 +42,10 @@ def main(ad_exchange_buyer, account_id, start_date_time, end_date_time,
         startDateTime=start_date_time,
         endDateTime=end_date_time,
         maxResults=max_results).execute()
-    print 'Successfully retrieved the report.'
+    print('Successfully retrieved the report.')
     pprint.pprint(report)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -80,11 +80,12 @@ if __name__ == '__main__':
     START_DATE_TIME = 'YYYY-MM-DD'  # Insert startDateTime here.
     END_DATE_TIME = 'YYYY-MM-DD'  # Insert endDateTime here.
     MAX_RESULTS = samples_util.MAX_PAGE_SIZE
+
   try:
     service = samples_util.GetService()
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, ACCOUNT_ID, START_DATE_TIME, END_DATE_TIME, MAX_RESULTS)

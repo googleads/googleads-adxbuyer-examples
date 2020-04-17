@@ -28,7 +28,7 @@ from googleapiclient.errors import HttpError
 import samples_util
 
 
-_OWNER_NAME_TEMPLATE = 'bidders/%s'
+_OWNER_NAME_TEMPLATE = 'bidders/{bidders_resource_id}'
 
 DEFAULT_BIDDER_RESOURCE_ID = 'ENTER_BIDDER_RESOURCE_ID_HERE'
 
@@ -38,10 +38,10 @@ def main(ad_exchange_buyer, owner_name):
     # Construct and execute the request.
     filter_sets = ad_exchange_buyer.bidders().filterSets().list(
         ownerName=owner_name).execute()
-    print 'Listing FilterSets for bidder: "%s".' % (owner_name)
+    print(f'Listing FilterSets for bidder: "{owner_name}".')
     pprint.pprint(filter_sets)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -62,11 +62,12 @@ if __name__ == '__main__':
   args = parser.parse_args()
 
   try:
-    service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+    service = samples_util.GetService('v2beta1')
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
-  main(service, _OWNER_NAME_TEMPLATE % args.bidder_resource_id)
+  main(service, _OWNER_NAME_TEMPLATE.format(
+           bidders_resource_id=args.bidder_resource_id))
 

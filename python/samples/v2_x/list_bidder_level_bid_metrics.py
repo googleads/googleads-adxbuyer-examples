@@ -33,7 +33,8 @@ from googleapiclient.errors import HttpError
 import samples_util
 
 
-_FILTER_SET_NAME_TEMPLATE = 'bidders/%s/filterSets/%s'
+_FILTER_SET_NAME_TEMPLATE = ('bidders/{bidders_resource_id}/'
+                             'filterSets/{filtersets_resource_id}')
 
 DEFAULT_BIDDER_RESOURCE_ID = 'ENTER_BIDDER_RESOURCE_ID_HERE'
 DEFAULT_FILTER_SET_RESOURCE_ID = 'ENTER_FILTER_SET_RESOURCE_ID_HERE'
@@ -43,7 +44,7 @@ def main(ad_exchange_buyer, filter_set_name, page_size):
   page_token = None
   more_pages = True
 
-  print 'Listing bid metrics for filter set: "%s".' % filter_set_name
+  print(f'Listing bid metrics for filter set: "{filter_set_name}".')
   while more_pages:
     try:
       # Construct and execute the request.
@@ -51,7 +52,8 @@ def main(ad_exchange_buyer, filter_set_name, page_size):
           filterSetName=filter_set_name, pageSize=page_size,
           pageToken=page_token).execute()
     except HttpError as e:
-      print e
+      print(e)
+      sys.exit(1)
 
     pprint.pprint(response)
 
@@ -92,13 +94,14 @@ if __name__ == '__main__':
   args = parser.parse_args()
 
   try:
-    service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+    service = samples_util.GetService('v2beta1')
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
-  main(service, _FILTER_SET_NAME_TEMPLATE % (args.bidder_resource_id,
-                                             args.filter_set_resource_id),
+  main(service, _FILTER_SET_NAME_TEMPLATE.format(
+           bidders_resource_id=args.bidder_resource_id,
+           filtersets_resource_id=args.filter_set_resource_id),
        args.page_size)
 

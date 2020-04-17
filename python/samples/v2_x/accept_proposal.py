@@ -39,10 +39,10 @@ def main(ad_exchange_buyer, account_id, proposal_id, proposal_revision):
     # Construct and execute the request.
     response = ad_exchange_buyer.accounts().proposals().accept(
         accountId=account_id, proposalId=proposal_id, body=body).execute()
-    print 'Successfully accepted proposal with ID "%s":' % proposal_id
+    print(f'Successfully accepted proposal with ID "{proposal_id}":')
     pprint.pprint(response)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -62,9 +62,9 @@ if __name__ == '__main__':
 
   try:
     service = samples_util.GetService('v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, args.account_id, args.proposal_id, args.proposal_revision)

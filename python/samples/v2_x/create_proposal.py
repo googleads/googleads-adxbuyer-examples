@@ -38,11 +38,10 @@ def main(ad_exchange_buyer, account_id, body):
     request = ad_exchange_buyer.accounts().proposals().create(
         accountId=account_id, body=body)
     response = request.execute()
-    print ('Successfully created proposal for buyer accountId "%s\n":'
-           % account_id)
+    print(f'Successfully created proposal for buyer accountId "{account_id}":')
     pprint.pprint(response)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -64,9 +63,9 @@ if __name__ == '__main__':
 
   try:
     service = samples_util.GetService('v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   # Build the proposal for the proposals.create request.
@@ -74,14 +73,14 @@ if __name__ == '__main__':
       'buyer': {
           'accountId': args.buyer_account_id
       },
-      'displayName': 'Test Proposal #%d' % uuid.uuid4(),
+      'displayName': f'Test Proposal #{uuid.uuid4()}',
       'seller': {
           'accountId': args.seller_account_id
       },
       # Add the Programmatic Guaranteed deal that will be associated with the
       # proposal.
       'deals': [{
-          'displayName': 'Test Deal #%d' % uuid.uuid4(),
+          'displayName': f'Test Deal #{uuid.uuid4()}',
           'syndicationProduct': 'GAMES',
           'dealTerms': {
               'description': 'Test deal.',

@@ -36,10 +36,10 @@ def main(ad_exchange_buyer, account_id):
     # Construct and execute the request.
     clients = ad_exchange_buyer.accounts().clients().list(
         accountId=account_id).execute()
-    print 'Client buyers for account ID: %d' % account_id
+    print(f'Client buyers for account ID: "{account_id}"')
     pprint.pprint(clients)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -51,10 +51,10 @@ if __name__ == '__main__':
   args = parser.parse_args()
 
   try:
-    service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+    service = samples_util.GetService('v2beta1')
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, args.account_id)

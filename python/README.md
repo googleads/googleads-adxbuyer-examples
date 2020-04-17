@@ -13,8 +13,9 @@ To run these samples, you'll need to do the following:
    ```
    $ pip install -r requirements.txt
    ```
-   **Note:** If you do not have pip installed, you can find installation
-   instructions [here](https://pip.pypa.io/en/stable/installing/#installation).
+   **Note:** These samples are intended to be run with Python 3.7 or higher.
+   If you don't have Python 3.7 installed, you can find it available for
+   download [here](https://www.python.org/downloads/).
 1. If you haven't done so already, you should read about the OAuth2
    [Service Account Flow](https://developers.google.com/accounts/docs/OAuth2ServiceAccount)
    because that is the flow used by these samples for authorization to access

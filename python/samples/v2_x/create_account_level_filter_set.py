@@ -26,6 +26,7 @@ from datetime import date
 from datetime import datetime
 from datetime import timedelta
 import os
+import pprint
 import sys
 import uuid
 
@@ -36,8 +37,11 @@ import samples_util
 
 
 _DATE_FORMAT = '%Y%m%d'
-_FILTER_SET_NAME_TEMPLATE = 'bidders/%s/accounts/%s/filterSets/%s'
-_OWNER_NAME_TEMPLATE = 'bidders/%s/accounts/%s'
+_FILTER_SET_NAME_TEMPLATE = ('bidders/{bidders_resource_id}/'
+                             'accounts/{accounts_resource_id}/'
+                             'filterSets/{filtersets_resource_id}')
+_OWNER_NAME_TEMPLATE = ('bidders/{bidders_resource_id}/'
+                        'accounts/{accounts_resource_id}')
 _TODAY = date.today()
 _VALID_ENVIRONMENTS = ('WEB', 'APP')
 _VALID_FORMATS = ('DISPLAY', 'VIDEO')
@@ -46,7 +50,7 @@ _VALID_TIME_SERIES_GRANULARITIES = ('HOURLY', 'DAILY')
 
 DEFAULT_ACCOUNT_RESOURCE_ID = 'ENTER_ACCOUNT_RESOURCE_ID_HERE'
 DEFAULT_BIDDER_RESOURCE_ID = 'ENTER_BIDDER_RESOURCE_ID_HERE'
-DEFAULT_FILTER_SET_RESOURCE_ID = 'FilterSet_%d' % uuid.uuid4()
+DEFAULT_FILTER_SET_RESOURCE_ID = f'FilterSet_{uuid.uuid4()}'
 DEFAULT_END_DATE = _TODAY.strftime(_DATE_FORMAT)
 DEFAULT_START_DATE = (_TODAY - timedelta(days=7)).strftime(
     _DATE_FORMAT)
@@ -57,10 +61,10 @@ def main(ad_exchange_buyer, owner_name, body, is_transient):
     # Construct and execute the request.
     filter_set = ad_exchange_buyer.bidders().accounts().filterSets().create(
         ownerName=owner_name, isTransient=is_transient, body=body).execute()
-    print 'FilterSet created for bidder: "%s".' % (owner_name)
-    print filter_set
+    print(f'FilterSet created for bidder: "{owner_name}".')
+    pprint.pprint(filter_set)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -68,31 +72,30 @@ if __name__ == '__main__':
   def time_series_granularity_type(s):
     if s not in _VALID_TIME_SERIES_GRANULARITIES:
       raise argparse.ArgumentTypeError('Invalid TimeSeriesGranularity '
-                                       'specified: "%s".' % s)
+                                       f'specified: "{s}".')
     return s
 
   def environment_type(s):
     if s not in _VALID_ENVIRONMENTS:
-      raise argparse.ArgumentTypeError('Invalid Environment specified: "%s".'
-                                       % s)
+      raise argparse.ArgumentTypeError(
+          f'Invalid Environment specified: "{s}".')
     return s
 
   def format_type(s):
     if s not in _VALID_FORMATS:
-      raise argparse.ArgumentTypeError('Invalid Format specified: "%s".' % s)
+      raise argparse.ArgumentTypeError(f'Invalid Format specified: "{s}".')
     return s
 
   def platform_type(s):
     if s not in _VALID_PLATFORMS:
-      raise argparse.ArgumentTypeError('Invalid Platform specified: "%s".'
-                                       % platform_type)
+      raise argparse.ArgumentTypeError(f'Invalid Platform specified: "{s}".')
     return s
 
   def valid_date(s):
     try:
       return datetime.strptime(s, _DATE_FORMAT).date()
     except ValueError:
-      raise argparse.ArgumentTypeError('Invalid date specified: "%s".' % s)
+      raise argparse.ArgumentTypeError(f'Invalid date specified: "{s}".')
 
   parser = argparse.ArgumentParser(
       description=('Creates an account-level filter set with the specified '
@@ -186,8 +189,10 @@ if __name__ == '__main__':
 
   # Create a body containing the required fields.
   BODY = {
-      'name': _FILTER_SET_NAME_TEMPLATE % (
-          args.bidder_resource_id, args.account_resource_id, args.resource_id),
+      'name': _FILTER_SET_NAME_TEMPLATE.format(
+          bidders_resource_id=args.bidder_resource_id,
+          accounts_resource_id=args.account_resource_id,
+          filtersets_resource_id=args.resource_id),
       # Note: You may alternatively specify relativeDateRange or
       # realtimeTimeRange.
       'absoluteDateRange': time_range
@@ -210,13 +215,14 @@ if __name__ == '__main__':
     BODY['timeSeriesGranularity'] = args.time_series_granularity
 
   try:
-    service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+    service = samples_util.GetService('v2beta1')
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
-  main(service, _OWNER_NAME_TEMPLATE % (args.bidder_resource_id,
-                                        args.account_resource_id),
+  main(service, _OWNER_NAME_TEMPLATE.format(
+           bidders_resource_id=args.bidder_resource_id,
+           accounts_resource_id=args.account_resource_id),
        BODY, args.is_transient)
 

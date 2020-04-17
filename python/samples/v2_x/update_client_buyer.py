@@ -19,6 +19,7 @@
 
 import argparse
 import os
+import pprint
 import sys
 
 sys.path.insert(0, os.path.abspath('..'))
@@ -47,28 +48,28 @@ def main(ad_exchange_buyer, account_id, client_buyer_id, body):
     client = ad_exchange_buyer.accounts().clients().update(
         accountId=account_id, clientAccountId=client_buyer_id,
         body=body).execute()
-    print ('Client buyer with account ID: "%d" and client buyer ID "%s" has '
-           'been updated.' % (account_id, client_buyer_id))
-    print client
+    print(f'Client buyer with account ID: "{account_id}" and client buyer ID '
+          f'"{client_buyer_id}" has been updated.')
+    pprint.pprint(client)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
 
   def entity_type(s):
     if s not in VALID_ENTITY_TYPES:
-      raise argparse.ArgumentTypeError('Invalid value "%s".' % s)
+      raise argparse.ArgumentTypeError(f'Invalid value "{s}".')
     return s
 
   def status(s):
     if s not in VALID_STATUS:
-      raise argparse.ArgumentTypeError('Invalid value "%s".' % s)
+      raise argparse.ArgumentTypeError(f'Invalid value "{s}".')
     return s
 
   def role(s):
     if s not in VALID_ROLES:
-      raise argparse.ArgumentTypeError('Invalid value "%s".' % s)
+      raise argparse.ArgumentTypeError(f'Invalid value "{s}".')
     return s
 
   parser = argparse.ArgumentParser(
@@ -117,10 +118,10 @@ if __name__ == '__main__':
   }
 
   try:
-    service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+    service = samples_util.GetService('v2beta1')
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, args.account_id, args.client_buyer_id, BODY)

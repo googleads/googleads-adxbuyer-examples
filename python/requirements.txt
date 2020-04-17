@@ -1,4 +1,4 @@
-google-api-python-client
-google-auth
-google-auth-httplib2
-requests
+google-api-python-client; python_version >= '3.7'
+google-auth; python_version >= '3.7'
+google-auth-httplib2; python_version >= '3.7'
+requests; python_version >= '3.7'

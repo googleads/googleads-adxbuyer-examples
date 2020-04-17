@@ -40,7 +40,7 @@ def main(ad_exchange_buyer, account_id, buyer_creative_id):
         buyerCreativeId=buyer_creative_id).execute()
     pprint.pprint(creative)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -59,9 +59,9 @@ if __name__ == '__main__':
 
   try:
     service = samples_util.GetService()
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, args.account_id, args.buyer_creative_id)

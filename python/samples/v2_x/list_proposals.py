@@ -46,15 +46,15 @@ def main(ad_exchange_buyer, account_id, filter, filter_syntax):
         filterSyntax=filter_syntax).execute()
     proposals = response.get('proposals')
     if proposals:
-      print 'Proposals found for accountId "%s":' % account_id
+      print(f'Proposals found for accountId "{account_id}":')
       for proposal in proposals:
         pprint.pprint(proposal)
-        print
+        print()
     else:
-      print 'No proposals found for accountId "%s"' % account_id
+      print(f'No proposals found for accountId "{account_id}"')
   except HttpError as e:
-    print 'Error returned when listing proposals with filter "%s"' % filter
-    print e
+    print(f'Error returned when listing proposals with filter "{filter}"')
+    print(e)
 
 
 if __name__ == '__main__':
@@ -75,9 +75,9 @@ if __name__ == '__main__':
 
   try:
     service = samples_util.GetService('v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, args.account_id, args.filter, args.filter_syntax)

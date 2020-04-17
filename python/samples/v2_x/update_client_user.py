@@ -39,11 +39,11 @@ def main(ad_exchange_buyer, account_id, client_account_id, user_id, body):
     user = ad_exchange_buyer.accounts().clients().users().update(
         accountId=account_id, clientAccountId=client_account_id,
         userId=user_id, body=body).execute()
-    print ('User for Account ID "%d" and Client Account Id: "%d" has been '
-           'updated.' % (account_id, client_account_id))
+    print(f'User for Account ID "{account_id}" and Client Account Id: '
+          f'"{client_account_id}" has been updated.')
     pprint.pprint(user)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -75,10 +75,10 @@ if __name__ == '__main__':
   BODY = {'status': args.status}
 
   try:
-    service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+    service = samples_util.GetService('v2beta1')
+  except IOError as ex:
+    print(f'Unable to create adexchangebuyer service - {ex}')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, args.account_id, args.client_buyer_id, args.user_id, BODY)
