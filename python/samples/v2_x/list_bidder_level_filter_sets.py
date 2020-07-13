@@ -30,7 +30,7 @@ import samples_util
 
 _OWNER_NAME_TEMPLATE = 'bidders/%s'
 
-DEFAULT_BIDDER_RESOURCE_ID = 'ENTER_BIDDER_RESOURCE_ID_HERE'
+DEFAULT_BIDDER_RESOURCE_ID = 154122622
 
 
 def main(ad_exchange_buyer, owner_name):
@@ -38,10 +38,10 @@ def main(ad_exchange_buyer, owner_name):
     # Construct and execute the request.
     filter_sets = ad_exchange_buyer.bidders().filterSets().list(
         ownerName=owner_name).execute()
-    print 'Listing FilterSets for bidder: "%s".' % (owner_name)
+    print('Listing FilterSets for bidder: "%s".' % (owner_name))
     pprint.pprint(filter_sets)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -63,9 +63,9 @@ if __name__ == '__main__':
 
   try:
     service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError:
+    print('Unable to create adexchangebuyer service - %s')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, _OWNER_NAME_TEMPLATE % args.bidder_resource_id)

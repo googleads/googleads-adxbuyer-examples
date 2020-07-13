@@ -17,7 +17,10 @@
 """This example lists the given account's Performance Report."""
 
 import argparse
-import pprint
+from datetime import date
+from datetime import datetime
+from datetime import timedelta
+import json
 import os
 import sys
 
@@ -27,9 +30,12 @@ from googleapiclient.errors import HttpError
 import samples_util
 
 
-DEFAULT_ACCOUNT_ID = 'INSERT_ACCOUNT_ID'
-DEFAULT_END_DATE_TIME = 'INSERT_END_DATE_TIME_HERE'      # YYYY-MM-DD
-DEFAULT_START_DATE_TIME = 'INSERT_START_DATE_TIME_HERE'  # YYYY-MM-DD
+_DATE_FORMAT = '%Y-%m-%d'
+_TODAY = datetime.utcnow()
+
+DEFAULT_ACCOUNT_ID = 154122622
+DEFAULT_END_DATE_TIME = _TODAY.strftime(_DATE_FORMAT)
+DEFAULT_START_DATE_TIME = (_TODAY - timedelta(days=2)).strftime(_DATE_FORMAT)
 DEFAULT_MAX_PAGE_SIZE = samples_util.MAX_PAGE_SIZE
 
 
@@ -42,10 +48,10 @@ def main(ad_exchange_buyer, account_id, start_date_time, end_date_time,
         startDateTime=start_date_time,
         endDateTime=end_date_time,
         maxResults=max_results).execute()
-    print 'Successfully retrieved the report.'
-    pprint.pprint(report)
+    with open('data.json', 'w') as f:
+      json.dump(report, f)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -82,9 +88,9 @@ if __name__ == '__main__':
     MAX_RESULTS = samples_util.MAX_PAGE_SIZE
   try:
     service = samples_util.GetService()
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError:
+    print('Unable to create adexchangebuyer service - %s')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, ACCOUNT_ID, START_DATE_TIME, END_DATE_TIME, MAX_RESULTS)

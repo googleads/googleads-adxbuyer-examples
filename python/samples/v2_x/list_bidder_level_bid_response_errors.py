@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This example lists bidder-level bid metrics.
+"""This example lists bidder-level bid respnse errors.
 
 Additional RTB Troubleshooting resources that can be similarly used to retrieve
 metrics for real-time bidding can be found nested under the bidders.filterSets
@@ -47,7 +47,7 @@ def main(ad_exchange_buyer, filter_set_name, page_size):
   while more_pages:
     try:
       # Construct and execute the request.
-      response = ad_exchange_buyer.bidders().filterSets().bidMetrics().list(
+      response = ad_exchange_buyer.bidders().filterSets().bidResponseErrors().list(
           filterSetName=filter_set_name, pageSize=page_size,
           pageToken=page_token).execute()
     except HttpError as e:

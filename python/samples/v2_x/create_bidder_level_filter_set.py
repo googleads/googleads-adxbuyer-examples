@@ -27,8 +27,11 @@ from datetime import date
 from datetime import datetime
 from datetime import timedelta
 import os
+from rfc3339 import rfc3339
 import sys
+import time
 import uuid
+
 
 sys.path.insert(0, os.path.abspath('..'))
 
@@ -45,7 +48,7 @@ _VALID_FORMATS = ('DISPLAY', 'VIDEO')
 _VALID_PLATFORMS = ('DESKTOP', 'TABLET', 'MOBILE')
 _VALID_TIME_SERIES_GRANULARITIES = ('HOURLY', 'DAILY')
 
-DEFAULT_BIDDER_RESOURCE_ID = 'ENTER_BIDDER_RESOURCE_ID_HERE'
+DEFAULT_BIDDER_RESOURCE_ID = 154122622
 DEFAULT_FILTER_SET_RESOURCE_ID = 'FilterSet_%d' % uuid.uuid4()
 DEFAULT_END_DATE = _TODAY.strftime(_DATE_FORMAT)
 DEFAULT_START_DATE = (_TODAY - timedelta(days=7)).strftime(
@@ -57,10 +60,10 @@ def main(ad_exchange_buyer, owner_name, body, is_transient):
     # Construct and execute the request.
     filter_set = ad_exchange_buyer.bidders().filterSets().create(
         ownerName=owner_name, isTransient=is_transient, body=body).execute()
-    print 'FilterSet created for bidder: "%s".' % owner_name
-    print filter_set
+    print('FilterSet created for bidder: "%s".' % owner_name)
+    print(filter_set)
   except HttpError as e:
-    print e
+    print(e)
 
 
 if __name__ == '__main__':
@@ -154,19 +157,29 @@ if __name__ == '__main__':
 
   args = parser.parse_args()
 
-  # Build the time_range as an AbsoluteDateRange.
-  time_range = {
-      'startDate': {
-          'year': args.start_date.year,
-          'month': args.start_date.month,
-          'day': args.start_date.day
-      },
-      'endDate': {
-          'year': args.end_date.year,
-          'month': args.end_date.month,
-          'day': args.end_date.day
+  time_range_type = 'realtimeTimeRange'
+
+  if time_range_type == 'realtimeTimeRange':
+    timestamp = time.time()
+    time_range = {
+        "startTimestamp": str(rfc3339(timestamp))
       }
-  }
+  elif time_range_type in ('relativeDateRange', 'absoluteDateRange'):
+    # Build the time_range as an AbsoluteDateRange.
+    time_range = {
+        'startDate': {
+            'year': args.start_date.year,
+            'month': args.start_date.month,
+            'day': args.start_date.day
+        },
+        'endDate': {
+            'year': args.end_date.year,
+            'month': args.end_date.month,
+            'day': args.end_date.day
+        }
+    }
+  else:
+    print('Unable to create time_range')
 
   # Create a body containing the required fields.
   BODY = {
@@ -174,7 +187,7 @@ if __name__ == '__main__':
                                            args.resource_id),
       # Note: You may alternatively specify relativeDateRange or
       # realtimeTimeRange.
-      'absoluteDateRange': time_range
+      str(time_range_type): time_range
   }
 
   # Add optional fields to body if specified.
@@ -191,11 +204,10 @@ if __name__ == '__main__':
 
   try:
     service = samples_util.GetService(version='v2beta1')
-  except IOError, ex:
-    print 'Unable to create adexchangebuyer service - %s' % ex
-    print 'Did you specify the key file in samples_util.py?'
+  except IOError:
+    print('Unable to create adexchangebuyer service - %s')
+    print('Did you specify the key file in samples_util.py?')
     sys.exit(1)
 
   main(service, _OWNER_NAME_TEMPLATE % args.bidder_resource_id, BODY,
        args.is_transient)
-

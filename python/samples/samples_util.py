@@ -27,7 +27,7 @@ from google.oauth2 import service_account
 
 # Update these with the values for your Service Account found in the Google
 # Developers Console.
-KEY_FILE = 'INSERT_PATH_TO_KEY_FILE'  # Path to Service Account JSON key file.
+KEY_FILE = '/Users/davidcorigliano/Devel/rubicon/dcorigliano/googleads-adxbuyer-examples/dcorigliano-eb8b0b0e9f7f.json'  # Path to Service Account JSON key file.
 # The maximum number of results to be returned in a page for any list response.
 MAX_PAGE_SIZE = 50
 # Ad Exchange Buyer API authorization scope.
@@ -181,4 +181,3 @@ def GetServiceFromFile(discovery_file):
   service = build_from_document(service=discovery_doc, credentials=credentials)
 
   return service
-
