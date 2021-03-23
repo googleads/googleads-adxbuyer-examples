@@ -33,8 +33,8 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <Target Name="CopyAppConfig" BeforeTargets="pack;Build">
-    <Copy SourceFiles="App.config" DestinationFiles="app.config.transform" />
-    <Copy SourceFiles="App.config" DestinationFiles="web.config.transform" />
+    <Copy SourceFiles="app.config" DestinationFiles="app.config.transform" />
+    <Copy SourceFiles="app.config" DestinationFiles="web.config.transform" />
   </Target>
   <ItemGroup>
     <PackageReference Include="Google.Apis.AdExchangeBuyer.v1_4" Version="1.51.0.2237" />
