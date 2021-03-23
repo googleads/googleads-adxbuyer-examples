@@ -1,0 +1,5 @@
+1.1.0
+=====
+
+- Upgraded the .NET solution workspace to work with Visual Studio 2019 and .NET Core.
+
