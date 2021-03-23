@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp.csproj", "{7D2A679A-4EC4-4353-8A63-249D4909EFAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Apis.AdExchangeBuyer.Examples", "Google.Apis.AdExchangeBuyer.Examples.csproj", "{7D2A679A-4EC4-4353-8A63-249D4909EFAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46059EB2-5F2F-4AD2-BB65-CEAFF0E75FF9}
 	EndGlobalSection
 EndGlobal
