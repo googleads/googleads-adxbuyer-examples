@@ -8,7 +8,10 @@ available from <https://developers.google.com/authorized-buyers/apis/>.
 
 ## Features
 
-- Support for .NET SDK 4.0 and above.
+- .NET Framework 4.5+
+- .NET Standard 1.3 and .NET Standard 2.0; providing .NET Core support.
+
+The code examples have been compiled for .NET SDK 4.5.2, .NET Core App 3.1, .NET 5.0.
 
 ## Announcements and updates
 

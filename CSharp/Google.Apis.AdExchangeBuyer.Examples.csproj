@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- nupkg properties -->
+  <PropertyGroup>
+    <Title>Authorized Buyers Ad Exchange API DotNet Samples</Title>
+    <PackageId>Google.Apis.AdExchangeBuyer.Examples</PackageId>
+    <Version>1.1.0</Version>
+    <Description>These samples demonstrate basic usage of the Authorized Buyers Ad Exchange API. The Authorized Buyers Ad Exchange API DotNet Client Library makes it easier to write .NET clients to programmatically access Authorized Buyer accounts. The complete documentation for the Authorized Buyers Ad Exchange API docs are available from https://developers.google.com/authorized-buyers/apis.</Description>
+    <PackageReleaseNotes>https://github.com/googleads/googleads-adxbuyer-examples/blob/master/ChangeLog</PackageReleaseNotes>
+    <PackageTags>GoogleAds Google</PackageTags>
+    <Copyright>Copyright 2014, Google LLC</Copyright>
+    <Authors>https://github.com/AnashOommen</Authors>
+    <PackageProjectUrl>https://github.com/googleads/googleads-adxbuyer-examples</PackageProjectUrl>
+    <Company>Google</Company>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/googleads/googleads-adxbuyer-examples</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+    <!-- build properties -->
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net452;net5.0</TargetFrameworks>
+    <AssemblyName>Google.Apis.AdExchangeBuyer.Examples</AssemblyName>
+    <RootNamespace>Google.Apis.AdExchangeBuyer.Examples</RootNamespace>
+    <OutputType>Exe</OutputType>
+    <StartupObject>Google.Apis.AdExchangeBuyer.Examples.Program</StartupObject>
+    <DebugType>pdbonly</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <Target Name="CopyAppConfig" BeforeTargets="pack;Build">
+    <Copy SourceFiles="App.config" DestinationFiles="app.config.transform" />
+    <Copy SourceFiles="App.config" DestinationFiles="web.config.transform" />
+  </Target>
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.AdExchangeBuyer.v1_4" Version="1.51.0.2237" />
+    <PackageReference Include="Google.Apis.AdExchangeBuyerII.v2beta1" Version="1.51.0.2246" />
+    <PackageReference Include="Google.Apis" Version="1.51" />
+  </ItemGroup>
+</Project>
