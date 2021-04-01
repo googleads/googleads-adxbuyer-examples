@@ -1,4 +1,5 @@
 # Authorized Buyers Ad Exchange API DotNet Samples
+
 These samples demonstrate basic usage of the Authorized Buyers Ad Exchange API.
 
 The Authorized Buyers Ad Exchange API DotNet Client Library makes it easier to
@@ -33,6 +34,7 @@ or browse to <https://github.com/googleads/googleads-adxbuyer-examples> and
  download a zip.
 
 ### Setup Security
+
 The API uses OAuth2 for security, you can read about the options for connecting
  at <https://developers.google.com/accounts/docs/OAuth2>
 
@@ -42,33 +44,41 @@ We will focus on using a Service Account; samples are included for prompting
 If you don't already have a Service Account and corresponding JSON key file
 
  * Launch the Google Developers Console <https://console.developers.google.com>
- * Click the **API Manager** item on the navigation menu.
+ * If you are prompted to select a project, choose the one you are using to
+   access the API.
  * Click **Credentials** menu option.
  * Click the link titled **Manage service accounts**.
  * You should now see a table listing the Service Accounts associated with the
   current project. Find the Service Account you had been using previously, and
   open the menu.
- * Select the **Create key** menu item.
+ * Select the **Manage keys** menu item.
+ * Click the **ADD KEY** button, and select the **Create new key** item from
+   the drop-down menu.
  * Click the **JSON** key type option and click **CREATE**.
  * Set the path to the downloaded JSON file as the **ServiceKeyFilePath** value
   in **ExamplesConfig.cs**.
 
-### Dependancies
-The DoubleClick Ad Exchange Buyer API .Net Client Library is hosted on nuget.org
-
-If nuget is configured you can skip to **Run the examples** and it will 
- automatically download the required libraries
-
-Otherwise you can locate the client library at
- <https://www.nuget.org/packages?q=Google.Apis.adexchangebuyer&prerelease=true&sortOrder=relevance>
-
 ### Run the examples
-When you are ready, hit F5
 
-By default this will print out a usage method and show how to run a paricular example
+To build the project from the command line, run the following command:
 
-If you know which example you want to run you may choose to set
-Project|Properties|Startup Object and then hit F5
+```
+dotnet build Google.Apis.AdExchangeBuyer.Examples.csproj
+```
 
-**Note:** Some of the examples need parameters configured for them to work, those parameters appear in the first few lines of the Run method in each case.
+To run an example from the command line, run a command such as the following:
+
+```
+dotnet run --framework net5.0 $EXAMPLE_PATH
+```
+
+For example, to run the ListAccounts.cs example for the Ad Exchange Buyer API,
+run the following:
+
+```
+dotnet run --framework net5.0 v1_x.ListAccounts
+```
+
+**Note:** Some of the examples need parameters configured for them to work,
+those parameters appear in the first few lines of the Run method in each case.
 

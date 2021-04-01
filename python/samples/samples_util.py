@@ -68,8 +68,8 @@ def DownloadDiscoveryDocument(api_name, version, path=_DEFAULT_DISCOVERY_PATH,
   """Downloads a discovery document for the given api_name and version.
 
   This utility assumes that the API for which a discovery document is being
-  retrieved is publicly accessible. However, you may access whitelisted
-  resources for a public API if you are added to its whitelist and specify the
+  retrieved is publicly accessible. However, you may access allowlisted
+  resources for a public API if you are added to its allowlist and specify the
   associated label.
 
   Args:
@@ -82,7 +82,7 @@ def DownloadDiscoveryDocument(api_name, version, path=_DEFAULT_DISCOVERY_PATH,
         request. This is not applicable when downloading the discovery document
         of a legacy API. For non-legacy APIs, this may be used as a means of
         programmatically retrieving a copy of a discovery document containing
-        whitelisted content.
+        allowlisted content.
 
   Raises:
     ValueError: if labels are specified for a legacy API, which is incompatible

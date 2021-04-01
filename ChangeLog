@@ -1,3 +1,10 @@
+1.2.0
+=====
+
+- Updated .NET README.md to clarify new workflow for building and running.
+- Updated text in samples_util.py for respectful code cleanup.
+
+
 1.1.0
 =====
 
