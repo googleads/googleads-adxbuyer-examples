@@ -1,7 +1,7 @@
-# Authorized Buyers Ad Exchange Buyer API PHP Samples
+# Authorized Buyers Ad Exchange Buyer II API PHP Samples
 
-These samples demonstrate basic usage of the Authorized Buyers Ad Exchange Buyer
-API.
+These samples demonstrate basic usage of the Authorized Buyers Ad Exchange
+Buyer II API.
 
 # Setup
 

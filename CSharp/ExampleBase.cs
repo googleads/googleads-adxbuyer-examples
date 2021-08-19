@@ -22,7 +22,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
     /// </summary>
     public abstract class ExampleBase
     {
-        public enum ClientType {ADEXCHANGEBUYER, ADEXCHANGEBUYERII}
+        public enum ClientType {ADEXCHANGEBUYERII}
         /// <summary>
         /// Returns a description about the code example.
         /// </summary>

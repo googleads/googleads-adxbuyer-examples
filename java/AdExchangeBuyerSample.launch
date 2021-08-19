@@ -7,7 +7,7 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.google.api.services.samples.adexchangebuyer.cmdline.AdExchangeBuyerSample"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.google.api.services.samples.adexchangebuyer.cmdline.AdExchangeBuyerIISample"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="adexchangebuyer-cmdline-sample"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.util.logging.config.file=${project_loc:adexchangebuyer-cmdline-sample}/logging.properties"/>

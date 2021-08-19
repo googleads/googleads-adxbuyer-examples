@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyerII.v2beta1;
 
 using System;
@@ -63,13 +62,12 @@ namespace Google.Apis.AdExchangeBuyer.Examples
                 return;
             }
 
-            Console.WriteLine("Authorized Buyers AdExchange Buyer API DotNet Sample");
+            Console.WriteLine("Authorized Buyers AdExchange Buyer II API DotNet Sample");
             Console.WriteLine("====================");
 
-            // Create a new service instance for v1 and v2 of AdExchangeBuyer.
+            // Create a new service instance for Ad Exchange Buyer II.
             // Note: This is where security configuration takes place and will need to be
             // configured before the code will work!
-            AdExchangeBuyerService v1Service = Utilities.GetV1Service();
             AdExchangeBuyerIIService v2Service = Utilities.GetV2Service();
 
             // If --all is passed run all the examples
@@ -83,11 +81,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
                     ExampleBase example = examples[exampleName];
                     Console.WriteLine(example.Description);
 
-                    if(example.getClientType() == ExampleBase.ClientType.ADEXCHANGEBUYER)
-                    {
-                        example.Run(v1Service);
-                    }
-                    else if(example.getClientType() == ExampleBase.ClientType.ADEXCHANGEBUYERII)
+                    if(example.getClientType() == ExampleBase.ClientType.ADEXCHANGEBUYERII)
                     {
                         example.Run(v2Service);
                     }
@@ -110,7 +104,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
         private static void ShowUsage()
         {
             string exeName = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
-            Console.WriteLine("Runs Ad Exchange Buyer API code examples");
+            Console.WriteLine("Runs Ad Exchange Buyer II API code examples");
             Console.WriteLine("Usage : {0} [flags]\n", exeName);
             Console.WriteLine("Available flags\n");
             Console.WriteLine("--all\t\t : Run all code examples.", exeName);

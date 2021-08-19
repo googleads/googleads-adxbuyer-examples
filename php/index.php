@@ -17,7 +17,7 @@
 
 /*
  * Authorizes with the ServiceAccount Authorization Flow and presents a menu of
- * Authorized Buyers Ad Exchange Buyer API samples to run.
+ * Authorized Buyers Ad Exchange Buyer II API samples to run.
  */
 
 /**
@@ -37,6 +37,7 @@ session_start();
  */
 $keyFileLocation = '<PATH_TO_JSON>';
 
+
 if ($keyFileLocation === '<PATH_TO_JSON>') {
   echo '<h1>WARNING: Authorization details not provided!</h1>';
   exit(1);
@@ -44,9 +45,8 @@ if ($keyFileLocation === '<PATH_TO_JSON>') {
 
 $client = new Google_Client();
 $client->setApplicationName(
-    'Authorized Buyers Ad Exchange Buyer API PHP Samples');
+    'Authorized Buyers Ad Exchange Buyer API II PHP Samples');
 
-$service = new Google_Service_AdExchangeBuyer($client);
 $serviceII = new Google_Service_AdExchangeBuyerII($client);
 
 if (isset($_SESSION['service_token'])) {
@@ -70,9 +70,7 @@ if ($client->getAccessToken()) {
   if (isset($_GET['action'])) {
     $action = $_GET['action'];
 
-    if (in_array($action, $actions['v1'])) {
-      require_once 'examples/v1_x/' . $action . '.php';
-    } else if (in_array($action, $actions['v2'])) {
+    if (in_array($action, $actions['v2'])) {
       require_once 'examples/v2_x/' . $action . '.php';
     } else {
       die("Unsupported action: " . $action . "\n");
@@ -81,9 +79,7 @@ if ($client->getAccessToken()) {
     // Render the required action.
     $class = ucfirst($action);
     $example = new $class();
-    if ($example->getClientType() == ClientType::AdExchangeBuyer) {
-      $example->setService($service);
-    } else {
+    if ($example->getClientType() == ClientType::AdExchangeBuyerII) {
       $example->setService($serviceII);
     }
     printHtmlHeader($example->getName());
@@ -96,7 +92,7 @@ if ($client->getAccessToken()) {
     printSampleHtmlFooter();
   } else {
     // Show the list of links to supported actions.
-    printHtmlHeader('Ad Exchange Buyer API PHP usage examples.');
+    printHtmlHeader('Ad Exchange Buyer II API PHP usage examples.');
     printExamplesIndex($actions);
     printHtmlFooter();
   }
@@ -110,14 +106,6 @@ if ($client->getAccessToken()) {
  */
 function getSupportedActions() {
   return [
-      'v1' => [
-          'GetAllAccounts',
-          'GetCreative',
-          'SubmitCreative',
-          'UpdateAccount',
-          'ListPerformanceReport',
-          'InsertPretargetingConfig'
-      ],
       'v2' => [
           'ListClientBuyers',
           'CreateClientBuyer',

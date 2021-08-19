@@ -83,12 +83,9 @@ public class GetAllBidderLevelFilterSets extends BaseSample {
         if(timeSeriesGranularity != null) {
           System.out.printf("Time series granularity: %s%n", timeSeriesGranularity);
         }
-        List<String> formats = filterSet.getFormats();
-        if(formats != null) {
-          System.out.println("Formats:");
-          for(String format : formats) {
-            System.out.printf("\tFormat: %s%n", format);
-          }
+        String format = filterSet.getFormat();
+        if(format != null) {
+          System.out.printf("\tFormat: %s%n", format);
         }
         String environment = filterSet.getEnvironment();
         if(environment != null) {

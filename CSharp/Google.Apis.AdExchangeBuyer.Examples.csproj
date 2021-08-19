@@ -4,7 +4,10 @@
     <Title>Authorized Buyers Ad Exchange API DotNet Samples</Title>
     <PackageId>Google.Apis.AdExchangeBuyer.Examples</PackageId>
     <Version>1.1.0</Version>
-    <Description>These samples demonstrate basic usage of the Authorized Buyers Ad Exchange API. The Authorized Buyers Ad Exchange API DotNet Client Library makes it easier to write .NET clients to programmatically access Authorized Buyer accounts. The complete documentation for the Authorized Buyers Ad Exchange API docs are available from https://developers.google.com/authorized-buyers/apis.</Description>
+    <Description>These samples demonstrate basic usage of the Authorized Buyers Ad Exchange Buyer II API. The
+    Authorized Buyers Ad Exchange Buyer II API DotNet Client Library makes it easier to write .NET clients to
+    programmatically access Authorized Buyer accounts. The complete documentation for the Authorized Buyers Ad Exchange
+    Buyer II API docs are available from https://developers.google.com/authorized-buyers/apis.</Description>
     <PackageReleaseNotes>https://github.com/googleads/googleads-adxbuyer-examples/blob/master/ChangeLog</PackageReleaseNotes>
     <PackageTags>GoogleAds Google</PackageTags>
     <Copyright>Copyright 2014, Google LLC</Copyright>
@@ -37,7 +40,6 @@
     <Copy SourceFiles="app.config" DestinationFiles="web.config.transform" />
   </Target>
   <ItemGroup>
-    <PackageReference Include="Google.Apis.AdExchangeBuyer.v1_4" Version="1.51.0.2237" />
     <PackageReference Include="Google.Apis.AdExchangeBuyerII.v2beta1" Version="1.51.0.2246" />
     <PackageReference Include="Google.Apis" Version="1.51" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">

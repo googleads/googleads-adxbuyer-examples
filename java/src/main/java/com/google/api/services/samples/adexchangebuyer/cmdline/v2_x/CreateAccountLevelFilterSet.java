@@ -102,7 +102,7 @@ public class CreateAccountLevelFilterSet extends BaseSample {
       filterSet.setEnvironment(environment);
     }
     if(format != null) {
-      filterSet.setFormats(Arrays.asList(format)));
+      filterSet.setFormat(format);
     }
     if(platforms != null) {
       filterSet.setPlatforms(platforms);
@@ -139,12 +139,9 @@ public class CreateAccountLevelFilterSet extends BaseSample {
     if(dealId != null) {
       System.out.printf("Deal ID: %s%n", dealId);
     }
-    List<String> formats = filterSet.getFormats();
-    if(formats != null) {
-      System.out.println("Formats:");
-      for(String fmt : formats) {
-        System.out.printf("\tFormat: %s%n", fmt);
-      }
+    format = filterSet.getFormat();
+    if(format != null) {
+        System.out.printf("\tFormat: %s%n", format);
     }
     environment = filterSet.getEnvironment();
     if(environment != null) {

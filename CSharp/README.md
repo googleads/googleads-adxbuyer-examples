@@ -1,11 +1,12 @@
-# Authorized Buyers Ad Exchange API DotNet Samples
+# Authorized Buyers Ad Exchange Buyer II API DotNet Samples
 
-These samples demonstrate basic usage of the Authorized Buyers Ad Exchange API.
+These samples demonstrate basic usage of the Authorized Buyers Ad Exchange
+Buyer II API.
 
-The Authorized Buyers Ad Exchange API DotNet Client Library makes it easier to
-write .NET clients to programmatically access Authorized Buyer accounts.
-The complete documentation for the Authorized Buyers Ad Exchange API docs are
-available from <https://developers.google.com/authorized-buyers/apis/>.
+The Authorized Buyers Ad Exchange Buyer II API DotNet Client Library makes it
+easier to write .NET clients to programmatically access Authorized Buyer
+accounts. The complete documentation for the Authorized Buyers Ad Exchange API
+docs are available from <https://developers.google.com/authorized-buyers/apis/>.
 
 ## Features
 

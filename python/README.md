@@ -1,7 +1,7 @@
-# Authorized Buyers Ad Exchange Buyer API Python Samples
+# Authorized Buyers Ad Exchange Buyer API II Python Samples
 
 These samples demonstrate basic usage of the Authorized Buyers Ad Exchange
-Buyer API.
+Buyer II API.
 
 # Setup
 
@@ -50,6 +50,6 @@ You should now be able to start any of the samples by running them from the
 command line, for example:
 
 ```
-$ python list_accounts.py
+$ python list_client_buyers.py -a $ACCOUNT_ID
 ```
 

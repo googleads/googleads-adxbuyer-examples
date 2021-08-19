@@ -19,18 +19,13 @@
 # Common utilities used by the Authorized Buyers Ad Exchange Buyer API Samples.
 
 require 'optparse'
-require 'google/apis/adexchangebuyer_v1_3'
-require 'google/apis/adexchangebuyer_v1_4'
 require 'google/apis/adexchangebuyer2_v2beta1'
 require 'google/apis/options'
 require 'googleauth/service_account'
 
-ADEXCHANGEBUYER_V1_3 = "v1.3"
-ADEXCHANGEBUYER_V1_4 = "v1.4"
 ADEXCHANGEBUYER_V2BETA1 = "v2beta1"
-DEFAULT_VERSION = ADEXCHANGEBUYER_V1_4
-SUPPORTED_VERSIONS = [ADEXCHANGEBUYER_V1_3, ADEXCHANGEBUYER_V1_4,
-    ADEXCHANGEBUYER_V2BETA1]
+DEFAULT_VERSION = ADEXCHANGEBUYER_V2BETA1
+SUPPORTED_VERSIONS = [ADEXCHANGEBUYER_V2BETA1]
 
 # The JSON key file for your Service Account found in the Google Developers
 # Console.
@@ -43,19 +38,15 @@ MAX_PAGE_SIZE = 50
 def get_service(version=DEFAULT_VERSION)
   if !SUPPORTED_VERSIONS.include? version
     raise ArgumentError, (
-      'Unsupported version of the Ad Exchange Buyer API specified!'
+      'Unsupported version of Ad Exchange Buyer II API specified!'
     )
   end
 
   Google::Apis::ClientOptions.default.application_name =
-      "Ruby Ad Exchange Buyer samples: #{$0}"
+      "Ruby Ad Exchange Buyer II samples: #{$0}"
   Google::Apis::ClientOptions.default.application_version = "1.0.0"
 
-  if version == ADEXCHANGEBUYER_V1_3
-    service = Google::Apis::AdexchangebuyerV1_3::AdExchangeBuyerService.new
-  elsif version == ADEXCHANGEBUYER_V1_4
-    service = Google::Apis::AdexchangebuyerV1_4::AdExchangeBuyerService.new
-  elsif version == ADEXCHANGEBUYER_V2BETA1
+  if version == ADEXCHANGEBUYER_V2BETA1
     service =
       Google::Apis::Adexchangebuyer2V2beta1::AdExchangeBuyerIIService.new
   end

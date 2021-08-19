@@ -32,10 +32,10 @@ public abstract class BaseSample {
   private static Map<String, String> cachedValues = new HashMap<String, String>();
 
   /**
-   * The types of clients that can be created for Authorized Buyers Ad Exchange Buyer API.
+   * The types of clients that can be created in this set of examples.
    */
   public enum ClientType {
-    ADEXCHANGEBUYER, ADEXCHANGEBUYERII
+    ADEXCHANGEBUYERII
   }
 
   /**
@@ -193,7 +193,6 @@ public abstract class BaseSample {
    *
    * @param propertyKey Key of the value, used to store it for future use
    * @param message Message to print out to the user in request of input
-   * @param defaultValue Default value to return in case the user does not provide one
    * @return The parsed numeric value entered by the user
    * @throws IOException
    */
@@ -218,7 +217,6 @@ public abstract class BaseSample {
    *
    * @param propertyKey Key of the value, used to store it for future use
    * @param message Message to print out to the user in request of input
-   * @param defaultValue Default value to return in case the user does not provide one
    * @return The parsed numeric value entered by the user
    * @throws IOException
    */

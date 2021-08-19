@@ -1,11 +1,11 @@
-# Authorized Buyers Ad Exchange Buyer API Java Samples
+# Authorized Buyers Ad Exchange Buyer II API Java Samples
 These samples demonstrate basic usage of the Authorized Buyers Ad Exchange
-Buyer API.
+Buyer II API.
 
-The Authorized Buyers Ad Exchange Buyer API Java Client Library makes it
+The Authorized Buyers Ad Exchange Buyer II API Java Client Library makes it
 easier to write Java clients to programmatically access Authorized Buyer
 accounts. The complete documentation for the Authorized Buyers Ad Exchange
-Buyer API is available from <https://developers.google.com/authorized-buyers/apis/>.
+Buyer II API is available from <https://developers.google.com/authorized-buyers/apis/>.
 
 ## Prerequisites
 - [`Java 6+`](http://java.com)

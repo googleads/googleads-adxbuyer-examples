@@ -15,6 +15,5 @@
  * limitations under the License.
  */
 abstract class ClientType {
- const AdExchangeBuyer = 0;
- const AdExchangeBuyerII = 1;
+ const AdExchangeBuyerII = 0;
 }

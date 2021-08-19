@@ -1,7 +1,7 @@
-# Authorized Buyers Ad Exchange Buyer API Ruby Samples
+# Authorized Buyers Ad Exchange Buyer II API Ruby Samples
 
 These samples demonstrate basic usage of the Authorized Buyers Ad Exchange
-Buyer API.
+Buyer II API.
 
 # Migrating
 

@@ -7,9 +7,9 @@
     <version>5</version>
   </parent>
   <groupId>com.google.apis-samples</groupId>
-  <artifactId>adexchangebuyer-cmdline-sample</artifactId>
+  <artifactId>adexchangebuyer2-cmdline-sample</artifactId>
   <version>1</version>
-  <name>Example for the Authorized Buyers Ad Exchange Buyer APIs.</name>
+  <name>Example for the Authorized Buyers Ad Exchange Buyer II API.</name>
 
   <url>https://github.com/google/google-api-java-client/</url>
 
@@ -52,7 +52,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>com.google.api.services.samples.adexchangebuyer.cmdline.AdExchangeBuyerSample</mainClass>
+          <mainClass>com.google.api.services.samples.adexchangebuyer.cmdline.AdExchangeBuyerIISample</mainClass>
           <systemProperties>
             <systemProperty>
               <key>java.util.logging.config.file</key>
@@ -98,13 +98,8 @@
   <dependencies>
     <dependency>
       <groupId>com.google.apis</groupId>
-      <artifactId>google-api-services-adexchangebuyer</artifactId>
-      <version>v1.4-rev38-1.23.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-adexchangebuyer2</artifactId>
-      <version>v2beta1-rev560-1.23.0</version>
+      <version>v2beta1-rev20210613-1.32.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.http-client</groupId>
@@ -123,8 +118,8 @@
     </dependency>
   </dependencies>
   <properties>
-    <project.http.version>1.23.0</project.http.version>
-    <project.oauth.version>1.23.0</project.oauth.version>
+    <project.http.version>1.39.2-sp.1</project.http.version>
+    <project.oauth.version>1.31.5</project.oauth.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

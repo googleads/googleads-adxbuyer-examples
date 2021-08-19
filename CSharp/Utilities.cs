@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-using Google.Apis.AdExchangeBuyer.v1_4;
 using Google.Apis.AdExchangeBuyerII.v2beta1;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Auth.OAuth2.Flows;
@@ -28,25 +27,9 @@ namespace Google.Apis.AdExchangeBuyer.Examples
 {
     public class Utilities
     {
-        /// <summary>
-        /// Create a new Service for Authorized Buyers Ad Exchange v1 APIs. Note the call to
-        /// ServiceAccount - this is where security configuration takes place and will need to be
-        /// configured before the code will work!
-        /// </summary>
-        /// <returns>A new API Service</returns>
-        public static AdExchangeBuyerService GetV1Service()
-        {
-            return new AdExchangeBuyerService(
-                new Google.Apis.Services.BaseClientService.Initializer
-                {
-                    HttpClientInitializer = ServiceAccount(),
-                    ApplicationName = "AdExchange Buyer DotNet Sample",
-                }
-            );
-        }
 
         /// <summary>
-        /// Create a new Service for Authorized Buyers Ad Exchange v2 APIs. Note the call to
+        /// Create a new Service for Authorized Buyers Ad Exchange Buyer II API. Note the call to
         /// ServiceAccount - this is where security configuration takes place and will need to be
         /// configured before the code will work!
         /// </summary>
@@ -57,7 +40,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
                 new Google.Apis.Services.BaseClientService.Initializer
                 {
                     HttpClientInitializer = ServiceAccount(),
-                    ApplicationName = "AdExchange Buyer DotNet Sample",
+                    ApplicationName = "AdExchange Buyer II DotNet Sample",
                 }
             );
         }
@@ -76,7 +59,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
             return new ServiceAccountCredential(
                 new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
                 {
-                    Scopes = new[] { AdExchangeBuyerService.Scope.AdexchangeBuyer }
+                    Scopes = new[] { AdExchangeBuyerIIService.Scope.AdexchangeBuyer }
                 }.FromPrivateKey(credentialParameters.PrivateKey));
         }
 
@@ -94,7 +77,7 @@ namespace Google.Apis.AdExchangeBuyer.Examples
             {
                 return GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
-                    new[] { AdExchangeBuyerService.Scope.AdexchangeBuyer },
+                    new[] { AdExchangeBuyerIIService.Scope.AdexchangeBuyer },
                     "user",
                     CancellationToken.None,
                     new FileDataStore(ExamplesConfig.FileDataStore)).Result;

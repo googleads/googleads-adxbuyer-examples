@@ -70,7 +70,7 @@ abstract class BaseExample {
    * @return ClientType 
    */
   public function getClientType() {
-    return ClientType::AdExchangeBuyer;
+    return ClientType::AdExchangeBuyerII;
   }
 
   /**
