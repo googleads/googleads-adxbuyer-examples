@@ -1,3 +1,10 @@
+3.0.0
+=====
+
+- Removed sunset Ad Exchange Buyer II API Marketplace samples for every
+  supported language. Only RTB Troubleshooting samples are supported at this
+  time.
+
 2.0.0
 =====
 

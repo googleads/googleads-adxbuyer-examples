@@ -49,13 +49,6 @@ import java.util.ArrayList;
  * A sample application that runs multiple requests against the Authorized Buyers Ad Exchange
  * Buyer II API. These include:
  * <ul>
- * <li>Get All Client Buyers</li>
- * <li>Create Client Buyer</li>
- * <li>Update Client Buyer</li>
- * <li>Get All Invitations</li>
- * <li>Create Invitation</li>
- * <li>Get All Client Users</li>
- * <li>Update Client User</li>
  * <li>Create Bidder-level Filter Set</li>
  * <li>Get all Bidder-level Filter Sets</li>
  * <li>Get Bidder-level Bid Metrics</li>
@@ -111,23 +104,12 @@ public class AdExchangeBuyerIISample {
    */
   private static void initSamples() {
     samples = new ArrayList<BaseSample>();
-    samples.add(new GetAllClientBuyers());
-    samples.add(new CreateClientBuyer());
-    samples.add(new UpdateClientBuyer());
-    samples.add(new GetAllInvitations());
-    samples.add(new CreateInvitation());
-    samples.add(new GetAllClientUsers());
-    samples.add(new UpdateClientUser());
     samples.add(new CreateBidderLevelFilterSet());
     samples.add(new GetAllBidderLevelFilterSets());
     samples.add((new GetBidderLevelBidMetrics()));
     samples.add(new CreateAccountLevelFilterSet());
     samples.add(new GetAllAccountLevelFilterSets());
     samples.add(new GetAccountLevelBidMetrics());
-    samples.add(new GetAllPublisherProfiles());
-    samples.add(new ListProposals());
-    samples.add(new CreateProposal());
-    samples.add(new AcceptProposal());
   }
 
   /**

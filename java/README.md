@@ -7,6 +7,10 @@ easier to write Java clients to programmatically access Authorized Buyer
 accounts. The complete documentation for the Authorized Buyers Ad Exchange
 Buyer II API is available from <https://developers.google.com/authorized-buyers/apis/>.
 
+**Note:** The Ad Exchange Buyer II API is deprecated! The only API resources
+supported at this time are for
+[RTB Troubleshooting](https://developers.google.com/authorized-buyers/apis/guides/v2/rtb-troubleshooting).
+
 ## Prerequisites
 - [`Java 6+`](http://java.com)
 - [`Maven`](http://maven.apache.org)

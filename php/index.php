@@ -107,23 +107,12 @@ if ($client->getAccessToken()) {
 function getSupportedActions() {
   return [
       'v2' => [
-          'ListClientBuyers',
-          'CreateClientBuyer',
-          'UpdateClientBuyer',
-          'ListInvitations',
-          'CreateInvitation',
-          'ListClientUsers',
-          'UpdateClientUser',
           'CreateBidderLevelFilterSet',
           'ListBidderLevelFilterSets',
           'ListBidderLevelBidMetrics',
           'CreateAccountLevelFilterSet',
           'ListAccountLevelFilterSets',
-          'ListAccountLevelBidMetrics',
-          'ListPublisherProfiles',
-          'CreateProposal',
-          'ListProposals',
-          'AcceptProposal'
+          'ListAccountLevelBidMetrics'
     ]
   ];
 }

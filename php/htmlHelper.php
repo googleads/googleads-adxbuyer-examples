@@ -60,8 +60,10 @@ function printExamplesIndex($actions) {
     foreach ($versionActions as $action) {
       require_once sprintf('examples/%s_x/%s.php', $version, $action);
       $class = ucfirst($action);
+      $obj = new $class();
+
       printf('<li><a class="highlight" href="?action=%s">%s</a></li>', $action,
-          $class::getName());
+          $obj->getName());
     }
   }
   print '</ul>';

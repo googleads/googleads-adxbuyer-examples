@@ -3,6 +3,10 @@
 These samples demonstrate basic usage of the Authorized Buyers Ad Exchange
 Buyer II API.
 
+**Note:** The Ad Exchange Buyer II API is deprecated! The only API resources
+supported at this time are for
+[RTB Troubleshooting](https://developers.google.com/authorized-buyers/apis/guides/v2/rtb-troubleshooting).
+
 # Setup
 
 To run these samples, you'll need to do the following:

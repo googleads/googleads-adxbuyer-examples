@@ -3,9 +3,13 @@
 These samples demonstrate basic usage of the Authorized Buyers Ad Exchange
 Buyer II API.
 
+**Note:** The Ad Exchange Buyer II API is deprecated! The only API resources
+supported at this time are for
+[RTB Troubleshooting](https://developers.google.com/authorized-buyers/apis/guides/v2/rtb-troubleshooting).
+
 # Migrating
 
-These samples have been updated to work with Ruby 2.0 and 0.9.x of the
+These samples have been updated to work with Ruby 2.6 and 0.53.x of the
 [google-api-ruby-client](https://github.com/google/google-api-ruby-client)
 library. If you have used these samples previously and want to use the same
 Service Account going forward, follow these steps to generate your existing
@@ -60,6 +64,6 @@ You should now be able to start any of the samples by running them from the
 command line, for example:
 
 ```
-$ ruby list_accounts.rb
+$ ruby list_bidder_level_filter_sets.rb -b $ACCOUNT_ID
 ```
 

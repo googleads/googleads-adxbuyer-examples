@@ -1,8 +1,8 @@
 {
   "description": "Authorized Buyers Ad Exchange Buyer API PHP Samples",
   "require": {
-    "php": ">=5.5",
-    "google/apiclient": "^2.0"
+    "php": ">=7.4",
+    "google/apiclient": "^2.15.0"
   },
   "type": "project",
   "homepage": "https://github.com/googleads/googleads-adxbuyer-examples/tree/master/php",
